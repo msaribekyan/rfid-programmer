@@ -1,0 +1,1849 @@
+ARM GAS  /tmp/ccbCGITS.s 			page 1
+
+
+   1              		.cpu cortex-m0
+   2              		.arch armv6s-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 0
+  12              		.eabi_attribute 18, 4
+  13              		.file	"MFRC522_STM32.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.file 1 "Core/Src/MFRC522_STM32.c"
+  18              		.section	.text.MFRC522_ReadReg,"ax",%progbits
+  19              		.align	1
+  20              		.global	MFRC522_ReadReg
+  21              		.syntax unified
+  22              		.code	16
+  23              		.thumb_func
+  25              	MFRC522_ReadReg:
+  26              	.LVL0:
+  27              	.LFB46:
+   1:Core/Src/MFRC522_STM32.c **** #include "MFRC522_STM32.h"
+   2:Core/Src/MFRC522_STM32.c **** #include "main.h"
+   3:Core/Src/MFRC522_STM32.c **** 
+   4:Core/Src/MFRC522_STM32.c **** uint8_t atqa[2];
+   5:Core/Src/MFRC522_STM32.c **** 
+   6:Core/Src/MFRC522_STM32.c **** void MFRC522_Init(MFRC522_t *dev) {
+   7:Core/Src/MFRC522_STM32.c ****     USER_LOG("MFRC522 Min Init started");
+   8:Core/Src/MFRC522_STM32.c ****     // Hardware reset
+   9:Core/Src/MFRC522_STM32.c ****     HAL_GPIO_WritePin(dev->rstPort, dev->rstPin, GPIO_PIN_RESET);
+  10:Core/Src/MFRC522_STM32.c ****     HAL_Delay(50);
+  11:Core/Src/MFRC522_STM32.c ****     HAL_GPIO_WritePin(dev->rstPort, dev->rstPin, GPIO_PIN_SET);
+  12:Core/Src/MFRC522_STM32.c ****     HAL_Delay(50);
+  13:Core/Src/MFRC522_STM32.c **** 
+  14:Core/Src/MFRC522_STM32.c ****     // Soft reset
+  15:Core/Src/MFRC522_STM32.c ****     MFRC522_WriteReg(dev, PCD_CommandReg, PCD_SoftReset);
+  16:Core/Src/MFRC522_STM32.c ****     HAL_Delay(50);
+  17:Core/Src/MFRC522_STM32.c **** 
+  18:Core/Src/MFRC522_STM32.c ****     // Clear interrupts
+  19:Core/Src/MFRC522_STM32.c ****     MFRC522_WriteReg(dev, PCD_ComIrqReg, 0x7F);
+  20:Core/Src/MFRC522_STM32.c **** 
+  21:Core/Src/MFRC522_STM32.c ****     // Flush FIFO
+  22:Core/Src/MFRC522_STM32.c ****     MFRC522_WriteReg(dev, PCD_FIFOLevelReg, 0x80);
+  23:Core/Src/MFRC522_STM32.c **** 
+  24:Core/Src/MFRC522_STM32.c ****     // Timer: ~25ms timeout
+  25:Core/Src/MFRC522_STM32.c ****     MFRC522_WriteReg(dev, PCD_TModeReg, 0x80);      // Timer starts immediately
+  26:Core/Src/MFRC522_STM32.c ****     MFRC522_WriteReg(dev, PCD_TPrescalerReg, 0xA9); // 80kHz clock
+  27:Core/Src/MFRC522_STM32.c ****     MFRC522_WriteReg(dev, PCD_TReloadRegH, 0x03);   // 1000 ticks = ~12.5ms
+  28:Core/Src/MFRC522_STM32.c ****     MFRC522_WriteReg(dev, PCD_TReloadRegL, 0xE8);
+  29:Core/Src/MFRC522_STM32.c **** 
+  30:Core/Src/MFRC522_STM32.c ****     // RF settings
+  31:Core/Src/MFRC522_STM32.c ****     MFRC522_WriteReg(dev, PCD_TxAutoReg, 0x40);     // 100% ASK modulation
+ARM GAS  /tmp/ccbCGITS.s 			page 2
+
+
+  32:Core/Src/MFRC522_STM32.c ****     MFRC522_WriteReg(dev, PCD_RFCfgReg, 0x7F);      // Max gain (48dB)
+  33:Core/Src/MFRC522_STM32.c ****     MFRC522_WriteReg(dev, PCD_DemodReg, 0x4D);      // Sensitivity for clones
+  34:Core/Src/MFRC522_STM32.c **** 
+  35:Core/Src/MFRC522_STM32.c ****     // Enable antenna
+  36:Core/Src/MFRC522_STM32.c ****     MFRC522_AntennaOn(dev);
+  37:Core/Src/MFRC522_STM32.c ****     HAL_Delay(10);  // Let RF stabilize
+  38:Core/Src/MFRC522_STM32.c **** 
+  39:Core/Src/MFRC522_STM32.c ****     uint8_t version = MFRC522_ReadReg(dev, PCD_VersionReg);
+  40:Core/Src/MFRC522_STM32.c ****     if ((version != 0x91)||(version != 0x92)){
+  41:Core/Src/MFRC522_STM32.c ****     	USER_LOG("Version: 0x%02X (counterfeit OK for UID)", version);
+  42:Core/Src/MFRC522_STM32.c ****     }
+  43:Core/Src/MFRC522_STM32.c ****     else USER_LOG("Version: 0x%02X", version);
+  44:Core/Src/MFRC522_STM32.c ****     uint8_t txCtrl = MFRC522_ReadReg(dev, PCD_TxControlReg);
+  45:Core/Src/MFRC522_STM32.c ****     DEBUG_LOG("TxControlReg: 0x%02X (expect >= 0x03)", txCtrl);
+  46:Core/Src/MFRC522_STM32.c ****     USER_LOG("MFRC522 Min Init complete");
+  47:Core/Src/MFRC522_STM32.c **** }
+  48:Core/Src/MFRC522_STM32.c **** 
+  49:Core/Src/MFRC522_STM32.c **** void MFRC522_AntennaOff(MFRC522_t *dev) {
+  50:Core/Src/MFRC522_STM32.c ****     MFRC522_ClearBitMask(dev, PCD_TxControlReg, 0x03);
+  51:Core/Src/MFRC522_STM32.c ****     DEBUG_LOG("Antenna off");
+  52:Core/Src/MFRC522_STM32.c **** }
+  53:Core/Src/MFRC522_STM32.c **** 
+  54:Core/Src/MFRC522_STM32.c **** void MFRC522_AntennaOn(MFRC522_t *dev) {
+  55:Core/Src/MFRC522_STM32.c ****     MFRC522_SetBitMask(dev, PCD_TxControlReg, 0x03);
+  56:Core/Src/MFRC522_STM32.c ****     DEBUG_LOG("Antenna on");
+  57:Core/Src/MFRC522_STM32.c **** }
+  58:Core/Src/MFRC522_STM32.c **** 
+  59:Core/Src/MFRC522_STM32.c **** uint8_t MFRC522_ReadReg(MFRC522_t *dev, uint8_t reg) {
+  28              		.loc 1 59 54 view -0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 8
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32              		.loc 1 59 54 is_stmt 0 view .LVU1
+  33 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+  34              	.LCFI0:
+  35              		.cfi_def_cfa_offset 20
+  36              		.cfi_offset 4, -20
+  37              		.cfi_offset 5, -16
+  38              		.cfi_offset 6, -12
+  39              		.cfi_offset 7, -8
+  40              		.cfi_offset 14, -4
+  41 0002 83B0     		sub	sp, sp, #12
+  42              	.LCFI1:
+  43              		.cfi_def_cfa_offset 32
+  44 0004 0400     		movs	r4, r0
+  60:Core/Src/MFRC522_STM32.c ****     uint8_t addr = ((reg << 1) & 0x7E) | 0x80;
+  45              		.loc 1 60 5 is_stmt 1 view .LVU2
+  46              		.loc 1 60 32 is_stmt 0 view .LVU3
+  47 0006 4900     		lsls	r1, r1, #1
+  48              	.LVL1:
+  49              		.loc 1 60 32 view .LVU4
+  50 0008 7E23     		movs	r3, #126
+  51 000a 0B40     		ands	r3, r1
+  52              		.loc 1 60 40 view .LVU5
+  53 000c 8021     		movs	r1, #128
+  54 000e 4942     		rsbs	r1, r1, #0
+  55 0010 1943     		orrs	r1, r3
+ARM GAS  /tmp/ccbCGITS.s 			page 3
+
+
+  56              		.loc 1 60 13 view .LVU6
+  57 0012 6B46     		mov	r3, sp
+  58 0014 DF1D     		adds	r7, r3, #7
+  59 0016 D971     		strb	r1, [r3, #7]
+  61:Core/Src/MFRC522_STM32.c ****     uint8_t val = 0;
+  60              		.loc 1 61 5 is_stmt 1 view .LVU7
+  61              		.loc 1 61 13 is_stmt 0 view .LVU8
+  62 0018 9D1D     		adds	r5, r3, #6
+  63 001a 0023     		movs	r3, #0
+  64 001c 2B70     		strb	r3, [r5]
+  62:Core/Src/MFRC522_STM32.c ****     HAL_GPIO_WritePin(dev->csPort, dev->csPin, GPIO_PIN_RESET);
+  65              		.loc 1 62 5 is_stmt 1 view .LVU9
+  66 001e 0189     		ldrh	r1, [r0, #8]
+  67 0020 4068     		ldr	r0, [r0, #4]
+  68              	.LVL2:
+  69              		.loc 1 62 5 is_stmt 0 view .LVU10
+  70 0022 0022     		movs	r2, #0
+  71 0024 FFF7FEFF 		bl	HAL_GPIO_WritePin
+  72              	.LVL3:
+  63:Core/Src/MFRC522_STM32.c ****     HAL_SPI_Transmit(dev->hspi, &addr, 1, HAL_MAX_DELAY);
+  73              		.loc 1 63 5 is_stmt 1 view .LVU11
+  74 0028 0126     		movs	r6, #1
+  75 002a 7642     		rsbs	r6, r6, #0
+  76 002c 2068     		ldr	r0, [r4]
+  77 002e 3300     		movs	r3, r6
+  78 0030 0122     		movs	r2, #1
+  79 0032 3900     		movs	r1, r7
+  80 0034 FFF7FEFF 		bl	HAL_SPI_Transmit
+  81              	.LVL4:
+  64:Core/Src/MFRC522_STM32.c ****     HAL_SPI_Receive(dev->hspi, &val, 1, HAL_MAX_DELAY);
+  82              		.loc 1 64 5 view .LVU12
+  83 0038 2068     		ldr	r0, [r4]
+  84 003a 3300     		movs	r3, r6
+  85 003c 0122     		movs	r2, #1
+  86 003e 2900     		movs	r1, r5
+  87 0040 FFF7FEFF 		bl	HAL_SPI_Receive
+  88              	.LVL5:
+  65:Core/Src/MFRC522_STM32.c ****     HAL_GPIO_WritePin(dev->csPort, dev->csPin, GPIO_PIN_SET);
+  89              		.loc 1 65 5 view .LVU13
+  90 0044 2189     		ldrh	r1, [r4, #8]
+  91 0046 6068     		ldr	r0, [r4, #4]
+  92 0048 0122     		movs	r2, #1
+  93 004a FFF7FEFF 		bl	HAL_GPIO_WritePin
+  94              	.LVL6:
+  66:Core/Src/MFRC522_STM32.c ****     HAL_Delay(1);
+  95              		.loc 1 66 5 view .LVU14
+  96 004e 0120     		movs	r0, #1
+  97 0050 FFF7FEFF 		bl	HAL_Delay
+  98              	.LVL7:
+  67:Core/Src/MFRC522_STM32.c ****     DEBUG_LOG("ReadReg: 0x%02X -> 0x%02X", reg, val);
+  99              		.loc 1 67 53 view .LVU15
+  68:Core/Src/MFRC522_STM32.c ****     return val;
+ 100              		.loc 1 68 5 view .LVU16
+ 101              		.loc 1 68 12 is_stmt 0 view .LVU17
+ 102 0054 2878     		ldrb	r0, [r5]
+  69:Core/Src/MFRC522_STM32.c **** }
+ 103              		.loc 1 69 1 view .LVU18
+ARM GAS  /tmp/ccbCGITS.s 			page 4
+
+
+ 104 0056 03B0     		add	sp, sp, #12
+ 105              		@ sp needed
+ 106              	.LVL8:
+ 107              		.loc 1 69 1 view .LVU19
+ 108 0058 F0BD     		pop	{r4, r5, r6, r7, pc}
+ 109              		.cfi_endproc
+ 110              	.LFE46:
+ 112              		.section	.text.MFRC522_WriteReg,"ax",%progbits
+ 113              		.align	1
+ 114              		.global	MFRC522_WriteReg
+ 115              		.syntax unified
+ 116              		.code	16
+ 117              		.thumb_func
+ 119              	MFRC522_WriteReg:
+ 120              	.LVL9:
+ 121              	.LFB47:
+  70:Core/Src/MFRC522_STM32.c **** 
+  71:Core/Src/MFRC522_STM32.c **** void MFRC522_WriteReg(MFRC522_t *dev, uint8_t reg, uint8_t value) {
+ 122              		.loc 1 71 67 is_stmt 1 view -0
+ 123              		.cfi_startproc
+ 124              		@ args = 0, pretend = 0, frame = 16
+ 125              		@ frame_needed = 0, uses_anonymous_args = 0
+ 126              		.loc 1 71 67 is_stmt 0 view .LVU21
+ 127 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 128              	.LCFI2:
+ 129              		.cfi_def_cfa_offset 20
+ 130              		.cfi_offset 4, -20
+ 131              		.cfi_offset 5, -16
+ 132              		.cfi_offset 6, -12
+ 133              		.cfi_offset 7, -8
+ 134              		.cfi_offset 14, -4
+ 135 0002 85B0     		sub	sp, sp, #20
+ 136              	.LCFI3:
+ 137              		.cfi_def_cfa_offset 40
+ 138 0004 0400     		movs	r4, r0
+ 139 0006 6B46     		mov	r3, sp
+ 140 0008 DD1D     		adds	r5, r3, #7
+ 141 000a DA71     		strb	r2, [r3, #7]
+  72:Core/Src/MFRC522_STM32.c ****     uint8_t addr = (reg << 1) & 0x7E;
+ 142              		.loc 1 72 5 is_stmt 1 view .LVU22
+ 143              		.loc 1 72 31 is_stmt 0 view .LVU23
+ 144 000c 4B00     		lsls	r3, r1, #1
+ 145 000e 7E21     		movs	r1, #126
+ 146              	.LVL10:
+ 147              		.loc 1 72 31 view .LVU24
+ 148 0010 1940     		ands	r1, r3
+ 149              		.loc 1 72 13 view .LVU25
+ 150 0012 0F27     		movs	r7, #15
+ 151 0014 6F44     		add	r7, r7, sp
+ 152 0016 3970     		strb	r1, [r7]
+  73:Core/Src/MFRC522_STM32.c ****     HAL_GPIO_WritePin(dev->csPort, dev->csPin, GPIO_PIN_RESET);
+ 153              		.loc 1 73 5 is_stmt 1 view .LVU26
+ 154 0018 0189     		ldrh	r1, [r0, #8]
+ 155 001a 4068     		ldr	r0, [r0, #4]
+ 156              	.LVL11:
+ 157              		.loc 1 73 5 is_stmt 0 view .LVU27
+ 158 001c 0022     		movs	r2, #0
+ARM GAS  /tmp/ccbCGITS.s 			page 5
+
+
+ 159              	.LVL12:
+ 160              		.loc 1 73 5 view .LVU28
+ 161 001e FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 162              	.LVL13:
+  74:Core/Src/MFRC522_STM32.c ****     HAL_SPI_Transmit(dev->hspi, &addr, 1, HAL_MAX_DELAY);
+ 163              		.loc 1 74 5 is_stmt 1 view .LVU29
+ 164 0022 0126     		movs	r6, #1
+ 165 0024 7642     		rsbs	r6, r6, #0
+ 166 0026 2068     		ldr	r0, [r4]
+ 167 0028 3300     		movs	r3, r6
+ 168 002a 0122     		movs	r2, #1
+ 169 002c 3900     		movs	r1, r7
+ 170 002e FFF7FEFF 		bl	HAL_SPI_Transmit
+ 171              	.LVL14:
+  75:Core/Src/MFRC522_STM32.c ****     HAL_SPI_Transmit(dev->hspi, &value, 1, HAL_MAX_DELAY);
+ 172              		.loc 1 75 5 view .LVU30
+ 173 0032 2068     		ldr	r0, [r4]
+ 174 0034 3300     		movs	r3, r6
+ 175 0036 0122     		movs	r2, #1
+ 176 0038 2900     		movs	r1, r5
+ 177 003a FFF7FEFF 		bl	HAL_SPI_Transmit
+ 178              	.LVL15:
+  76:Core/Src/MFRC522_STM32.c ****     HAL_GPIO_WritePin(dev->csPort, dev->csPin, GPIO_PIN_SET);
+ 179              		.loc 1 76 5 view .LVU31
+ 180 003e 2189     		ldrh	r1, [r4, #8]
+ 181 0040 6068     		ldr	r0, [r4, #4]
+ 182 0042 0122     		movs	r2, #1
+ 183 0044 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 184              	.LVL16:
+  77:Core/Src/MFRC522_STM32.c ****     HAL_Delay(1);
+ 185              		.loc 1 77 5 view .LVU32
+ 186 0048 0120     		movs	r0, #1
+ 187 004a FFF7FEFF 		bl	HAL_Delay
+ 188              	.LVL17:
+  78:Core/Src/MFRC522_STM32.c ****     DEBUG_LOG("WriteReg: 0x%02X = 0x%02X", reg, value);
+ 189              		.loc 1 78 55 view .LVU33
+  79:Core/Src/MFRC522_STM32.c **** }
+ 190              		.loc 1 79 1 is_stmt 0 view .LVU34
+ 191 004e 05B0     		add	sp, sp, #20
+ 192              		@ sp needed
+ 193              	.LVL18:
+ 194              		.loc 1 79 1 view .LVU35
+ 195 0050 F0BD     		pop	{r4, r5, r6, r7, pc}
+ 196              		.cfi_endproc
+ 197              	.LFE47:
+ 199              		.section	.text.MFRC522_SetBitMask,"ax",%progbits
+ 200              		.align	1
+ 201              		.global	MFRC522_SetBitMask
+ 202              		.syntax unified
+ 203              		.code	16
+ 204              		.thumb_func
+ 206              	MFRC522_SetBitMask:
+ 207              	.LVL19:
+ 208              	.LFB48:
+  80:Core/Src/MFRC522_STM32.c **** 
+  81:Core/Src/MFRC522_STM32.c **** void MFRC522_SetBitMask(MFRC522_t *dev, uint8_t reg, uint8_t mask) {
+ 209              		.loc 1 81 68 is_stmt 1 view -0
+ARM GAS  /tmp/ccbCGITS.s 			page 6
+
+
+ 210              		.cfi_startproc
+ 211              		@ args = 0, pretend = 0, frame = 0
+ 212              		@ frame_needed = 0, uses_anonymous_args = 0
+ 213              		.loc 1 81 68 is_stmt 0 view .LVU37
+ 214 0000 70B5     		push	{r4, r5, r6, lr}
+ 215              	.LCFI4:
+ 216              		.cfi_def_cfa_offset 16
+ 217              		.cfi_offset 4, -16
+ 218              		.cfi_offset 5, -12
+ 219              		.cfi_offset 6, -8
+ 220              		.cfi_offset 14, -4
+ 221 0002 0400     		movs	r4, r0
+ 222 0004 0D00     		movs	r5, r1
+ 223 0006 1600     		movs	r6, r2
+  82:Core/Src/MFRC522_STM32.c ****     uint8_t tmp = MFRC522_ReadReg(dev, reg);
+ 224              		.loc 1 82 5 is_stmt 1 view .LVU38
+ 225              		.loc 1 82 19 is_stmt 0 view .LVU39
+ 226 0008 FFF7FEFF 		bl	MFRC522_ReadReg
+ 227              	.LVL20:
+  83:Core/Src/MFRC522_STM32.c ****     MFRC522_WriteReg(dev, reg, tmp | mask);
+ 228              		.loc 1 83 5 is_stmt 1 view .LVU40
+ 229 000c 0200     		movs	r2, r0
+ 230 000e 3243     		orrs	r2, r6
+ 231 0010 D2B2     		uxtb	r2, r2
+ 232 0012 2900     		movs	r1, r5
+ 233 0014 2000     		movs	r0, r4
+ 234              	.LVL21:
+ 235              		.loc 1 83 5 is_stmt 0 view .LVU41
+ 236 0016 FFF7FEFF 		bl	MFRC522_WriteReg
+ 237              	.LVL22:
+  84:Core/Src/MFRC522_STM32.c ****     DEBUG_LOG("SetBitMask: 0x%02X |= 0x%02X", reg, mask);
+ 238              		.loc 1 84 57 is_stmt 1 view .LVU42
+  85:Core/Src/MFRC522_STM32.c **** }
+ 239              		.loc 1 85 1 is_stmt 0 view .LVU43
+ 240              		@ sp needed
+ 241              	.LVL23:
+ 242              	.LVL24:
+ 243              	.LVL25:
+ 244              		.loc 1 85 1 view .LVU44
+ 245 001a 70BD     		pop	{r4, r5, r6, pc}
+ 246              		.cfi_endproc
+ 247              	.LFE48:
+ 249              		.section	.text.MFRC522_AntennaOn,"ax",%progbits
+ 250              		.align	1
+ 251              		.global	MFRC522_AntennaOn
+ 252              		.syntax unified
+ 253              		.code	16
+ 254              		.thumb_func
+ 256              	MFRC522_AntennaOn:
+ 257              	.LVL26:
+ 258              	.LFB45:
+  54:Core/Src/MFRC522_STM32.c ****     MFRC522_SetBitMask(dev, PCD_TxControlReg, 0x03);
+ 259              		.loc 1 54 40 is_stmt 1 view -0
+ 260              		.cfi_startproc
+ 261              		@ args = 0, pretend = 0, frame = 0
+ 262              		@ frame_needed = 0, uses_anonymous_args = 0
+  54:Core/Src/MFRC522_STM32.c ****     MFRC522_SetBitMask(dev, PCD_TxControlReg, 0x03);
+ARM GAS  /tmp/ccbCGITS.s 			page 7
+
+
+ 263              		.loc 1 54 40 is_stmt 0 view .LVU46
+ 264 0000 10B5     		push	{r4, lr}
+ 265              	.LCFI5:
+ 266              		.cfi_def_cfa_offset 8
+ 267              		.cfi_offset 4, -8
+ 268              		.cfi_offset 14, -4
+  55:Core/Src/MFRC522_STM32.c ****     DEBUG_LOG("Antenna on");
+ 269              		.loc 1 55 5 is_stmt 1 view .LVU47
+ 270 0002 0322     		movs	r2, #3
+ 271 0004 1421     		movs	r1, #20
+ 272 0006 FFF7FEFF 		bl	MFRC522_SetBitMask
+ 273              	.LVL27:
+  56:Core/Src/MFRC522_STM32.c **** }
+ 274              		.loc 1 56 28 view .LVU48
+  57:Core/Src/MFRC522_STM32.c **** 
+ 275              		.loc 1 57 1 is_stmt 0 view .LVU49
+ 276              		@ sp needed
+ 277 000a 10BD     		pop	{r4, pc}
+ 278              		.cfi_endproc
+ 279              	.LFE45:
+ 281              		.section	.rodata.MFRC522_Init.str1.4,"aMS",%progbits,1
+ 282              		.align	2
+ 283              	.LC0:
+ 284 0000 5B555345 		.ascii	"[USER] MFRC522 Min Init started\015\000"
+ 284      525D204D 
+ 284      46524335 
+ 284      3232204D 
+ 284      696E2049 
+ 285 0021 000000   		.align	2
+ 286              	.LC2:
+ 287 0024 5B555345 		.ascii	"[USER] Version: 0x%02X (counterfeit OK for UID)\015"
+ 287      525D2056 
+ 287      65727369 
+ 287      6F6E3A20 
+ 287      30782530 
+ 288 0054 0A00     		.ascii	"\012\000"
+ 289 0056 0000     		.align	2
+ 290              	.LC4:
+ 291 0058 5B555345 		.ascii	"[USER] MFRC522 Min Init complete\015\000"
+ 291      525D204D 
+ 291      46524335 
+ 291      3232204D 
+ 291      696E2049 
+ 292              		.section	.text.MFRC522_Init,"ax",%progbits
+ 293              		.align	1
+ 294              		.global	MFRC522_Init
+ 295              		.syntax unified
+ 296              		.code	16
+ 297              		.thumb_func
+ 299              	MFRC522_Init:
+ 300              	.LVL28:
+ 301              	.LFB43:
+   6:Core/Src/MFRC522_STM32.c ****     USER_LOG("MFRC522 Min Init started");
+ 302              		.loc 1 6 35 is_stmt 1 view -0
+ 303              		.cfi_startproc
+ 304              		@ args = 0, pretend = 0, frame = 0
+ 305              		@ frame_needed = 0, uses_anonymous_args = 0
+ARM GAS  /tmp/ccbCGITS.s 			page 8
+
+
+   6:Core/Src/MFRC522_STM32.c ****     USER_LOG("MFRC522 Min Init started");
+ 306              		.loc 1 6 35 is_stmt 0 view .LVU51
+ 307 0000 10B5     		push	{r4, lr}
+ 308              	.LCFI6:
+ 309              		.cfi_def_cfa_offset 8
+ 310              		.cfi_offset 4, -8
+ 311              		.cfi_offset 14, -4
+ 312 0002 0400     		movs	r4, r0
+   7:Core/Src/MFRC522_STM32.c ****     // Hardware reset
+ 313              		.loc 1 7 5 is_stmt 1 view .LVU52
+ 314 0004 2F48     		ldr	r0, .L6
+ 315              	.LVL29:
+   7:Core/Src/MFRC522_STM32.c ****     // Hardware reset
+ 316              		.loc 1 7 5 is_stmt 0 view .LVU53
+ 317 0006 FFF7FEFF 		bl	puts
+ 318              	.LVL30:
+   9:Core/Src/MFRC522_STM32.c ****     HAL_Delay(50);
+ 319              		.loc 1 9 5 is_stmt 1 view .LVU54
+ 320 000a 218A     		ldrh	r1, [r4, #16]
+ 321 000c E068     		ldr	r0, [r4, #12]
+ 322 000e 0022     		movs	r2, #0
+ 323 0010 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 324              	.LVL31:
+  10:Core/Src/MFRC522_STM32.c ****     HAL_GPIO_WritePin(dev->rstPort, dev->rstPin, GPIO_PIN_SET);
+ 325              		.loc 1 10 5 view .LVU55
+ 326 0014 3220     		movs	r0, #50
+ 327 0016 FFF7FEFF 		bl	HAL_Delay
+ 328              	.LVL32:
+  11:Core/Src/MFRC522_STM32.c ****     HAL_Delay(50);
+ 329              		.loc 1 11 5 view .LVU56
+ 330 001a 218A     		ldrh	r1, [r4, #16]
+ 331 001c E068     		ldr	r0, [r4, #12]
+ 332 001e 0122     		movs	r2, #1
+ 333 0020 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 334              	.LVL33:
+  12:Core/Src/MFRC522_STM32.c **** 
+ 335              		.loc 1 12 5 view .LVU57
+ 336 0024 3220     		movs	r0, #50
+ 337 0026 FFF7FEFF 		bl	HAL_Delay
+ 338              	.LVL34:
+  15:Core/Src/MFRC522_STM32.c ****     HAL_Delay(50);
+ 339              		.loc 1 15 5 view .LVU58
+ 340 002a 0F22     		movs	r2, #15
+ 341 002c 0121     		movs	r1, #1
+ 342 002e 2000     		movs	r0, r4
+ 343 0030 FFF7FEFF 		bl	MFRC522_WriteReg
+ 344              	.LVL35:
+  16:Core/Src/MFRC522_STM32.c **** 
+ 345              		.loc 1 16 5 view .LVU59
+ 346 0034 3220     		movs	r0, #50
+ 347 0036 FFF7FEFF 		bl	HAL_Delay
+ 348              	.LVL36:
+  19:Core/Src/MFRC522_STM32.c **** 
+ 349              		.loc 1 19 5 view .LVU60
+ 350 003a 7F22     		movs	r2, #127
+ 351 003c 0421     		movs	r1, #4
+ 352 003e 2000     		movs	r0, r4
+ARM GAS  /tmp/ccbCGITS.s 			page 9
+
+
+ 353 0040 FFF7FEFF 		bl	MFRC522_WriteReg
+ 354              	.LVL37:
+  22:Core/Src/MFRC522_STM32.c **** 
+ 355              		.loc 1 22 5 view .LVU61
+ 356 0044 8022     		movs	r2, #128
+ 357 0046 0A21     		movs	r1, #10
+ 358 0048 2000     		movs	r0, r4
+ 359 004a FFF7FEFF 		bl	MFRC522_WriteReg
+ 360              	.LVL38:
+  25:Core/Src/MFRC522_STM32.c ****     MFRC522_WriteReg(dev, PCD_TPrescalerReg, 0xA9); // 80kHz clock
+ 361              		.loc 1 25 5 view .LVU62
+ 362 004e 8022     		movs	r2, #128
+ 363 0050 2A21     		movs	r1, #42
+ 364 0052 2000     		movs	r0, r4
+ 365 0054 FFF7FEFF 		bl	MFRC522_WriteReg
+ 366              	.LVL39:
+  26:Core/Src/MFRC522_STM32.c ****     MFRC522_WriteReg(dev, PCD_TReloadRegH, 0x03);   // 1000 ticks = ~12.5ms
+ 367              		.loc 1 26 5 view .LVU63
+ 368 0058 A922     		movs	r2, #169
+ 369 005a 2B21     		movs	r1, #43
+ 370 005c 2000     		movs	r0, r4
+ 371 005e FFF7FEFF 		bl	MFRC522_WriteReg
+ 372              	.LVL40:
+  27:Core/Src/MFRC522_STM32.c ****     MFRC522_WriteReg(dev, PCD_TReloadRegL, 0xE8);
+ 373              		.loc 1 27 5 view .LVU64
+ 374 0062 0322     		movs	r2, #3
+ 375 0064 2D21     		movs	r1, #45
+ 376 0066 2000     		movs	r0, r4
+ 377 0068 FFF7FEFF 		bl	MFRC522_WriteReg
+ 378              	.LVL41:
+  28:Core/Src/MFRC522_STM32.c **** 
+ 379              		.loc 1 28 5 view .LVU65
+ 380 006c E822     		movs	r2, #232
+ 381 006e 2C21     		movs	r1, #44
+ 382 0070 2000     		movs	r0, r4
+ 383 0072 FFF7FEFF 		bl	MFRC522_WriteReg
+ 384              	.LVL42:
+  31:Core/Src/MFRC522_STM32.c ****     MFRC522_WriteReg(dev, PCD_RFCfgReg, 0x7F);      // Max gain (48dB)
+ 385              		.loc 1 31 5 view .LVU66
+ 386 0076 4022     		movs	r2, #64
+ 387 0078 1521     		movs	r1, #21
+ 388 007a 2000     		movs	r0, r4
+ 389 007c FFF7FEFF 		bl	MFRC522_WriteReg
+ 390              	.LVL43:
+  32:Core/Src/MFRC522_STM32.c ****     MFRC522_WriteReg(dev, PCD_DemodReg, 0x4D);      // Sensitivity for clones
+ 391              		.loc 1 32 5 view .LVU67
+ 392 0080 7F22     		movs	r2, #127
+ 393 0082 2621     		movs	r1, #38
+ 394 0084 2000     		movs	r0, r4
+ 395 0086 FFF7FEFF 		bl	MFRC522_WriteReg
+ 396              	.LVL44:
+  33:Core/Src/MFRC522_STM32.c **** 
+ 397              		.loc 1 33 5 view .LVU68
+ 398 008a 4D22     		movs	r2, #77
+ 399 008c 1921     		movs	r1, #25
+ 400 008e 2000     		movs	r0, r4
+ 401 0090 FFF7FEFF 		bl	MFRC522_WriteReg
+ARM GAS  /tmp/ccbCGITS.s 			page 10
+
+
+ 402              	.LVL45:
+  36:Core/Src/MFRC522_STM32.c ****     HAL_Delay(10);  // Let RF stabilize
+ 403              		.loc 1 36 5 view .LVU69
+ 404 0094 2000     		movs	r0, r4
+ 405 0096 FFF7FEFF 		bl	MFRC522_AntennaOn
+ 406              	.LVL46:
+  37:Core/Src/MFRC522_STM32.c **** 
+ 407              		.loc 1 37 5 view .LVU70
+ 408 009a 0A20     		movs	r0, #10
+ 409 009c FFF7FEFF 		bl	HAL_Delay
+ 410              	.LVL47:
+  39:Core/Src/MFRC522_STM32.c ****     if ((version != 0x91)||(version != 0x92)){
+ 411              		.loc 1 39 5 view .LVU71
+  39:Core/Src/MFRC522_STM32.c ****     if ((version != 0x91)||(version != 0x92)){
+ 412              		.loc 1 39 23 is_stmt 0 view .LVU72
+ 413 00a0 3721     		movs	r1, #55
+ 414 00a2 2000     		movs	r0, r4
+ 415 00a4 FFF7FEFF 		bl	MFRC522_ReadReg
+ 416              	.LVL48:
+ 417 00a8 0100     		movs	r1, r0
+ 418              	.LVL49:
+  40:Core/Src/MFRC522_STM32.c ****     	USER_LOG("Version: 0x%02X (counterfeit OK for UID)", version);
+ 419              		.loc 1 40 5 is_stmt 1 view .LVU73
+  41:Core/Src/MFRC522_STM32.c ****     }
+ 420              		.loc 1 41 6 view .LVU74
+ 421 00aa 074B     		ldr	r3, .L6+4
+ 422 00ac 1800     		movs	r0, r3
+ 423 00ae FFF7FEFF 		bl	printf
+ 424              	.LVL50:
+  44:Core/Src/MFRC522_STM32.c ****     DEBUG_LOG("TxControlReg: 0x%02X (expect >= 0x03)", txCtrl);
+ 425              		.loc 1 44 5 view .LVU75
+  44:Core/Src/MFRC522_STM32.c ****     DEBUG_LOG("TxControlReg: 0x%02X (expect >= 0x03)", txCtrl);
+ 426              		.loc 1 44 22 is_stmt 0 view .LVU76
+ 427 00b2 1421     		movs	r1, #20
+ 428 00b4 2000     		movs	r0, r4
+ 429 00b6 FFF7FEFF 		bl	MFRC522_ReadReg
+ 430              	.LVL51:
+  45:Core/Src/MFRC522_STM32.c ****     USER_LOG("MFRC522 Min Init complete");
+ 431              		.loc 1 45 63 is_stmt 1 view .LVU77
+  46:Core/Src/MFRC522_STM32.c **** }
+ 432              		.loc 1 46 5 view .LVU78
+ 433 00ba 0448     		ldr	r0, .L6+8
+ 434 00bc FFF7FEFF 		bl	puts
+ 435              	.LVL52:
+  47:Core/Src/MFRC522_STM32.c **** 
+ 436              		.loc 1 47 1 is_stmt 0 view .LVU79
+ 437              		@ sp needed
+ 438              	.LVL53:
+  47:Core/Src/MFRC522_STM32.c **** 
+ 439              		.loc 1 47 1 view .LVU80
+ 440 00c0 10BD     		pop	{r4, pc}
+ 441              	.L7:
+ 442 00c2 C046     		.align	2
+ 443              	.L6:
+ 444 00c4 00000000 		.word	.LC0
+ 445 00c8 24000000 		.word	.LC2
+ 446 00cc 58000000 		.word	.LC4
+ARM GAS  /tmp/ccbCGITS.s 			page 11
+
+
+ 447              		.cfi_endproc
+ 448              	.LFE43:
+ 450              		.section	.text.MFRC522_ClearBitMask,"ax",%progbits
+ 451              		.align	1
+ 452              		.global	MFRC522_ClearBitMask
+ 453              		.syntax unified
+ 454              		.code	16
+ 455              		.thumb_func
+ 457              	MFRC522_ClearBitMask:
+ 458              	.LVL54:
+ 459              	.LFB49:
+  86:Core/Src/MFRC522_STM32.c **** 
+  87:Core/Src/MFRC522_STM32.c **** void MFRC522_ClearBitMask(MFRC522_t *dev, uint8_t reg, uint8_t mask) {
+ 460              		.loc 1 87 70 is_stmt 1 view -0
+ 461              		.cfi_startproc
+ 462              		@ args = 0, pretend = 0, frame = 0
+ 463              		@ frame_needed = 0, uses_anonymous_args = 0
+ 464              		.loc 1 87 70 is_stmt 0 view .LVU82
+ 465 0000 70B5     		push	{r4, r5, r6, lr}
+ 466              	.LCFI7:
+ 467              		.cfi_def_cfa_offset 16
+ 468              		.cfi_offset 4, -16
+ 469              		.cfi_offset 5, -12
+ 470              		.cfi_offset 6, -8
+ 471              		.cfi_offset 14, -4
+ 472 0002 0500     		movs	r5, r0
+ 473 0004 0E00     		movs	r6, r1
+ 474 0006 1400     		movs	r4, r2
+  88:Core/Src/MFRC522_STM32.c ****     uint8_t tmp = MFRC522_ReadReg(dev, reg);
+ 475              		.loc 1 88 5 is_stmt 1 view .LVU83
+ 476              		.loc 1 88 19 is_stmt 0 view .LVU84
+ 477 0008 FFF7FEFF 		bl	MFRC522_ReadReg
+ 478              	.LVL55:
+  89:Core/Src/MFRC522_STM32.c ****     MFRC522_WriteReg(dev, reg, tmp & (~mask));
+ 479              		.loc 1 89 5 is_stmt 1 view .LVU85
+ 480              		.loc 1 89 36 is_stmt 0 view .LVU86
+ 481 000c E443     		mvns	r4, r4
+ 482              	.LVL56:
+ 483              		.loc 1 89 36 view .LVU87
+ 484 000e 62B2     		sxtb	r2, r4
+ 485              		.loc 1 89 5 view .LVU88
+ 486 0010 0240     		ands	r2, r0
+ 487 0012 D2B2     		uxtb	r2, r2
+ 488 0014 3100     		movs	r1, r6
+ 489 0016 2800     		movs	r0, r5
+ 490              	.LVL57:
+ 491              		.loc 1 89 5 view .LVU89
+ 492 0018 FFF7FEFF 		bl	MFRC522_WriteReg
+ 493              	.LVL58:
+  90:Core/Src/MFRC522_STM32.c ****     DEBUG_LOG("ClearBitMask: 0x%02X &= ~0x%02X", reg, mask);
+ 494              		.loc 1 90 60 is_stmt 1 view .LVU90
+  91:Core/Src/MFRC522_STM32.c **** }
+ 495              		.loc 1 91 1 is_stmt 0 view .LVU91
+ 496              		@ sp needed
+ 497              	.LVL59:
+ 498              	.LVL60:
+ 499              	.LVL61:
+ARM GAS  /tmp/ccbCGITS.s 			page 12
+
+
+ 500              		.loc 1 91 1 view .LVU92
+ 501 001c 70BD     		pop	{r4, r5, r6, pc}
+ 502              		.cfi_endproc
+ 503              	.LFE49:
+ 505              		.section	.text.MFRC522_AntennaOff,"ax",%progbits
+ 506              		.align	1
+ 507              		.global	MFRC522_AntennaOff
+ 508              		.syntax unified
+ 509              		.code	16
+ 510              		.thumb_func
+ 512              	MFRC522_AntennaOff:
+ 513              	.LVL62:
+ 514              	.LFB44:
+  49:Core/Src/MFRC522_STM32.c ****     MFRC522_ClearBitMask(dev, PCD_TxControlReg, 0x03);
+ 515              		.loc 1 49 41 is_stmt 1 view -0
+ 516              		.cfi_startproc
+ 517              		@ args = 0, pretend = 0, frame = 0
+ 518              		@ frame_needed = 0, uses_anonymous_args = 0
+  49:Core/Src/MFRC522_STM32.c ****     MFRC522_ClearBitMask(dev, PCD_TxControlReg, 0x03);
+ 519              		.loc 1 49 41 is_stmt 0 view .LVU94
+ 520 0000 10B5     		push	{r4, lr}
+ 521              	.LCFI8:
+ 522              		.cfi_def_cfa_offset 8
+ 523              		.cfi_offset 4, -8
+ 524              		.cfi_offset 14, -4
+  50:Core/Src/MFRC522_STM32.c ****     DEBUG_LOG("Antenna off");
+ 525              		.loc 1 50 5 is_stmt 1 view .LVU95
+ 526 0002 0322     		movs	r2, #3
+ 527 0004 1421     		movs	r1, #20
+ 528 0006 FFF7FEFF 		bl	MFRC522_ClearBitMask
+ 529              	.LVL63:
+  51:Core/Src/MFRC522_STM32.c **** }
+ 530              		.loc 1 51 29 view .LVU96
+  52:Core/Src/MFRC522_STM32.c **** 
+ 531              		.loc 1 52 1 is_stmt 0 view .LVU97
+ 532              		@ sp needed
+ 533 000a 10BD     		pop	{r4, pc}
+ 534              		.cfi_endproc
+ 535              	.LFE44:
+ 537              		.section	.text.MFRC522_RequestA,"ax",%progbits
+ 538              		.align	1
+ 539              		.global	MFRC522_RequestA
+ 540              		.syntax unified
+ 541              		.code	16
+ 542              		.thumb_func
+ 544              	MFRC522_RequestA:
+ 545              	.LVL64:
+ 546              	.LFB50:
+  92:Core/Src/MFRC522_STM32.c **** 
+  93:Core/Src/MFRC522_STM32.c **** uint8_t MFRC522_RequestA(MFRC522_t *dev, uint8_t *atqa) {
+ 547              		.loc 1 93 57 is_stmt 1 view -0
+ 548              		.cfi_startproc
+ 549              		@ args = 0, pretend = 0, frame = 0
+ 550              		@ frame_needed = 0, uses_anonymous_args = 0
+ 551              		.loc 1 93 57 is_stmt 0 view .LVU99
+ 552 0000 70B5     		push	{r4, r5, r6, lr}
+ 553              	.LCFI9:
+ARM GAS  /tmp/ccbCGITS.s 			page 13
+
+
+ 554              		.cfi_def_cfa_offset 16
+ 555              		.cfi_offset 4, -16
+ 556              		.cfi_offset 5, -12
+ 557              		.cfi_offset 6, -8
+ 558              		.cfi_offset 14, -4
+ 559 0002 0400     		movs	r4, r0
+ 560 0004 0D00     		movs	r5, r1
+  94:Core/Src/MFRC522_STM32.c ****     DEBUG_LOG("RequestA");
+ 561              		.loc 1 94 26 is_stmt 1 view .LVU100
+  95:Core/Src/MFRC522_STM32.c ****     MFRC522_AntennaOff(dev);  // Reset RF
+ 562              		.loc 1 95 5 view .LVU101
+ 563 0006 FFF7FEFF 		bl	MFRC522_AntennaOff
+ 564              	.LVL65:
+  96:Core/Src/MFRC522_STM32.c ****     HAL_Delay(5);  // Allow chip to stabilize
+ 565              		.loc 1 96 5 view .LVU102
+ 566 000a 0520     		movs	r0, #5
+ 567 000c FFF7FEFF 		bl	HAL_Delay
+ 568              	.LVL66:
+  97:Core/Src/MFRC522_STM32.c ****     MFRC522_AntennaOn(dev);
+ 569              		.loc 1 97 5 view .LVU103
+ 570 0010 2000     		movs	r0, r4
+ 571 0012 FFF7FEFF 		bl	MFRC522_AntennaOn
+ 572              	.LVL67:
+  98:Core/Src/MFRC522_STM32.c ****     HAL_Delay(5);  // Ensure RF is ready
+ 573              		.loc 1 98 5 view .LVU104
+ 574 0016 0520     		movs	r0, #5
+ 575 0018 FFF7FEFF 		bl	HAL_Delay
+ 576              	.LVL68:
+  99:Core/Src/MFRC522_STM32.c ****     MFRC522_WriteReg(dev, PCD_ComIrqReg, 0x7F);      // Clear IRQs
+ 577              		.loc 1 99 5 view .LVU105
+ 578 001c 7F22     		movs	r2, #127
+ 579 001e 0421     		movs	r1, #4
+ 580 0020 2000     		movs	r0, r4
+ 581 0022 FFF7FEFF 		bl	MFRC522_WriteReg
+ 582              	.LVL69:
+ 100:Core/Src/MFRC522_STM32.c ****     MFRC522_WriteReg(dev, PCD_FIFOLevelReg, 0x80);   // Flush FIFO
+ 583              		.loc 1 100 5 view .LVU106
+ 584 0026 8022     		movs	r2, #128
+ 585 0028 0A21     		movs	r1, #10
+ 586 002a 2000     		movs	r0, r4
+ 587 002c FFF7FEFF 		bl	MFRC522_WriteReg
+ 588              	.LVL70:
+ 101:Core/Src/MFRC522_STM32.c ****     MFRC522_WriteReg(dev, PCD_BitFramingReg, 0x07);  // 7 bits for REQA
+ 589              		.loc 1 101 5 view .LVU107
+ 590 0030 0722     		movs	r2, #7
+ 591 0032 0D21     		movs	r1, #13
+ 592 0034 2000     		movs	r0, r4
+ 593 0036 FFF7FEFF 		bl	MFRC522_WriteReg
+ 594              	.LVL71:
+ 102:Core/Src/MFRC522_STM32.c ****     MFRC522_WriteReg(dev, PCD_FIFODataReg, PICC_REQA);
+ 595              		.loc 1 102 5 view .LVU108
+ 596 003a 2622     		movs	r2, #38
+ 597 003c 0921     		movs	r1, #9
+ 598 003e 2000     		movs	r0, r4
+ 599 0040 FFF7FEFF 		bl	MFRC522_WriteReg
+ 600              	.LVL72:
+ 103:Core/Src/MFRC522_STM32.c ****     HAL_Delay(2);  // Increased for counterfeit chip stability
+ARM GAS  /tmp/ccbCGITS.s 			page 14
+
+
+ 601              		.loc 1 103 5 view .LVU109
+ 602 0044 0220     		movs	r0, #2
+ 603 0046 FFF7FEFF 		bl	HAL_Delay
+ 604              	.LVL73:
+ 104:Core/Src/MFRC522_STM32.c ****     MFRC522_WriteReg(dev, PCD_CommandReg, PCD_Transceive);
+ 605              		.loc 1 104 5 view .LVU110
+ 606 004a 0C22     		movs	r2, #12
+ 607 004c 0121     		movs	r1, #1
+ 608 004e 2000     		movs	r0, r4
+ 609 0050 FFF7FEFF 		bl	MFRC522_WriteReg
+ 610              	.LVL74:
+ 105:Core/Src/MFRC522_STM32.c ****     MFRC522_SetBitMask(dev, PCD_BitFramingReg, 0x80);
+ 611              		.loc 1 105 5 view .LVU111
+ 612 0054 8022     		movs	r2, #128
+ 613 0056 0D21     		movs	r1, #13
+ 614 0058 2000     		movs	r0, r4
+ 615 005a FFF7FEFF 		bl	MFRC522_SetBitMask
+ 616              	.LVL75:
+ 106:Core/Src/MFRC522_STM32.c **** 
+ 107:Core/Src/MFRC522_STM32.c ****     // Poll for completion (25ms timeout)
+ 108:Core/Src/MFRC522_STM32.c ****     uint32_t timeout = HAL_GetTick() + 25;
+ 617              		.loc 1 108 5 view .LVU112
+ 618              		.loc 1 108 24 is_stmt 0 view .LVU113
+ 619 005e FFF7FEFF 		bl	HAL_GetTick
+ 620              	.LVL76:
+ 621              		.loc 1 108 14 discriminator 1 view .LVU114
+ 622 0062 1930     		adds	r0, r0, #25
+ 623 0064 0600     		movs	r6, r0
+ 624              	.LVL77:
+ 109:Core/Src/MFRC522_STM32.c ****     while (HAL_GetTick() < timeout) {
+ 625              		.loc 1 109 5 is_stmt 1 view .LVU115
+ 626              		.loc 1 109 11 is_stmt 0 view .LVU116
+ 627 0066 1CE0     		b	.L11
+ 628              	.LVL78:
+ 629              	.L18:
+ 630              	.LBB2:
+ 631              	.LBB3:
+ 110:Core/Src/MFRC522_STM32.c ****         uint8_t status2 = MFRC522_ReadReg(dev, PCD_Status2Reg);
+ 111:Core/Src/MFRC522_STM32.c ****         if (status2 & 0x01) {  // Command complete
+ 112:Core/Src/MFRC522_STM32.c ****             uint8_t err = MFRC522_ReadReg(dev, PCD_ErrorReg);
+ 113:Core/Src/MFRC522_STM32.c ****             if (err & 0x1D) {  // Protocol/parity/buffer errors
+ 114:Core/Src/MFRC522_STM32.c ****                 DEBUG_LOG("RequestA error: 0x%02X", err);
+ 632              		.loc 1 114 57 is_stmt 1 view .LVU117
+ 115:Core/Src/MFRC522_STM32.c ****                 MFRC522_AntennaOff(dev);
+ 633              		.loc 1 115 17 view .LVU118
+ 634 0068 2000     		movs	r0, r4
+ 635              	.LVL79:
+ 636              		.loc 1 115 17 is_stmt 0 view .LVU119
+ 637 006a FFF7FEFF 		bl	MFRC522_AntennaOff
+ 638              	.LVL80:
+ 116:Core/Src/MFRC522_STM32.c ****                 HAL_Delay(5);
+ 639              		.loc 1 116 17 is_stmt 1 view .LVU120
+ 640 006e 0520     		movs	r0, #5
+ 641 0070 FFF7FEFF 		bl	HAL_Delay
+ 642              	.LVL81:
+ 117:Core/Src/MFRC522_STM32.c ****                 MFRC522_WriteReg(dev, PCD_CommandReg, PCD_Idle); // Stop command
+ 643              		.loc 1 117 17 view .LVU121
+ARM GAS  /tmp/ccbCGITS.s 			page 15
+
+
+ 644 0074 0022     		movs	r2, #0
+ 645 0076 0121     		movs	r1, #1
+ 646 0078 2000     		movs	r0, r4
+ 647 007a FFF7FEFF 		bl	MFRC522_WriteReg
+ 648              	.LVL82:
+ 118:Core/Src/MFRC522_STM32.c ****                 return STATUS_ERROR;
+ 649              		.loc 1 118 17 view .LVU122
+ 650              		.loc 1 118 24 is_stmt 0 view .LVU123
+ 651 007e 0126     		movs	r6, #1
+ 652 0080 47E0     		b	.L14
+ 653              	.LVL83:
+ 654              	.L15:
+ 119:Core/Src/MFRC522_STM32.c ****             }
+ 120:Core/Src/MFRC522_STM32.c ****             uint8_t fifoLvl = MFRC522_ReadReg(dev, PCD_FIFOLevelReg);
+ 121:Core/Src/MFRC522_STM32.c ****             if (fifoLvl >= 2) {  // ATQA is 2 bytes
+ 122:Core/Src/MFRC522_STM32.c ****                 atqa[0] = MFRC522_ReadReg(dev, PCD_FIFODataReg);
+ 123:Core/Src/MFRC522_STM32.c ****                 atqa[1] = MFRC522_ReadReg(dev, PCD_FIFODataReg);
+ 124:Core/Src/MFRC522_STM32.c ****                 DEBUG_LOG("RequestA ATQA: 0x%02X 0x%02X", atqa[0], atqa[1]);
+ 125:Core/Src/MFRC522_STM32.c ****                 MFRC522_WriteReg(dev, PCD_CommandReg, PCD_Idle); // Stop command
+ 126:Core/Src/MFRC522_STM32.c ****                 HAL_Delay(2);  // Post-command delay
+ 127:Core/Src/MFRC522_STM32.c ****                 return STATUS_OK;
+ 128:Core/Src/MFRC522_STM32.c ****             }
+ 129:Core/Src/MFRC522_STM32.c ****             DEBUG_LOG("RequestA bad FIFO level: %d", fifoLvl);
+ 655              		.loc 1 129 62 is_stmt 1 view .LVU124
+ 130:Core/Src/MFRC522_STM32.c ****             MFRC522_AntennaOff(dev);
+ 656              		.loc 1 130 13 view .LVU125
+ 657 0082 2000     		movs	r0, r4
+ 658              	.LVL84:
+ 659              		.loc 1 130 13 is_stmt 0 view .LVU126
+ 660 0084 FFF7FEFF 		bl	MFRC522_AntennaOff
+ 661              	.LVL85:
+ 131:Core/Src/MFRC522_STM32.c ****             HAL_Delay(5);
+ 662              		.loc 1 131 13 is_stmt 1 view .LVU127
+ 663 0088 0520     		movs	r0, #5
+ 664 008a FFF7FEFF 		bl	HAL_Delay
+ 665              	.LVL86:
+ 132:Core/Src/MFRC522_STM32.c ****             MFRC522_WriteReg(dev, PCD_CommandReg, PCD_Idle);
+ 666              		.loc 1 132 13 view .LVU128
+ 667 008e 0022     		movs	r2, #0
+ 668 0090 0121     		movs	r1, #1
+ 669 0092 2000     		movs	r0, r4
+ 670 0094 FFF7FEFF 		bl	MFRC522_WriteReg
+ 671              	.LVL87:
+ 133:Core/Src/MFRC522_STM32.c ****             return STATUS_ERROR;
+ 672              		.loc 1 133 13 view .LVU129
+ 673              		.loc 1 133 20 is_stmt 0 view .LVU130
+ 674 0098 0126     		movs	r6, #1
+ 675 009a 3AE0     		b	.L14
+ 676              	.LVL88:
+ 677              	.L12:
+ 678              		.loc 1 133 20 view .LVU131
+ 679              	.LBE3:
+ 134:Core/Src/MFRC522_STM32.c ****         }
+ 135:Core/Src/MFRC522_STM32.c ****         HAL_Delay(1);  // Mimic debug log timing
+ 680              		.loc 1 135 9 is_stmt 1 view .LVU132
+ 681 009c 0120     		movs	r0, #1
+ 682 009e FFF7FEFF 		bl	HAL_Delay
+ARM GAS  /tmp/ccbCGITS.s 			page 16
+
+
+ 683              	.LVL89:
+ 684              	.L11:
+ 685              		.loc 1 135 9 is_stmt 0 view .LVU133
+ 686              	.LBE2:
+ 109:Core/Src/MFRC522_STM32.c ****         uint8_t status2 = MFRC522_ReadReg(dev, PCD_Status2Reg);
+ 687              		.loc 1 109 26 is_stmt 1 view .LVU134
+ 109:Core/Src/MFRC522_STM32.c ****         uint8_t status2 = MFRC522_ReadReg(dev, PCD_Status2Reg);
+ 688              		.loc 1 109 12 is_stmt 0 view .LVU135
+ 689 00a2 FFF7FEFF 		bl	HAL_GetTick
+ 690              	.LVL90:
+ 109:Core/Src/MFRC522_STM32.c ****         uint8_t status2 = MFRC522_ReadReg(dev, PCD_Status2Reg);
+ 691              		.loc 1 109 26 discriminator 1 view .LVU136
+ 692 00a6 B042     		cmp	r0, r6
+ 693 00a8 27D2     		bcs	.L17
+ 694              	.LBB5:
+ 110:Core/Src/MFRC522_STM32.c ****         if (status2 & 0x01) {  // Command complete
+ 695              		.loc 1 110 9 is_stmt 1 view .LVU137
+ 110:Core/Src/MFRC522_STM32.c ****         if (status2 & 0x01) {  // Command complete
+ 696              		.loc 1 110 27 is_stmt 0 view .LVU138
+ 697 00aa 0821     		movs	r1, #8
+ 698 00ac 2000     		movs	r0, r4
+ 699 00ae FFF7FEFF 		bl	MFRC522_ReadReg
+ 700              	.LVL91:
+ 111:Core/Src/MFRC522_STM32.c ****             uint8_t err = MFRC522_ReadReg(dev, PCD_ErrorReg);
+ 701              		.loc 1 111 9 is_stmt 1 view .LVU139
+ 111:Core/Src/MFRC522_STM32.c ****             uint8_t err = MFRC522_ReadReg(dev, PCD_ErrorReg);
+ 702              		.loc 1 111 12 is_stmt 0 view .LVU140
+ 703 00b2 C007     		lsls	r0, r0, #31
+ 704 00b4 F2D5     		bpl	.L12
+ 705              	.LVL92:
+ 706              	.LBB4:
+ 112:Core/Src/MFRC522_STM32.c ****             if (err & 0x1D) {  // Protocol/parity/buffer errors
+ 707              		.loc 1 112 13 is_stmt 1 view .LVU141
+ 112:Core/Src/MFRC522_STM32.c ****             if (err & 0x1D) {  // Protocol/parity/buffer errors
+ 708              		.loc 1 112 27 is_stmt 0 view .LVU142
+ 709 00b6 0621     		movs	r1, #6
+ 710 00b8 2000     		movs	r0, r4
+ 711 00ba FFF7FEFF 		bl	MFRC522_ReadReg
+ 712              	.LVL93:
+ 113:Core/Src/MFRC522_STM32.c ****                 DEBUG_LOG("RequestA error: 0x%02X", err);
+ 713              		.loc 1 113 13 is_stmt 1 view .LVU143
+ 714 00be 1D23     		movs	r3, #29
+ 715 00c0 1E00     		movs	r6, r3
+ 716              	.LVL94:
+ 113:Core/Src/MFRC522_STM32.c ****                 DEBUG_LOG("RequestA error: 0x%02X", err);
+ 717              		.loc 1 113 13 is_stmt 0 view .LVU144
+ 718 00c2 0640     		ands	r6, r0
+ 113:Core/Src/MFRC522_STM32.c ****                 DEBUG_LOG("RequestA error: 0x%02X", err);
+ 719              		.loc 1 113 16 view .LVU145
+ 720 00c4 0342     		tst	r3, r0
+ 721 00c6 CFD1     		bne	.L18
+ 120:Core/Src/MFRC522_STM32.c ****             if (fifoLvl >= 2) {  // ATQA is 2 bytes
+ 722              		.loc 1 120 13 is_stmt 1 view .LVU146
+ 120:Core/Src/MFRC522_STM32.c ****             if (fifoLvl >= 2) {  // ATQA is 2 bytes
+ 723              		.loc 1 120 31 is_stmt 0 view .LVU147
+ 724 00c8 0A21     		movs	r1, #10
+ 725 00ca 2000     		movs	r0, r4
+ARM GAS  /tmp/ccbCGITS.s 			page 17
+
+
+ 726              	.LVL95:
+ 120:Core/Src/MFRC522_STM32.c ****             if (fifoLvl >= 2) {  // ATQA is 2 bytes
+ 727              		.loc 1 120 31 view .LVU148
+ 728 00cc FFF7FEFF 		bl	MFRC522_ReadReg
+ 729              	.LVL96:
+ 121:Core/Src/MFRC522_STM32.c ****                 atqa[0] = MFRC522_ReadReg(dev, PCD_FIFODataReg);
+ 730              		.loc 1 121 13 is_stmt 1 view .LVU149
+ 121:Core/Src/MFRC522_STM32.c ****                 atqa[0] = MFRC522_ReadReg(dev, PCD_FIFODataReg);
+ 731              		.loc 1 121 16 is_stmt 0 view .LVU150
+ 732 00d0 0128     		cmp	r0, #1
+ 733 00d2 D6D9     		bls	.L15
+ 122:Core/Src/MFRC522_STM32.c ****                 atqa[1] = MFRC522_ReadReg(dev, PCD_FIFODataReg);
+ 734              		.loc 1 122 17 is_stmt 1 view .LVU151
+ 122:Core/Src/MFRC522_STM32.c ****                 atqa[1] = MFRC522_ReadReg(dev, PCD_FIFODataReg);
+ 735              		.loc 1 122 27 is_stmt 0 view .LVU152
+ 736 00d4 0921     		movs	r1, #9
+ 737 00d6 2000     		movs	r0, r4
+ 738              	.LVL97:
+ 122:Core/Src/MFRC522_STM32.c ****                 atqa[1] = MFRC522_ReadReg(dev, PCD_FIFODataReg);
+ 739              		.loc 1 122 27 view .LVU153
+ 740 00d8 FFF7FEFF 		bl	MFRC522_ReadReg
+ 741              	.LVL98:
+ 122:Core/Src/MFRC522_STM32.c ****                 atqa[1] = MFRC522_ReadReg(dev, PCD_FIFODataReg);
+ 742              		.loc 1 122 25 discriminator 1 view .LVU154
+ 743 00dc 2870     		strb	r0, [r5]
+ 123:Core/Src/MFRC522_STM32.c ****                 DEBUG_LOG("RequestA ATQA: 0x%02X 0x%02X", atqa[0], atqa[1]);
+ 744              		.loc 1 123 17 is_stmt 1 view .LVU155
+ 123:Core/Src/MFRC522_STM32.c ****                 DEBUG_LOG("RequestA ATQA: 0x%02X 0x%02X", atqa[0], atqa[1]);
+ 745              		.loc 1 123 27 is_stmt 0 view .LVU156
+ 746 00de 0921     		movs	r1, #9
+ 747 00e0 2000     		movs	r0, r4
+ 748 00e2 FFF7FEFF 		bl	MFRC522_ReadReg
+ 749              	.LVL99:
+ 123:Core/Src/MFRC522_STM32.c ****                 DEBUG_LOG("RequestA ATQA: 0x%02X 0x%02X", atqa[0], atqa[1]);
+ 750              		.loc 1 123 25 discriminator 1 view .LVU157
+ 751 00e6 6870     		strb	r0, [r5, #1]
+ 124:Core/Src/MFRC522_STM32.c ****                 MFRC522_WriteReg(dev, PCD_CommandReg, PCD_Idle); // Stop command
+ 752              		.loc 1 124 76 is_stmt 1 view .LVU158
+ 125:Core/Src/MFRC522_STM32.c ****                 HAL_Delay(2);  // Post-command delay
+ 753              		.loc 1 125 17 view .LVU159
+ 754 00e8 0022     		movs	r2, #0
+ 755 00ea 0121     		movs	r1, #1
+ 756 00ec 2000     		movs	r0, r4
+ 757 00ee FFF7FEFF 		bl	MFRC522_WriteReg
+ 758              	.LVL100:
+ 126:Core/Src/MFRC522_STM32.c ****                 return STATUS_OK;
+ 759              		.loc 1 126 17 view .LVU160
+ 760 00f2 0220     		movs	r0, #2
+ 761 00f4 FFF7FEFF 		bl	HAL_Delay
+ 762              	.LVL101:
+ 127:Core/Src/MFRC522_STM32.c ****             }
+ 763              		.loc 1 127 17 view .LVU161
+ 127:Core/Src/MFRC522_STM32.c ****             }
+ 764              		.loc 1 127 24 is_stmt 0 view .LVU162
+ 765 00f8 0BE0     		b	.L14
+ 766              	.LVL102:
+ 767              	.L17:
+ARM GAS  /tmp/ccbCGITS.s 			page 18
+
+
+ 127:Core/Src/MFRC522_STM32.c ****             }
+ 768              		.loc 1 127 24 view .LVU163
+ 769              	.LBE4:
+ 770              	.LBE5:
+ 136:Core/Src/MFRC522_STM32.c ****     }
+ 137:Core/Src/MFRC522_STM32.c ****     DEBUG_LOG("RequestA timeout");
+ 771              		.loc 1 137 34 is_stmt 1 view .LVU164
+ 138:Core/Src/MFRC522_STM32.c ****     MFRC522_AntennaOff(dev);
+ 772              		.loc 1 138 5 view .LVU165
+ 773 00fa 2000     		movs	r0, r4
+ 774 00fc FFF7FEFF 		bl	MFRC522_AntennaOff
+ 775              	.LVL103:
+ 139:Core/Src/MFRC522_STM32.c ****     HAL_Delay(5);
+ 776              		.loc 1 139 5 view .LVU166
+ 777 0100 0520     		movs	r0, #5
+ 778 0102 FFF7FEFF 		bl	HAL_Delay
+ 779              	.LVL104:
+ 140:Core/Src/MFRC522_STM32.c ****     MFRC522_WriteReg(dev, PCD_CommandReg, PCD_Idle);
+ 780              		.loc 1 140 5 view .LVU167
+ 781 0106 0022     		movs	r2, #0
+ 782 0108 0121     		movs	r1, #1
+ 783 010a 2000     		movs	r0, r4
+ 784 010c FFF7FEFF 		bl	MFRC522_WriteReg
+ 785              	.LVL105:
+ 141:Core/Src/MFRC522_STM32.c ****     return STATUS_TIMEOUT;
+ 786              		.loc 1 141 5 view .LVU168
+ 787              		.loc 1 141 12 is_stmt 0 view .LVU169
+ 788 0110 0226     		movs	r6, #2
+ 789              	.LVL106:
+ 790              	.L14:
+ 142:Core/Src/MFRC522_STM32.c **** }
+ 791              		.loc 1 142 1 view .LVU170
+ 792 0112 3000     		movs	r0, r6
+ 793              		@ sp needed
+ 794              	.LVL107:
+ 795              	.LVL108:
+ 796              		.loc 1 142 1 view .LVU171
+ 797 0114 70BD     		pop	{r4, r5, r6, pc}
+ 798              		.cfi_endproc
+ 799              	.LFE50:
+ 801              		.section	.text.MFRC522_Anticoll,"ax",%progbits
+ 802              		.align	1
+ 803              		.global	MFRC522_Anticoll
+ 804              		.syntax unified
+ 805              		.code	16
+ 806              		.thumb_func
+ 808              	MFRC522_Anticoll:
+ 809              	.LVL109:
+ 810              	.LFB51:
+ 143:Core/Src/MFRC522_STM32.c **** 
+ 144:Core/Src/MFRC522_STM32.c **** uint8_t MFRC522_Anticoll(MFRC522_t *dev, uint8_t *uid) {  // Returns 4-byte UID + BCC
+ 811              		.loc 1 144 56 is_stmt 1 view -0
+ 812              		.cfi_startproc
+ 813              		@ args = 0, pretend = 0, frame = 0
+ 814              		@ frame_needed = 0, uses_anonymous_args = 0
+ 815              		.loc 1 144 56 is_stmt 0 view .LVU173
+ 816 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ARM GAS  /tmp/ccbCGITS.s 			page 19
+
+
+ 817              	.LCFI10:
+ 818              		.cfi_def_cfa_offset 20
+ 819              		.cfi_offset 4, -20
+ 820              		.cfi_offset 5, -16
+ 821              		.cfi_offset 6, -12
+ 822              		.cfi_offset 7, -8
+ 823              		.cfi_offset 14, -4
+ 824 0002 C646     		mov	lr, r8
+ 825 0004 00B5     		push	{lr}
+ 826              	.LCFI11:
+ 827              		.cfi_def_cfa_offset 24
+ 828              		.cfi_offset 8, -24
+ 829 0006 0400     		movs	r4, r0
+ 830 0008 0E00     		movs	r6, r1
+ 145:Core/Src/MFRC522_STM32.c ****     DEBUG_LOG("Anticoll");
+ 831              		.loc 1 145 26 is_stmt 1 view .LVU174
+ 146:Core/Src/MFRC522_STM32.c ****     MFRC522_WriteReg(dev, PCD_ComIrqReg, 0x7F);      // Clear IRQs
+ 832              		.loc 1 146 5 view .LVU175
+ 833 000a 7F22     		movs	r2, #127
+ 834 000c 0421     		movs	r1, #4
+ 835              	.LVL110:
+ 836              		.loc 1 146 5 is_stmt 0 view .LVU176
+ 837 000e FFF7FEFF 		bl	MFRC522_WriteReg
+ 838              	.LVL111:
+ 147:Core/Src/MFRC522_STM32.c ****     MFRC522_WriteReg(dev, PCD_FIFOLevelReg, 0x80);   // Flush FIFO
+ 839              		.loc 1 147 5 is_stmt 1 view .LVU177
+ 840 0012 8022     		movs	r2, #128
+ 841 0014 0A21     		movs	r1, #10
+ 842 0016 2000     		movs	r0, r4
+ 843 0018 FFF7FEFF 		bl	MFRC522_WriteReg
+ 844              	.LVL112:
+ 148:Core/Src/MFRC522_STM32.c ****     MFRC522_WriteReg(dev, PCD_BitFramingReg, 0x00);  // Full frame
+ 845              		.loc 1 148 5 view .LVU178
+ 846 001c 0022     		movs	r2, #0
+ 847 001e 0D21     		movs	r1, #13
+ 848 0020 2000     		movs	r0, r4
+ 849 0022 FFF7FEFF 		bl	MFRC522_WriteReg
+ 850              	.LVL113:
+ 149:Core/Src/MFRC522_STM32.c ****     MFRC522_WriteReg(dev, PCD_FIFODataReg, PICC_SEL_CL1);  // 0x93
+ 851              		.loc 1 149 5 view .LVU179
+ 852 0026 9322     		movs	r2, #147
+ 853 0028 0921     		movs	r1, #9
+ 854 002a 2000     		movs	r0, r4
+ 855 002c FFF7FEFF 		bl	MFRC522_WriteReg
+ 856              	.LVL114:
+ 150:Core/Src/MFRC522_STM32.c ****     MFRC522_WriteReg(dev, PCD_FIFODataReg, 0x20);    // Fixed CRC
+ 857              		.loc 1 150 5 view .LVU180
+ 858 0030 2022     		movs	r2, #32
+ 859 0032 0921     		movs	r1, #9
+ 860 0034 2000     		movs	r0, r4
+ 861 0036 FFF7FEFF 		bl	MFRC522_WriteReg
+ 862              	.LVL115:
+ 151:Core/Src/MFRC522_STM32.c ****     HAL_Delay(2);  // Delay for stability
+ 863              		.loc 1 151 5 view .LVU181
+ 864 003a 0220     		movs	r0, #2
+ 865 003c FFF7FEFF 		bl	HAL_Delay
+ 866              	.LVL116:
+ARM GAS  /tmp/ccbCGITS.s 			page 20
+
+
+ 152:Core/Src/MFRC522_STM32.c ****     MFRC522_WriteReg(dev, PCD_CommandReg, PCD_Transceive);
+ 867              		.loc 1 152 5 view .LVU182
+ 868 0040 0C22     		movs	r2, #12
+ 869 0042 0121     		movs	r1, #1
+ 870 0044 2000     		movs	r0, r4
+ 871 0046 FFF7FEFF 		bl	MFRC522_WriteReg
+ 872              	.LVL117:
+ 153:Core/Src/MFRC522_STM32.c ****     MFRC522_SetBitMask(dev, PCD_BitFramingReg, 0x80);
+ 873              		.loc 1 153 5 view .LVU183
+ 874 004a 8022     		movs	r2, #128
+ 875 004c 0D21     		movs	r1, #13
+ 876 004e 2000     		movs	r0, r4
+ 877 0050 FFF7FEFF 		bl	MFRC522_SetBitMask
+ 878              	.LVL118:
+ 154:Core/Src/MFRC522_STM32.c **** 
+ 155:Core/Src/MFRC522_STM32.c ****     uint32_t timeout = HAL_GetTick() + 25;
+ 879              		.loc 1 155 5 view .LVU184
+ 880              		.loc 1 155 24 is_stmt 0 view .LVU185
+ 881 0054 FFF7FEFF 		bl	HAL_GetTick
+ 882              	.LVL119:
+ 883              		.loc 1 155 14 discriminator 1 view .LVU186
+ 884 0058 1930     		adds	r0, r0, #25
+ 885 005a 0500     		movs	r5, r0
+ 886              	.LVL120:
+ 156:Core/Src/MFRC522_STM32.c ****     while (HAL_GetTick() < timeout) {
+ 887              		.loc 1 156 5 is_stmt 1 view .LVU187
+ 888              		.loc 1 156 11 is_stmt 0 view .LVU188
+ 889 005c 47E0     		b	.L20
+ 890              	.LVL121:
+ 891              	.L32:
+ 892              	.LBB6:
+ 893              	.LBB7:
+ 157:Core/Src/MFRC522_STM32.c ****         uint8_t status2 = MFRC522_ReadReg(dev, PCD_Status2Reg);
+ 158:Core/Src/MFRC522_STM32.c ****         if (status2 & 0x01) {  // Command complete
+ 159:Core/Src/MFRC522_STM32.c ****             uint8_t err = MFRC522_ReadReg(dev, PCD_ErrorReg);
+ 160:Core/Src/MFRC522_STM32.c ****             if (err & 0x1D) {
+ 161:Core/Src/MFRC522_STM32.c ****                 DEBUG_LOG("Anticoll error: 0x%02X", err);
+ 894              		.loc 1 161 57 is_stmt 1 view .LVU189
+ 162:Core/Src/MFRC522_STM32.c ****                 MFRC522_AntennaOff(dev);
+ 895              		.loc 1 162 17 view .LVU190
+ 896 005e 2000     		movs	r0, r4
+ 897              	.LVL122:
+ 898              		.loc 1 162 17 is_stmt 0 view .LVU191
+ 899 0060 FFF7FEFF 		bl	MFRC522_AntennaOff
+ 900              	.LVL123:
+ 163:Core/Src/MFRC522_STM32.c ****                 HAL_Delay(5);
+ 901              		.loc 1 163 17 is_stmt 1 view .LVU192
+ 902 0064 0520     		movs	r0, #5
+ 903 0066 FFF7FEFF 		bl	HAL_Delay
+ 904              	.LVL124:
+ 164:Core/Src/MFRC522_STM32.c ****                 MFRC522_WriteReg(dev, PCD_CommandReg, PCD_Idle);
+ 905              		.loc 1 164 17 view .LVU193
+ 906 006a 0022     		movs	r2, #0
+ 907 006c 0121     		movs	r1, #1
+ 908 006e 2000     		movs	r0, r4
+ 909 0070 FFF7FEFF 		bl	MFRC522_WriteReg
+ 910              	.LVL125:
+ARM GAS  /tmp/ccbCGITS.s 			page 21
+
+
+ 165:Core/Src/MFRC522_STM32.c ****                 return STATUS_ERROR;
+ 911              		.loc 1 165 17 view .LVU194
+ 912              		.loc 1 165 24 is_stmt 0 view .LVU195
+ 913 0074 0127     		movs	r7, #1
+ 914 0076 61E0     		b	.L23
+ 915              	.LVL126:
+ 916              	.L26:
+ 917              	.LBB8:
+ 918              	.LBB9:
+ 166:Core/Src/MFRC522_STM32.c ****             }
+ 167:Core/Src/MFRC522_STM32.c ****             uint8_t fifoLvl = MFRC522_ReadReg(dev, PCD_FIFOLevelReg);
+ 168:Core/Src/MFRC522_STM32.c ****             if (fifoLvl == 5) {  // 4-byte UID + BCC
+ 169:Core/Src/MFRC522_STM32.c ****                 for (int i = 0; i < 5; i++) {
+ 170:Core/Src/MFRC522_STM32.c ****                     uid[i] = MFRC522_ReadReg(dev, PCD_FIFODataReg);
+ 919              		.loc 1 170 21 is_stmt 1 view .LVU196
+ 920              		.loc 1 170 24 is_stmt 0 view .LVU197
+ 921 0078 7319     		adds	r3, r6, r5
+ 922 007a 9846     		mov	r8, r3
+ 923              		.loc 1 170 30 view .LVU198
+ 924 007c 0921     		movs	r1, #9
+ 925 007e 2000     		movs	r0, r4
+ 926 0080 FFF7FEFF 		bl	MFRC522_ReadReg
+ 927              	.LVL127:
+ 928              		.loc 1 170 28 discriminator 1 view .LVU199
+ 929 0084 4346     		mov	r3, r8
+ 930 0086 1870     		strb	r0, [r3]
+ 169:Core/Src/MFRC522_STM32.c ****                     uid[i] = MFRC522_ReadReg(dev, PCD_FIFODataReg);
+ 931              		.loc 1 169 41 is_stmt 1 discriminator 3 view .LVU200
+ 932 0088 0135     		adds	r5, r5, #1
+ 933              	.LVL128:
+ 934              	.L24:
+ 169:Core/Src/MFRC522_STM32.c ****                     uid[i] = MFRC522_ReadReg(dev, PCD_FIFODataReg);
+ 935              		.loc 1 169 35 discriminator 1 view .LVU201
+ 936 008a 042D     		cmp	r5, #4
+ 937 008c F4DD     		ble	.L26
+ 938              	.LBE9:
+ 171:Core/Src/MFRC522_STM32.c ****                 }
+ 172:Core/Src/MFRC522_STM32.c ****                 // Validate BCC
+ 173:Core/Src/MFRC522_STM32.c ****                 uint8_t calcBcc = uid[0] ^ uid[1] ^ uid[2] ^ uid[3];
+ 939              		.loc 1 173 17 view .LVU202
+ 940              		.loc 1 173 38 is_stmt 0 view .LVU203
+ 941 008e 3178     		ldrb	r1, [r6]
+ 942              		.loc 1 173 47 view .LVU204
+ 943 0090 7078     		ldrb	r0, [r6, #1]
+ 944              		.loc 1 173 56 view .LVU205
+ 945 0092 B278     		ldrb	r2, [r6, #2]
+ 946              		.loc 1 173 65 view .LVU206
+ 947 0094 F378     		ldrb	r3, [r6, #3]
+ 948              		.loc 1 173 25 view .LVU207
+ 949 0096 4140     		eors	r1, r0
+ 950 0098 4A40     		eors	r2, r1
+ 951 009a 5340     		eors	r3, r2
+ 952              	.LVL129:
+ 174:Core/Src/MFRC522_STM32.c ****                 if (uid[4] != calcBcc) {
+ 953              		.loc 1 174 17 is_stmt 1 view .LVU208
+ 954              		.loc 1 174 24 is_stmt 0 view .LVU209
+ 955 009c 3279     		ldrb	r2, [r6, #4]
+ARM GAS  /tmp/ccbCGITS.s 			page 22
+
+
+ 956              		.loc 1 174 20 view .LVU210
+ 957 009e 9A42     		cmp	r2, r3
+ 958 00a0 0CD0     		beq	.L27
+ 175:Core/Src/MFRC522_STM32.c ****                     DEBUG_LOG("Anticoll bad BCC: calc=0x%02X, got=0x%02X", calcBcc, uid[4]);
+ 959              		.loc 1 175 92 is_stmt 1 view .LVU211
+ 176:Core/Src/MFRC522_STM32.c ****                     MFRC522_AntennaOff(dev);
+ 960              		.loc 1 176 21 view .LVU212
+ 961 00a2 2000     		movs	r0, r4
+ 962 00a4 FFF7FEFF 		bl	MFRC522_AntennaOff
+ 963              	.LVL130:
+ 177:Core/Src/MFRC522_STM32.c ****                     HAL_Delay(5);
+ 964              		.loc 1 177 21 view .LVU213
+ 965 00a8 0520     		movs	r0, #5
+ 966 00aa FFF7FEFF 		bl	HAL_Delay
+ 967              	.LVL131:
+ 178:Core/Src/MFRC522_STM32.c ****                     MFRC522_WriteReg(dev, PCD_CommandReg, PCD_Idle);
+ 968              		.loc 1 178 21 view .LVU214
+ 969 00ae 0022     		movs	r2, #0
+ 970 00b0 0121     		movs	r1, #1
+ 971 00b2 2000     		movs	r0, r4
+ 972 00b4 FFF7FEFF 		bl	MFRC522_WriteReg
+ 973              	.LVL132:
+ 179:Core/Src/MFRC522_STM32.c ****                     return STATUS_ERROR;
+ 974              		.loc 1 179 21 view .LVU215
+ 975              		.loc 1 179 28 is_stmt 0 view .LVU216
+ 976 00b8 0127     		movs	r7, #1
+ 977 00ba 3FE0     		b	.L23
+ 978              	.LVL133:
+ 979              	.L27:
+ 180:Core/Src/MFRC522_STM32.c ****                 }
+ 181:Core/Src/MFRC522_STM32.c ****                 DEBUG_LOG("Anticoll UID: %02X %02X %02X %02X %02X", uid[0], uid[1], uid[2], uid[3],
+ 980              		.loc 1 181 108 is_stmt 1 view .LVU217
+ 182:Core/Src/MFRC522_STM32.c ****                 MFRC522_WriteReg(dev, PCD_CommandReg, PCD_Idle);
+ 981              		.loc 1 182 17 view .LVU218
+ 982 00bc 0022     		movs	r2, #0
+ 983 00be 0121     		movs	r1, #1
+ 984 00c0 2000     		movs	r0, r4
+ 985 00c2 FFF7FEFF 		bl	MFRC522_WriteReg
+ 986              	.LVL134:
+ 183:Core/Src/MFRC522_STM32.c ****                 HAL_Delay(2);  // Post-command delay
+ 987              		.loc 1 183 17 view .LVU219
+ 988 00c6 0220     		movs	r0, #2
+ 989 00c8 FFF7FEFF 		bl	HAL_Delay
+ 990              	.LVL135:
+ 184:Core/Src/MFRC522_STM32.c ****                 return STATUS_OK;
+ 991              		.loc 1 184 17 view .LVU220
+ 992              		.loc 1 184 24 is_stmt 0 view .LVU221
+ 993 00cc 36E0     		b	.L23
+ 994              	.LVL136:
+ 995              	.L33:
+ 996              		.loc 1 184 24 view .LVU222
+ 997              	.LBE8:
+ 185:Core/Src/MFRC522_STM32.c ****             }
+ 186:Core/Src/MFRC522_STM32.c ****             DEBUG_LOG("Anticoll bad FIFO level: %d", fifoLvl);
+ 998              		.loc 1 186 62 is_stmt 1 view .LVU223
+ 187:Core/Src/MFRC522_STM32.c ****             MFRC522_AntennaOff(dev);
+ 999              		.loc 1 187 13 view .LVU224
+ARM GAS  /tmp/ccbCGITS.s 			page 23
+
+
+ 1000 00ce 2000     		movs	r0, r4
+ 1001              	.LVL137:
+ 1002              		.loc 1 187 13 is_stmt 0 view .LVU225
+ 1003 00d0 FFF7FEFF 		bl	MFRC522_AntennaOff
+ 1004              	.LVL138:
+ 188:Core/Src/MFRC522_STM32.c ****             HAL_Delay(5);
+ 1005              		.loc 1 188 13 is_stmt 1 view .LVU226
+ 1006 00d4 0520     		movs	r0, #5
+ 1007 00d6 FFF7FEFF 		bl	HAL_Delay
+ 1008              	.LVL139:
+ 189:Core/Src/MFRC522_STM32.c ****             MFRC522_WriteReg(dev, PCD_CommandReg, PCD_Idle);
+ 1009              		.loc 1 189 13 view .LVU227
+ 1010 00da 0022     		movs	r2, #0
+ 1011 00dc 0121     		movs	r1, #1
+ 1012 00de 2000     		movs	r0, r4
+ 1013 00e0 FFF7FEFF 		bl	MFRC522_WriteReg
+ 1014              	.LVL140:
+ 190:Core/Src/MFRC522_STM32.c ****             return STATUS_ERROR;
+ 1015              		.loc 1 190 13 view .LVU228
+ 1016              		.loc 1 190 20 is_stmt 0 view .LVU229
+ 1017 00e4 0127     		movs	r7, #1
+ 1018 00e6 29E0     		b	.L23
+ 1019              	.LVL141:
+ 1020              	.L21:
+ 1021              		.loc 1 190 20 view .LVU230
+ 1022              	.LBE7:
+ 191:Core/Src/MFRC522_STM32.c ****         }
+ 192:Core/Src/MFRC522_STM32.c ****         HAL_Delay(1);  // Mimic debug log timing
+ 1023              		.loc 1 192 9 is_stmt 1 view .LVU231
+ 1024 00e8 0120     		movs	r0, #1
+ 1025 00ea FFF7FEFF 		bl	HAL_Delay
+ 1026              	.LVL142:
+ 1027              	.L20:
+ 1028              		.loc 1 192 9 is_stmt 0 view .LVU232
+ 1029              	.LBE6:
+ 156:Core/Src/MFRC522_STM32.c ****         uint8_t status2 = MFRC522_ReadReg(dev, PCD_Status2Reg);
+ 1030              		.loc 1 156 26 is_stmt 1 view .LVU233
+ 156:Core/Src/MFRC522_STM32.c ****         uint8_t status2 = MFRC522_ReadReg(dev, PCD_Status2Reg);
+ 1031              		.loc 1 156 12 is_stmt 0 view .LVU234
+ 1032 00ee FFF7FEFF 		bl	HAL_GetTick
+ 1033              	.LVL143:
+ 156:Core/Src/MFRC522_STM32.c ****         uint8_t status2 = MFRC522_ReadReg(dev, PCD_Status2Reg);
+ 1034              		.loc 1 156 26 discriminator 1 view .LVU235
+ 1035 00f2 A842     		cmp	r0, r5
+ 1036 00f4 16D2     		bcs	.L31
+ 1037              	.LBB13:
+ 157:Core/Src/MFRC522_STM32.c ****         if (status2 & 0x01) {  // Command complete
+ 1038              		.loc 1 157 9 is_stmt 1 view .LVU236
+ 157:Core/Src/MFRC522_STM32.c ****         if (status2 & 0x01) {  // Command complete
+ 1039              		.loc 1 157 27 is_stmt 0 view .LVU237
+ 1040 00f6 0821     		movs	r1, #8
+ 1041 00f8 2000     		movs	r0, r4
+ 1042 00fa FFF7FEFF 		bl	MFRC522_ReadReg
+ 1043              	.LVL144:
+ 158:Core/Src/MFRC522_STM32.c ****             uint8_t err = MFRC522_ReadReg(dev, PCD_ErrorReg);
+ 1044              		.loc 1 158 9 is_stmt 1 view .LVU238
+ 158:Core/Src/MFRC522_STM32.c ****             uint8_t err = MFRC522_ReadReg(dev, PCD_ErrorReg);
+ARM GAS  /tmp/ccbCGITS.s 			page 24
+
+
+ 1045              		.loc 1 158 12 is_stmt 0 view .LVU239
+ 1046 00fe C007     		lsls	r0, r0, #31
+ 1047 0100 F2D5     		bpl	.L21
+ 1048              	.LVL145:
+ 1049              	.LBB12:
+ 159:Core/Src/MFRC522_STM32.c ****             if (err & 0x1D) {
+ 1050              		.loc 1 159 13 is_stmt 1 view .LVU240
+ 159:Core/Src/MFRC522_STM32.c ****             if (err & 0x1D) {
+ 1051              		.loc 1 159 27 is_stmt 0 view .LVU241
+ 1052 0102 0621     		movs	r1, #6
+ 1053 0104 2000     		movs	r0, r4
+ 1054 0106 FFF7FEFF 		bl	MFRC522_ReadReg
+ 1055              	.LVL146:
+ 160:Core/Src/MFRC522_STM32.c ****                 DEBUG_LOG("Anticoll error: 0x%02X", err);
+ 1056              		.loc 1 160 13 is_stmt 1 view .LVU242
+ 1057 010a 1D23     		movs	r3, #29
+ 1058 010c 1F00     		movs	r7, r3
+ 1059 010e 0740     		ands	r7, r0
+ 160:Core/Src/MFRC522_STM32.c ****                 DEBUG_LOG("Anticoll error: 0x%02X", err);
+ 1060              		.loc 1 160 16 is_stmt 0 view .LVU243
+ 1061 0110 0342     		tst	r3, r0
+ 1062 0112 A4D1     		bne	.L32
+ 167:Core/Src/MFRC522_STM32.c ****             if (fifoLvl == 5) {  // 4-byte UID + BCC
+ 1063              		.loc 1 167 13 is_stmt 1 view .LVU244
+ 167:Core/Src/MFRC522_STM32.c ****             if (fifoLvl == 5) {  // 4-byte UID + BCC
+ 1064              		.loc 1 167 31 is_stmt 0 view .LVU245
+ 1065 0114 0A21     		movs	r1, #10
+ 1066 0116 2000     		movs	r0, r4
+ 1067              	.LVL147:
+ 167:Core/Src/MFRC522_STM32.c ****             if (fifoLvl == 5) {  // 4-byte UID + BCC
+ 1068              		.loc 1 167 31 view .LVU246
+ 1069 0118 FFF7FEFF 		bl	MFRC522_ReadReg
+ 1070              	.LVL148:
+ 168:Core/Src/MFRC522_STM32.c ****                 for (int i = 0; i < 5; i++) {
+ 1071              		.loc 1 168 13 is_stmt 1 view .LVU247
+ 168:Core/Src/MFRC522_STM32.c ****                 for (int i = 0; i < 5; i++) {
+ 1072              		.loc 1 168 16 is_stmt 0 view .LVU248
+ 1073 011c 0528     		cmp	r0, #5
+ 1074 011e D6D1     		bne	.L33
+ 1075              	.LBB11:
+ 1076              	.LBB10:
+ 169:Core/Src/MFRC522_STM32.c ****                     uid[i] = MFRC522_ReadReg(dev, PCD_FIFODataReg);
+ 1077              		.loc 1 169 26 view .LVU249
+ 1078 0120 0025     		movs	r5, #0
+ 1079              	.LVL149:
+ 169:Core/Src/MFRC522_STM32.c ****                     uid[i] = MFRC522_ReadReg(dev, PCD_FIFODataReg);
+ 1080              		.loc 1 169 26 view .LVU250
+ 1081 0122 B2E7     		b	.L24
+ 1082              	.LVL150:
+ 1083              	.L31:
+ 169:Core/Src/MFRC522_STM32.c ****                     uid[i] = MFRC522_ReadReg(dev, PCD_FIFODataReg);
+ 1084              		.loc 1 169 26 view .LVU251
+ 1085              	.LBE10:
+ 1086              	.LBE11:
+ 1087              	.LBE12:
+ 1088              	.LBE13:
+ 193:Core/Src/MFRC522_STM32.c ****     }
+ARM GAS  /tmp/ccbCGITS.s 			page 25
+
+
+ 194:Core/Src/MFRC522_STM32.c ****     DEBUG_LOG("Anticoll timeout");
+ 1089              		.loc 1 194 34 is_stmt 1 view .LVU252
+ 195:Core/Src/MFRC522_STM32.c ****     MFRC522_AntennaOff(dev);
+ 1090              		.loc 1 195 5 view .LVU253
+ 1091 0124 2000     		movs	r0, r4
+ 1092 0126 FFF7FEFF 		bl	MFRC522_AntennaOff
+ 1093              	.LVL151:
+ 196:Core/Src/MFRC522_STM32.c ****     HAL_Delay(5);
+ 1094              		.loc 1 196 5 view .LVU254
+ 1095 012a 0520     		movs	r0, #5
+ 1096 012c FFF7FEFF 		bl	HAL_Delay
+ 1097              	.LVL152:
+ 197:Core/Src/MFRC522_STM32.c ****     MFRC522_WriteReg(dev, PCD_CommandReg, PCD_Idle);
+ 1098              		.loc 1 197 5 view .LVU255
+ 1099 0130 0022     		movs	r2, #0
+ 1100 0132 0121     		movs	r1, #1
+ 1101 0134 2000     		movs	r0, r4
+ 1102 0136 FFF7FEFF 		bl	MFRC522_WriteReg
+ 1103              	.LVL153:
+ 198:Core/Src/MFRC522_STM32.c ****     return STATUS_TIMEOUT;
+ 1104              		.loc 1 198 5 view .LVU256
+ 1105              		.loc 1 198 12 is_stmt 0 view .LVU257
+ 1106 013a 0227     		movs	r7, #2
+ 1107              	.LVL154:
+ 1108              	.L23:
+ 199:Core/Src/MFRC522_STM32.c **** }
+ 1109              		.loc 1 199 1 view .LVU258
+ 1110 013c 3800     		movs	r0, r7
+ 1111              		@ sp needed
+ 1112              	.LVL155:
+ 1113              	.LVL156:
+ 1114              		.loc 1 199 1 view .LVU259
+ 1115 013e 80BC     		pop	{r7}
+ 1116 0140 B846     		mov	r8, r7
+ 1117 0142 F0BD     		pop	{r4, r5, r6, r7, pc}
+ 1118              		.cfi_endproc
+ 1119              	.LFE51:
+ 1121              		.section	.text.MFRC522_ReadUid,"ax",%progbits
+ 1122              		.align	1
+ 1123              		.global	MFRC522_ReadUid
+ 1124              		.syntax unified
+ 1125              		.code	16
+ 1126              		.thumb_func
+ 1128              	MFRC522_ReadUid:
+ 1129              	.LVL157:
+ 1130              	.LFB52:
+ 200:Core/Src/MFRC522_STM32.c **** 
+ 201:Core/Src/MFRC522_STM32.c **** uint8_t MFRC522_ReadUid(MFRC522_t *dev, uint8_t *uid) {  // Output: uid[4]
+ 1131              		.loc 1 201 55 is_stmt 1 view -0
+ 1132              		.cfi_startproc
+ 1133              		@ args = 0, pretend = 0, frame = 8
+ 1134              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1135              		.loc 1 201 55 is_stmt 0 view .LVU261
+ 1136 0000 10B5     		push	{r4, lr}
+ 1137              	.LCFI12:
+ 1138              		.cfi_def_cfa_offset 8
+ 1139              		.cfi_offset 4, -8
+ARM GAS  /tmp/ccbCGITS.s 			page 26
+
+
+ 1140              		.cfi_offset 14, -4
+ 1141 0002 82B0     		sub	sp, sp, #8
+ 1142              	.LCFI13:
+ 1143              		.cfi_def_cfa_offset 16
+ 1144 0004 0C00     		movs	r4, r1
+ 202:Core/Src/MFRC522_STM32.c ****     DEBUG_LOG("Reading UID...");
+ 1145              		.loc 1 202 32 is_stmt 1 view .LVU262
+ 203:Core/Src/MFRC522_STM32.c ****     // Card detected, read UID
+ 204:Core/Src/MFRC522_STM32.c ****     uint8_t rawUid[5];
+ 1146              		.loc 1 204 5 view .LVU263
+ 205:Core/Src/MFRC522_STM32.c ****     if (MFRC522_Anticoll(dev, rawUid) != STATUS_OK) {
+ 1147              		.loc 1 205 5 view .LVU264
+ 1148              		.loc 1 205 9 is_stmt 0 view .LVU265
+ 1149 0006 6946     		mov	r1, sp
+ 1150              	.LVL158:
+ 1151              		.loc 1 205 9 view .LVU266
+ 1152 0008 FFF7FEFF 		bl	MFRC522_Anticoll
+ 1153              	.LVL159:
+ 1154              		.loc 1 205 8 discriminator 1 view .LVU267
+ 1155 000c 0028     		cmp	r0, #0
+ 1156 000e 09D1     		bne	.L38
+ 1157              	.LBB14:
+ 206:Core/Src/MFRC522_STM32.c ****     	DEBUG_LOG("Anticollision failed");
+ 207:Core/Src/MFRC522_STM32.c ****         return STATUS_ERROR;
+ 208:Core/Src/MFRC522_STM32.c ****     }
+ 209:Core/Src/MFRC522_STM32.c ****     // Copy UID (drop BCC)
+ 210:Core/Src/MFRC522_STM32.c ****     for (int i = 0; i < 4; i++) {
+ 1158              		.loc 1 210 14 view .LVU268
+ 1159 0010 0023     		movs	r3, #0
+ 1160 0012 03E0     		b	.L36
+ 1161              	.LVL160:
+ 1162              	.L37:
+ 211:Core/Src/MFRC522_STM32.c ****         uid[i] = rawUid[i];
+ 1163              		.loc 1 211 9 is_stmt 1 view .LVU269
+ 1164              		.loc 1 211 24 is_stmt 0 view .LVU270
+ 1165 0014 6A46     		mov	r2, sp
+ 1166 0016 D25C     		ldrb	r2, [r2, r3]
+ 1167              		.loc 1 211 16 view .LVU271
+ 1168 0018 E254     		strb	r2, [r4, r3]
+ 210:Core/Src/MFRC522_STM32.c ****         uid[i] = rawUid[i];
+ 1169              		.loc 1 210 29 is_stmt 1 discriminator 3 view .LVU272
+ 1170 001a 0133     		adds	r3, r3, #1
+ 1171              	.LVL161:
+ 1172              	.L36:
+ 210:Core/Src/MFRC522_STM32.c ****         uid[i] = rawUid[i];
+ 1173              		.loc 1 210 23 discriminator 1 view .LVU273
+ 1174 001c 032B     		cmp	r3, #3
+ 1175 001e F9DD     		ble	.L37
+ 1176              	.LVL162:
+ 1177              	.L35:
+ 210:Core/Src/MFRC522_STM32.c ****         uid[i] = rawUid[i];
+ 1178              		.loc 1 210 23 is_stmt 0 discriminator 1 view .LVU274
+ 1179              	.LBE14:
+ 212:Core/Src/MFRC522_STM32.c ****     }
+ 213:Core/Src/MFRC522_STM32.c ****     DEBUG_LOG("Card UID: %02X %02X %02X %02X", uid[0], uid[1], uid[2], uid[3]);
+ 214:Core/Src/MFRC522_STM32.c ****     return STATUS_OK;
+ 215:Core/Src/MFRC522_STM32.c **** }
+ARM GAS  /tmp/ccbCGITS.s 			page 27
+
+
+ 1180              		.loc 1 215 1 view .LVU275
+ 1181 0020 02B0     		add	sp, sp, #8
+ 1182              		@ sp needed
+ 1183              	.LVL163:
+ 1184              		.loc 1 215 1 view .LVU276
+ 1185 0022 10BD     		pop	{r4, pc}
+ 1186              	.LVL164:
+ 1187              	.L38:
+ 207:Core/Src/MFRC522_STM32.c ****     }
+ 1188              		.loc 1 207 16 view .LVU277
+ 1189 0024 0120     		movs	r0, #1
+ 1190 0026 FBE7     		b	.L35
+ 1191              		.cfi_endproc
+ 1192              	.LFE52:
+ 1194              		.section	.rodata.waitcardRemoval.str1.4,"aMS",%progbits,1
+ 1195              		.align	2
+ 1196              	.LC6:
+ 1197 0000 5B555345 		.ascii	"[USER] Waiting for card removal...\015\000"
+ 1197      525D2057 
+ 1197      61697469 
+ 1197      6E672066 
+ 1197      6F722063 
+ 1198              		.align	2
+ 1199              	.LC9:
+ 1200 0024 5B555345 		.ascii	"[USER] Card removed\015\000"
+ 1200      525D2043 
+ 1200      61726420 
+ 1200      72656D6F 
+ 1200      7665640D 
+ 1201              		.section	.text.waitcardRemoval,"ax",%progbits
+ 1202              		.align	1
+ 1203              		.global	waitcardRemoval
+ 1204              		.syntax unified
+ 1205              		.code	16
+ 1206              		.thumb_func
+ 1208              	waitcardRemoval:
+ 1209              	.LVL165:
+ 1210              	.LFB53:
+ 216:Core/Src/MFRC522_STM32.c **** 
+ 217:Core/Src/MFRC522_STM32.c **** uint8_t waitcardRemoval (MFRC522_t *dev){
+ 1211              		.loc 1 217 41 is_stmt 1 view -0
+ 1212              		.cfi_startproc
+ 1213              		@ args = 0, pretend = 0, frame = 0
+ 1214              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1215              		.loc 1 217 41 is_stmt 0 view .LVU279
+ 1216 0000 10B5     		push	{r4, lr}
+ 1217              	.LCFI14:
+ 1218              		.cfi_def_cfa_offset 8
+ 1219              		.cfi_offset 4, -8
+ 1220              		.cfi_offset 14, -4
+ 1221 0002 0400     		movs	r4, r0
+ 218:Core/Src/MFRC522_STM32.c ****     USER_LOG("Waiting for card removal...");
+ 1222              		.loc 1 218 5 is_stmt 1 view .LVU280
+ 1223 0004 0848     		ldr	r0, .L44
+ 1224              	.LVL166:
+ 1225              		.loc 1 218 5 is_stmt 0 view .LVU281
+ 1226 0006 FFF7FEFF 		bl	puts
+ARM GAS  /tmp/ccbCGITS.s 			page 28
+
+
+ 1227              	.LVL167:
+ 1228              	.L41:
+ 219:Core/Src/MFRC522_STM32.c ****     while (1) {
+ 1229              		.loc 1 219 5 is_stmt 1 view .LVU282
+ 220:Core/Src/MFRC522_STM32.c ****         if (MFRC522_RequestA(dev, atqa) != STATUS_OK) {
+ 1230              		.loc 1 220 9 view .LVU283
+ 1231              		.loc 1 220 13 is_stmt 0 view .LVU284
+ 1232 000a 0849     		ldr	r1, .L44+4
+ 1233 000c 2000     		movs	r0, r4
+ 1234 000e FFF7FEFF 		bl	MFRC522_RequestA
+ 1235              	.LVL168:
+ 1236              		.loc 1 220 12 discriminator 1 view .LVU285
+ 1237 0012 0028     		cmp	r0, #0
+ 1238 0014 03D1     		bne	.L43
+ 221:Core/Src/MFRC522_STM32.c ****         	USER_LOG("Card removed");
+ 222:Core/Src/MFRC522_STM32.c ****             return STATUS_OK; // Card removed, return success
+ 223:Core/Src/MFRC522_STM32.c ****         }
+ 224:Core/Src/MFRC522_STM32.c ****         HAL_Delay(100); // Poll every 100ms to check if card is still present
+ 1239              		.loc 1 224 9 is_stmt 1 view .LVU286
+ 1240 0016 6430     		adds	r0, r0, #100
+ 1241 0018 FFF7FEFF 		bl	HAL_Delay
+ 1242              	.LVL169:
+ 219:Core/Src/MFRC522_STM32.c ****         if (MFRC522_RequestA(dev, atqa) != STATUS_OK) {
+ 1243              		.loc 1 219 11 view .LVU287
+ 220:Core/Src/MFRC522_STM32.c ****         if (MFRC522_RequestA(dev, atqa) != STATUS_OK) {
+ 1244              		.loc 1 220 12 is_stmt 0 view .LVU288
+ 1245 001c F5E7     		b	.L41
+ 1246              	.L43:
+ 221:Core/Src/MFRC522_STM32.c ****         	USER_LOG("Card removed");
+ 1247              		.loc 1 221 10 is_stmt 1 view .LVU289
+ 1248 001e 0448     		ldr	r0, .L44+8
+ 1249 0020 FFF7FEFF 		bl	puts
+ 1250              	.LVL170:
+ 222:Core/Src/MFRC522_STM32.c ****         }
+ 1251              		.loc 1 222 13 view .LVU290
+ 225:Core/Src/MFRC522_STM32.c ****     }
+ 226:Core/Src/MFRC522_STM32.c **** }
+ 1252              		.loc 1 226 1 is_stmt 0 view .LVU291
+ 1253 0024 0020     		movs	r0, #0
+ 1254              		@ sp needed
+ 1255              	.LVL171:
+ 1256              		.loc 1 226 1 view .LVU292
+ 1257 0026 10BD     		pop	{r4, pc}
+ 1258              	.L45:
+ 1259              		.align	2
+ 1260              	.L44:
+ 1261 0028 00000000 		.word	.LC6
+ 1262 002c 00000000 		.word	atqa
+ 1263 0030 24000000 		.word	.LC9
+ 1264              		.cfi_endproc
+ 1265              	.LFE53:
+ 1267              		.section	.rodata.waitcardDetect.str1.4,"aMS",%progbits,1
+ 1268              		.align	2
+ 1269              	.LC12:
+ 1270 0000 5B555345 		.ascii	"[USER] Waiting for the card...\015\000"
+ 1270      525D2057 
+ 1270      61697469 
+ARM GAS  /tmp/ccbCGITS.s 			page 29
+
+
+ 1270      6E672066 
+ 1270      6F722074 
+ 1271              		.align	2
+ 1272              	.LC14:
+ 1273 0020 5B555345 		.ascii	"[USER] Card detected\015\000"
+ 1273      525D2043 
+ 1273      61726420 
+ 1273      64657465 
+ 1273      63746564 
+ 1274              		.section	.text.waitcardDetect,"ax",%progbits
+ 1275              		.align	1
+ 1276              		.global	waitcardDetect
+ 1277              		.syntax unified
+ 1278              		.code	16
+ 1279              		.thumb_func
+ 1281              	waitcardDetect:
+ 1282              	.LVL172:
+ 1283              	.LFB54:
+ 227:Core/Src/MFRC522_STM32.c **** 
+ 228:Core/Src/MFRC522_STM32.c **** uint8_t waitcardDetect (MFRC522_t *dev){
+ 1284              		.loc 1 228 40 is_stmt 1 view -0
+ 1285              		.cfi_startproc
+ 1286              		@ args = 0, pretend = 0, frame = 0
+ 1287              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1288              		.loc 1 228 40 is_stmt 0 view .LVU294
+ 1289 0000 10B5     		push	{r4, lr}
+ 1290              	.LCFI15:
+ 1291              		.cfi_def_cfa_offset 8
+ 1292              		.cfi_offset 4, -8
+ 1293              		.cfi_offset 14, -4
+ 1294 0002 0400     		movs	r4, r0
+ 229:Core/Src/MFRC522_STM32.c **** 	atqa[0] = atqa[1] = 0;
+ 1295              		.loc 1 229 2 is_stmt 1 view .LVU295
+ 1296              		.loc 1 229 20 is_stmt 0 view .LVU296
+ 1297 0004 0A4B     		ldr	r3, .L51
+ 1298 0006 0022     		movs	r2, #0
+ 1299 0008 5A70     		strb	r2, [r3, #1]
+ 1300              		.loc 1 229 10 view .LVU297
+ 1301 000a 1A70     		strb	r2, [r3]
+ 230:Core/Src/MFRC522_STM32.c **** 	USER_LOG("Waiting for the card...");
+ 1302              		.loc 1 230 2 is_stmt 1 view .LVU298
+ 1303 000c 0948     		ldr	r0, .L51+4
+ 1304              	.LVL173:
+ 1305              		.loc 1 230 2 is_stmt 0 view .LVU299
+ 1306 000e FFF7FEFF 		bl	puts
+ 1307              	.LVL174:
+ 1308              	.L48:
+ 231:Core/Src/MFRC522_STM32.c **** 	while (1){
+ 1309              		.loc 1 231 2 is_stmt 1 view .LVU300
+ 232:Core/Src/MFRC522_STM32.c **** 	    if (MFRC522_RequestA(dev, atqa) == STATUS_OK) {
+ 1310              		.loc 1 232 6 view .LVU301
+ 1311              		.loc 1 232 10 is_stmt 0 view .LVU302
+ 1312 0012 0749     		ldr	r1, .L51
+ 1313 0014 2000     		movs	r0, r4
+ 1314 0016 FFF7FEFF 		bl	MFRC522_RequestA
+ 1315              	.LVL175:
+ 1316              		.loc 1 232 9 discriminator 1 view .LVU303
+ARM GAS  /tmp/ccbCGITS.s 			page 30
+
+
+ 1317 001a 0028     		cmp	r0, #0
+ 1318 001c 03D0     		beq	.L50
+ 233:Core/Src/MFRC522_STM32.c **** 	    	USER_LOG("Card detected");
+ 234:Core/Src/MFRC522_STM32.c **** 	        return STATUS_OK;
+ 235:Core/Src/MFRC522_STM32.c **** 	    }
+ 236:Core/Src/MFRC522_STM32.c **** 	    HAL_Delay(100);	// Poll every 100ms to check if card is  present
+ 1319              		.loc 1 236 6 is_stmt 1 view .LVU304
+ 1320 001e 6420     		movs	r0, #100
+ 1321 0020 FFF7FEFF 		bl	HAL_Delay
+ 1322              	.LVL176:
+ 231:Core/Src/MFRC522_STM32.c **** 	    if (MFRC522_RequestA(dev, atqa) == STATUS_OK) {
+ 1323              		.loc 1 231 8 view .LVU305
+ 232:Core/Src/MFRC522_STM32.c **** 	    if (MFRC522_RequestA(dev, atqa) == STATUS_OK) {
+ 1324              		.loc 1 232 9 is_stmt 0 view .LVU306
+ 1325 0024 F5E7     		b	.L48
+ 1326              	.L50:
+ 233:Core/Src/MFRC522_STM32.c **** 	    	USER_LOG("Card detected");
+ 1327              		.loc 1 233 7 is_stmt 1 view .LVU307
+ 1328 0026 0448     		ldr	r0, .L51+8
+ 1329 0028 FFF7FEFF 		bl	puts
+ 1330              	.LVL177:
+ 234:Core/Src/MFRC522_STM32.c **** 	    }
+ 1331              		.loc 1 234 10 view .LVU308
+ 237:Core/Src/MFRC522_STM32.c **** 	}
+ 238:Core/Src/MFRC522_STM32.c **** }
+ 1332              		.loc 1 238 1 is_stmt 0 view .LVU309
+ 1333 002c 0020     		movs	r0, #0
+ 1334              		@ sp needed
+ 1335              	.LVL178:
+ 1336              		.loc 1 238 1 view .LVU310
+ 1337 002e 10BD     		pop	{r4, pc}
+ 1338              	.L52:
+ 1339              		.align	2
+ 1340              	.L51:
+ 1341 0030 00000000 		.word	atqa
+ 1342 0034 00000000 		.word	.LC12
+ 1343 0038 20000000 		.word	.LC14
+ 1344              		.cfi_endproc
+ 1345              	.LFE54:
+ 1347              		.global	atqa
+ 1348              		.section	.bss.atqa,"aw",%nobits
+ 1349              		.align	2
+ 1352              	atqa:
+ 1353 0000 0000     		.space	2
+ 1354              		.text
+ 1355              	.Letext0:
+ 1356              		.file 2 "/usr/arm-none-eabi/include/machine/_default_types.h"
+ 1357              		.file 3 "/usr/arm-none-eabi/include/sys/_stdint.h"
+ 1358              		.file 4 "Drivers/CMSIS/Device/ST/STM32F0xx/Include/stm32f042x6.h"
+ 1359              		.file 5 "Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_def.h"
+ 1360              		.file 6 "Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_gpio.h"
+ 1361              		.file 7 "Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_dma.h"
+ 1362              		.file 8 "Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_spi.h"
+ 1363              		.file 9 "Core/Inc/MFRC522_STM32.h"
+ 1364              		.file 10 "/usr/arm-none-eabi/include/stdio.h"
+ 1365              		.file 11 "Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal.h"
+ 1366              		.file 12 "<built-in>"
+ARM GAS  /tmp/ccbCGITS.s 			page 31
+
+
+ARM GAS  /tmp/ccbCGITS.s 			page 32
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 MFRC522_STM32.c
+     /tmp/ccbCGITS.s:19     .text.MFRC522_ReadReg:00000000 $t
+     /tmp/ccbCGITS.s:25     .text.MFRC522_ReadReg:00000000 MFRC522_ReadReg
+     /tmp/ccbCGITS.s:113    .text.MFRC522_WriteReg:00000000 $t
+     /tmp/ccbCGITS.s:119    .text.MFRC522_WriteReg:00000000 MFRC522_WriteReg
+     /tmp/ccbCGITS.s:200    .text.MFRC522_SetBitMask:00000000 $t
+     /tmp/ccbCGITS.s:206    .text.MFRC522_SetBitMask:00000000 MFRC522_SetBitMask
+     /tmp/ccbCGITS.s:250    .text.MFRC522_AntennaOn:00000000 $t
+     /tmp/ccbCGITS.s:256    .text.MFRC522_AntennaOn:00000000 MFRC522_AntennaOn
+     /tmp/ccbCGITS.s:282    .rodata.MFRC522_Init.str1.4:00000000 $d
+     /tmp/ccbCGITS.s:293    .text.MFRC522_Init:00000000 $t
+     /tmp/ccbCGITS.s:299    .text.MFRC522_Init:00000000 MFRC522_Init
+     /tmp/ccbCGITS.s:444    .text.MFRC522_Init:000000c4 $d
+     /tmp/ccbCGITS.s:451    .text.MFRC522_ClearBitMask:00000000 $t
+     /tmp/ccbCGITS.s:457    .text.MFRC522_ClearBitMask:00000000 MFRC522_ClearBitMask
+     /tmp/ccbCGITS.s:506    .text.MFRC522_AntennaOff:00000000 $t
+     /tmp/ccbCGITS.s:512    .text.MFRC522_AntennaOff:00000000 MFRC522_AntennaOff
+     /tmp/ccbCGITS.s:538    .text.MFRC522_RequestA:00000000 $t
+     /tmp/ccbCGITS.s:544    .text.MFRC522_RequestA:00000000 MFRC522_RequestA
+     /tmp/ccbCGITS.s:802    .text.MFRC522_Anticoll:00000000 $t
+     /tmp/ccbCGITS.s:808    .text.MFRC522_Anticoll:00000000 MFRC522_Anticoll
+     /tmp/ccbCGITS.s:1122   .text.MFRC522_ReadUid:00000000 $t
+     /tmp/ccbCGITS.s:1128   .text.MFRC522_ReadUid:00000000 MFRC522_ReadUid
+     /tmp/ccbCGITS.s:1195   .rodata.waitcardRemoval.str1.4:00000000 $d
+     /tmp/ccbCGITS.s:1202   .text.waitcardRemoval:00000000 $t
+     /tmp/ccbCGITS.s:1208   .text.waitcardRemoval:00000000 waitcardRemoval
+     /tmp/ccbCGITS.s:1261   .text.waitcardRemoval:00000028 $d
+     /tmp/ccbCGITS.s:1352   .bss.atqa:00000000 atqa
+     /tmp/ccbCGITS.s:1268   .rodata.waitcardDetect.str1.4:00000000 $d
+     /tmp/ccbCGITS.s:1275   .text.waitcardDetect:00000000 $t
+     /tmp/ccbCGITS.s:1281   .text.waitcardDetect:00000000 waitcardDetect
+     /tmp/ccbCGITS.s:1341   .text.waitcardDetect:00000030 $d
+     /tmp/ccbCGITS.s:1349   .bss.atqa:00000000 $d
+
+UNDEFINED SYMBOLS
+HAL_GPIO_WritePin
+HAL_SPI_Transmit
+HAL_SPI_Receive
+HAL_Delay
+puts
+printf
+HAL_GetTick
