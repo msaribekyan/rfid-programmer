@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccqaVzZI.s 			page 1
+ARM GAS  /tmp/ccKO1Oz8.s 			page 1
 
 
    1              		.cpu cortex-m0
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccqaVzZI.s 			page 1
   31:Core/Src/main.c **** /* USER CODE BEGIN PTD */
   32:Core/Src/main.c **** 
   33:Core/Src/main.c **** /* USER CODE END PTD */
-ARM GAS  /tmp/ccqaVzZI.s 			page 2
+ARM GAS  /tmp/ccKO1Oz8.s 			page 2
 
 
   34:Core/Src/main.c **** 
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccqaVzZI.s 			page 1
   88:Core/Src/main.c **** 
   89:Core/Src/main.c ****   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
   90:Core/Src/main.c ****   HAL_Init();
-ARM GAS  /tmp/ccqaVzZI.s 			page 3
+ARM GAS  /tmp/ccKO1Oz8.s 			page 3
 
 
   91:Core/Src/main.c **** 
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccqaVzZI.s 			page 1
  145:Core/Src/main.c ****   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
  146:Core/Src/main.c ****   RCC_PeriphCLKInitTypeDef PeriphClkInit = {0};
  147:Core/Src/main.c **** 
-ARM GAS  /tmp/ccqaVzZI.s 			page 4
+ARM GAS  /tmp/ccKO1Oz8.s 			page 4
 
 
  148:Core/Src/main.c ****   /** Initializes the RCC Oscillators according to the specified parameters
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccqaVzZI.s 			page 1
  202:Core/Src/main.c ****   hspi1.Init.Direction = SPI_DIRECTION_2LINES;
  203:Core/Src/main.c ****   hspi1.Init.DataSize = SPI_DATASIZE_8BIT;
  204:Core/Src/main.c ****   hspi1.Init.CLKPolarity = SPI_POLARITY_LOW;
-ARM GAS  /tmp/ccqaVzZI.s 			page 5
+ARM GAS  /tmp/ccKO1Oz8.s 			page 5
 
 
  205:Core/Src/main.c ****   hspi1.Init.CLKPhase = SPI_PHASE_1EDGE;
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccqaVzZI.s 			page 1
   53              	.LVL0:
  232:Core/Src/main.c **** /* USER CODE BEGIN MX_GPIO_Init_1 */
  233:Core/Src/main.c **** /* USER CODE END MX_GPIO_Init_1 */
-ARM GAS  /tmp/ccqaVzZI.s 			page 6
+ARM GAS  /tmp/ccKO1Oz8.s 			page 6
 
 
  234:Core/Src/main.c **** 
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccqaVzZI.s 			page 1
  103 004a 029B     		ldr	r3, [sp, #8]
  104              	.LBE6:
  105              		.loc 1 238 3 view .LVU20
-ARM GAS  /tmp/ccqaVzZI.s 			page 7
+ARM GAS  /tmp/ccKO1Oz8.s 			page 7
 
 
  239:Core/Src/main.c **** 
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccqaVzZI.s 			page 1
  144 007e 0223     		movs	r3, #2
  145 0080 0393     		str	r3, [sp, #12]
  255:Core/Src/main.c ****   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-ARM GAS  /tmp/ccqaVzZI.s 			page 8
+ARM GAS  /tmp/ccKO1Oz8.s 			page 8
 
 
  146              		.loc 1 255 3 is_stmt 1 view .LVU34
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccqaVzZI.s 			page 1
  193              		.cfi_offset 14, -4
  194 0002 0B00     		movs	r3, r1
  195 0004 1400     		movs	r4, r2
-ARM GAS  /tmp/ccqaVzZI.s 			page 9
+ARM GAS  /tmp/ccKO1Oz8.s 			page 9
 
 
   64:Core/Src/main.c **** 	{
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccqaVzZI.s 			page 1
  271:Core/Src/main.c ****   */
  272:Core/Src/main.c **** void Error_Handler(void)
  273:Core/Src/main.c **** {
-ARM GAS  /tmp/ccqaVzZI.s 			page 10
+ARM GAS  /tmp/ccKO1Oz8.s 			page 10
 
 
  235              		.loc 1 273 1 is_stmt 1 view -0
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccqaVzZI.s 			page 1
   42:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
   43:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __INLINE
   44:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __INLINE                               inline
-ARM GAS  /tmp/ccqaVzZI.s 			page 11
+ARM GAS  /tmp/ccKO1Oz8.s 			page 11
 
 
   45:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccqaVzZI.s 			page 1
   99:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic pop
  100:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __UNALIGNED_UINT32_WRITE(addr, val)    (void)((((struct T_UINT32_WRITE *)(void *)(addr))-
  101:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
-ARM GAS  /tmp/ccqaVzZI.s 			page 12
+ARM GAS  /tmp/ccKO1Oz8.s 			page 12
 
 
  102:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __UNALIGNED_UINT32_READ
@@ -718,7 +718,7 @@ ARM GAS  /tmp/ccqaVzZI.s 			page 1
  257              		.loc 1 277 3 view .LVU57
  278:Core/Src/main.c ****   {
  279:Core/Src/main.c ****   }
-ARM GAS  /tmp/ccqaVzZI.s 			page 13
+ARM GAS  /tmp/ccKO1Oz8.s 			page 13
 
 
  258              		.loc 1 279 3 view .LVU58
@@ -778,7 +778,7 @@ ARM GAS  /tmp/ccqaVzZI.s 			page 1
  302 0018 0361     		str	r3, [r0, #16]
  205:Core/Src/main.c ****   hspi1.Init.NSS = SPI_NSS_SOFT;
  303              		.loc 1 205 3 is_stmt 1 view .LVU71
-ARM GAS  /tmp/ccqaVzZI.s 			page 14
+ARM GAS  /tmp/ccKO1Oz8.s 			page 14
 
 
  205:Core/Src/main.c ****   hspi1.Init.NSS = SPI_NSS_SOFT;
@@ -838,7 +838,7 @@ ARM GAS  /tmp/ccqaVzZI.s 			page 1
  339              	.LVL12:
  214:Core/Src/main.c ****   {
  340              		.loc 1 214 6 discriminator 1 view .LVU91
-ARM GAS  /tmp/ccqaVzZI.s 			page 15
+ARM GAS  /tmp/ccKO1Oz8.s 			page 15
 
 
  341 003c 0028     		cmp	r0, #0
@@ -898,7 +898,7 @@ ARM GAS  /tmp/ccqaVzZI.s 			page 1
  390 0012 0021     		movs	r1, #0
  391 0014 07A8     		add	r0, sp, #28
  392 0016 FFF7FEFF 		bl	memset
-ARM GAS  /tmp/ccqaVzZI.s 			page 16
+ARM GAS  /tmp/ccKO1Oz8.s 			page 16
 
 
  393              	.LVL15:
@@ -958,7 +958,7 @@ ARM GAS  /tmp/ccqaVzZI.s 			page 1
  430 0040 FFF7FEFF 		bl	HAL_RCC_OscConfig
  431              	.LVL17:
  158:Core/Src/main.c ****   {
-ARM GAS  /tmp/ccqaVzZI.s 			page 17
+ARM GAS  /tmp/ccKO1Oz8.s 			page 17
 
 
  432              		.loc 1 158 6 discriminator 1 view .LVU116
@@ -1018,7 +1018,7 @@ ARM GAS  /tmp/ccqaVzZI.s 			page 1
  178:Core/Src/main.c ****   {
  470              		.loc 1 178 7 is_stmt 0 view .LVU133
  471 006e FFF7FEFF 		bl	HAL_RCCEx_PeriphCLKConfig
-ARM GAS  /tmp/ccqaVzZI.s 			page 18
+ARM GAS  /tmp/ccKO1Oz8.s 			page 18
 
 
  472              	.LVL19:
@@ -1078,7 +1078,7 @@ ARM GAS  /tmp/ccqaVzZI.s 			page 1
  514              		@ args = 0, pretend = 0, frame = 0
  515              		@ frame_needed = 0, uses_anonymous_args = 0
  516 0000 10B5     		push	{r4, lr}
-ARM GAS  /tmp/ccqaVzZI.s 			page 19
+ARM GAS  /tmp/ccKO1Oz8.s 			page 19
 
 
  517              	.LCFI7:
@@ -1138,7 +1138,7 @@ ARM GAS  /tmp/ccqaVzZI.s 			page 1
  561              		.loc 1 112 2 view .LVU149
  562 003c 1748     		ldr	r0, .L25+8
  563 003e FFF7FEFF 		bl	MFRC522_Init
-ARM GAS  /tmp/ccqaVzZI.s 			page 20
+ARM GAS  /tmp/ccKO1Oz8.s 			page 20
 
 
  564              	.LVL32:
@@ -1198,7 +1198,7 @@ ARM GAS  /tmp/ccqaVzZI.s 			page 1
  607 007c FFF7FEFF 		bl	HAL_GPIO_WritePin
  608              	.LVL38:
  126:Core/Src/main.c **** 			}
-ARM GAS  /tmp/ccqaVzZI.s 			page 21
+ARM GAS  /tmp/ccKO1Oz8.s 			page 21
 
 
  609              		.loc 1 126 5 view .LVU161
@@ -1258,7 +1258,7 @@ ARM GAS  /tmp/ccqaVzZI.s 			page 1
  666              		.file 9 "Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_gpio.h"
  667              		.file 10 "Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_dma.h"
  668              		.file 11 "Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_spi.h"
-ARM GAS  /tmp/ccqaVzZI.s 			page 22
+ARM GAS  /tmp/ccKO1Oz8.s 			page 22
 
 
  669              		.file 12 "Core/Inc/MFRC522_STM32.h"
@@ -1267,33 +1267,33 @@ ARM GAS  /tmp/ccqaVzZI.s 			page 1
  672              		.file 15 "USB_DEVICE/App/usbd_cdc_if.h"
  673              		.file 16 "<built-in>"
  674              		.file 17 "USB_DEVICE/App/usb_device.h"
-ARM GAS  /tmp/ccqaVzZI.s 			page 23
+ARM GAS  /tmp/ccKO1Oz8.s 			page 23
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 main.c
-     /tmp/ccqaVzZI.s:19     .text.MX_GPIO_Init:00000000 $t
-     /tmp/ccqaVzZI.s:24     .text.MX_GPIO_Init:00000000 MX_GPIO_Init
-     /tmp/ccqaVzZI.s:169    .text.MX_GPIO_Init:00000098 $d
-     /tmp/ccqaVzZI.s:175    .text._write:00000000 $t
-     /tmp/ccqaVzZI.s:181    .text._write:00000000 _write
-     /tmp/ccqaVzZI.s:227    .text.Error_Handler:00000000 $t
-     /tmp/ccqaVzZI.s:233    .text.Error_Handler:00000000 Error_Handler
-     /tmp/ccqaVzZI.s:265    .text.MX_SPI1_Init:00000000 $t
-     /tmp/ccqaVzZI.s:270    .text.MX_SPI1_Init:00000000 MX_SPI1_Init
-     /tmp/ccqaVzZI.s:353    .text.MX_SPI1_Init:00000048 $d
-     /tmp/ccqaVzZI.s:656    .bss.hspi1:00000000 hspi1
-     /tmp/ccqaVzZI.s:359    .text.SystemClock_Config:00000000 $t
-     /tmp/ccqaVzZI.s:365    .text.SystemClock_Config:00000000 SystemClock_Config
-     /tmp/ccqaVzZI.s:496    .rodata.main.str1.4:00000000 $d
-     /tmp/ccqaVzZI.s:503    .text.main:00000000 $t
-     /tmp/ccqaVzZI.s:509    .text.main:00000000 main
-     /tmp/ccqaVzZI.s:623    .text.main:00000094 $d
-     /tmp/ccqaVzZI.s:636    .data.rc522:00000000 rc522
-     /tmp/ccqaVzZI.s:649    .bss.uid:00000000 uid
-     /tmp/ccqaVzZI.s:633    .data.rc522:00000000 $d
-     /tmp/ccqaVzZI.s:646    .bss.uid:00000000 $d
-     /tmp/ccqaVzZI.s:653    .bss.hspi1:00000000 $d
+     /tmp/ccKO1Oz8.s:19     .text.MX_GPIO_Init:00000000 $t
+     /tmp/ccKO1Oz8.s:24     .text.MX_GPIO_Init:00000000 MX_GPIO_Init
+     /tmp/ccKO1Oz8.s:169    .text.MX_GPIO_Init:00000098 $d
+     /tmp/ccKO1Oz8.s:175    .text._write:00000000 $t
+     /tmp/ccKO1Oz8.s:181    .text._write:00000000 _write
+     /tmp/ccKO1Oz8.s:227    .text.Error_Handler:00000000 $t
+     /tmp/ccKO1Oz8.s:233    .text.Error_Handler:00000000 Error_Handler
+     /tmp/ccKO1Oz8.s:265    .text.MX_SPI1_Init:00000000 $t
+     /tmp/ccKO1Oz8.s:270    .text.MX_SPI1_Init:00000000 MX_SPI1_Init
+     /tmp/ccKO1Oz8.s:353    .text.MX_SPI1_Init:00000048 $d
+     /tmp/ccKO1Oz8.s:656    .bss.hspi1:00000000 hspi1
+     /tmp/ccKO1Oz8.s:359    .text.SystemClock_Config:00000000 $t
+     /tmp/ccKO1Oz8.s:365    .text.SystemClock_Config:00000000 SystemClock_Config
+     /tmp/ccKO1Oz8.s:496    .rodata.main.str1.4:00000000 $d
+     /tmp/ccKO1Oz8.s:503    .text.main:00000000 $t
+     /tmp/ccKO1Oz8.s:509    .text.main:00000000 main
+     /tmp/ccKO1Oz8.s:623    .text.main:00000094 $d
+     /tmp/ccKO1Oz8.s:636    .data.rc522:00000000 rc522
+     /tmp/ccKO1Oz8.s:649    .bss.uid:00000000 uid
+     /tmp/ccKO1Oz8.s:633    .data.rc522:00000000 $d
+     /tmp/ccKO1Oz8.s:646    .bss.uid:00000000 $d
+     /tmp/ccKO1Oz8.s:653    .bss.hspi1:00000000 $d
 
 UNDEFINED SYMBOLS
 memset

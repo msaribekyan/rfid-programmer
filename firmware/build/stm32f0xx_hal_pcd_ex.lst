@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccRhfP1C.s 			page 1
+ARM GAS  /tmp/cc3edczV.s 			page 1
 
 
    1              		.cpu cortex-m0
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccRhfP1C.s 			page 1
   29:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pcd_ex.c **** 
   30:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pcd_ex.c **** /** @defgroup PCDEx PCDEx
   31:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pcd_ex.c ****   * @brief PCD Extended HAL module driver
-ARM GAS  /tmp/ccRhfP1C.s 			page 2
+ARM GAS  /tmp/cc3edczV.s 			page 2
 
 
   32:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pcd_ex.c ****   * @{
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccRhfP1C.s 			page 1
   31              		@ frame_needed = 0, uses_anonymous_args = 0
   32              		.loc 1 82 1 is_stmt 0 view .LVU1
   33 0000 10B5     		push	{r4, lr}
-ARM GAS  /tmp/ccRhfP1C.s 			page 3
+ARM GAS  /tmp/cc3edczV.s 			page 3
 
 
   34              	.LCFI0:
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccRhfP1C.s 			page 1
  102:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pcd_ex.c ****   }
  103:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pcd_ex.c **** #if (USE_USB_DOUBLE_BUFFER == 1U)
  104:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pcd_ex.c ****   else /* USB_DBL_BUF */
-ARM GAS  /tmp/ccRhfP1C.s 			page 4
+ARM GAS  /tmp/cc3edczV.s 			page 4
 
 
  105:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pcd_ex.c ****   {
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccRhfP1C.s 			page 1
  102              		.loc 1 110 5 is_stmt 1 view .LVU27
  110:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pcd_ex.c ****   }
  103              		.loc 1 110 20 is_stmt 0 view .LVU28
-ARM GAS  /tmp/ccRhfP1C.s 			page 5
+ARM GAS  /tmp/cc3edczV.s 			page 5
 
 
  104 0034 1B0C     		lsrs	r3, r3, #16
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccRhfP1C.s 			page 1
  146 0012 89B2     		uxth	r1, r1
  147 0014 D152     		strh	r1, [r2, r3]
  129:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pcd_ex.c **** 
-ARM GAS  /tmp/ccRhfP1C.s 			page 6
+ARM GAS  /tmp/cc3edczV.s 			page 6
 
 
  130:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pcd_ex.c ****   /* Enable DCD : Data Contact Detect */
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccRhfP1C.s 			page 1
  189              		.cfi_startproc
  190              		@ args = 0, pretend = 0, frame = 0
  191              		@ frame_needed = 0, uses_anonymous_args = 0
-ARM GAS  /tmp/ccRhfP1C.s 			page 7
+ARM GAS  /tmp/cc3edczV.s 			page 7
 
 
  192              		@ link register save eliminated.
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccRhfP1C.s 			page 1
  162:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pcd_ex.c ****   uint32_t tickstart = HAL_GetTick();
  163:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pcd_ex.c **** 
  164:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pcd_ex.c ****   /* Wait for Min DCD Timeout */
-ARM GAS  /tmp/ccRhfP1C.s 			page 8
+ARM GAS  /tmp/cc3edczV.s 			page 8
 
 
  165:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pcd_ex.c ****   HAL_Delay(300U);
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccRhfP1C.s 			page 1
  219:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pcd_ex.c ****     HAL_PCDEx_BCD_Callback(hpcd, PCD_BCD_STD_DOWNSTREAM_PORT);
  220:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pcd_ex.c **** #endif /* USE_HAL_PCD_REGISTER_CALLBACKS */
  221:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pcd_ex.c ****   }
-ARM GAS  /tmp/ccRhfP1C.s 			page 9
+ARM GAS  /tmp/cc3edczV.s 			page 9
 
 
  222:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pcd_ex.c **** 
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccRhfP1C.s 			page 1
  250 000e C254     		strb	r2, [r0, r3]
  257:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pcd_ex.c **** 
  258:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pcd_ex.c ****   USBx->LPMCSR |= USB_LPMCSR_LMPEN;
-ARM GAS  /tmp/ccRhfP1C.s 			page 10
+ARM GAS  /tmp/cc3edczV.s 			page 10
 
 
  251              		.loc 1 258 3 is_stmt 1 view .LVU68
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccRhfP1C.s 			page 1
  294              		.loc 1 271 16 is_stmt 0 view .LVU79
  295 0000 0268     		ldr	r2, [r0]
  296              	.LVL21:
-ARM GAS  /tmp/ccRhfP1C.s 			page 11
+ARM GAS  /tmp/cc3edczV.s 			page 11
 
 
  272:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pcd_ex.c **** 
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccRhfP1C.s 			page 1
  287:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pcd_ex.c ****   * @retval HAL status
  288:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pcd_ex.c ****   */
  289:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pcd_ex.c **** __weak void HAL_PCDEx_LPM_Callback(PCD_HandleTypeDef *hpcd, PCD_LPM_MsgTypeDef msg)
-ARM GAS  /tmp/ccRhfP1C.s 			page 12
+ARM GAS  /tmp/cc3edczV.s 			page 12
 
 
  290:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pcd_ex.c **** {
@@ -718,7 +718,7 @@ ARM GAS  /tmp/ccRhfP1C.s 			page 1
  368              		.loc 1 315 1 is_stmt 0 view .LVU98
  369              		@ sp needed
  370 0000 7047     		bx	lr
-ARM GAS  /tmp/ccRhfP1C.s 			page 13
+ARM GAS  /tmp/cc3edczV.s 			page 13
 
 
  371              		.cfi_endproc
@@ -778,7 +778,7 @@ ARM GAS  /tmp/ccRhfP1C.s 			page 1
  417              		.loc 1 168 3 is_stmt 1 view .LVU108
  168:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pcd_ex.c ****   {
  418              		.loc 1 168 12 is_stmt 0 view .LVU109
-ARM GAS  /tmp/ccRhfP1C.s 			page 14
+ARM GAS  /tmp/cc3edczV.s 			page 14
 
 
  419 0014 5823     		movs	r3, #88
@@ -838,7 +838,7 @@ ARM GAS  /tmp/ccRhfP1C.s 			page 1
  458              		.loc 1 188 16 view .LVU124
  459 0044 0422     		movs	r2, #4
  460 0046 9343     		bics	r3, r2
-ARM GAS  /tmp/ccRhfP1C.s 			page 15
+ARM GAS  /tmp/cc3edczV.s 			page 15
 
 
  461 0048 A353     		strh	r3, [r4, r6]
@@ -898,7 +898,7 @@ ARM GAS  /tmp/ccRhfP1C.s 			page 1
  504              	.L14:
  219:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pcd_ex.c **** #endif /* USE_HAL_PCD_REGISTER_CALLBACKS */
  505              		.loc 1 219 5 view .LVU136
-ARM GAS  /tmp/ccRhfP1C.s 			page 16
+ARM GAS  /tmp/cc3edczV.s 			page 16
 
 
  506 0084 FD21     		movs	r1, #253
@@ -958,7 +958,7 @@ ARM GAS  /tmp/ccRhfP1C.s 			page 1
  549              		.cfi_endproc
  550              	.LFE43:
  552              		.text
-ARM GAS  /tmp/ccRhfP1C.s 			page 17
+ARM GAS  /tmp/cc3edczV.s 			page 17
 
 
  553              	.Letext0:
@@ -969,27 +969,27 @@ ARM GAS  /tmp/ccRhfP1C.s 			page 1
  558              		.file 6 "Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_usb.h"
  559              		.file 7 "Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_pcd.h"
  560              		.file 8 "Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal.h"
-ARM GAS  /tmp/ccRhfP1C.s 			page 18
+ARM GAS  /tmp/cc3edczV.s 			page 18
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 stm32f0xx_hal_pcd_ex.c
-     /tmp/ccRhfP1C.s:19     .text.HAL_PCDEx_PMAConfig:00000000 $t
-     /tmp/ccRhfP1C.s:25     .text.HAL_PCDEx_PMAConfig:00000000 HAL_PCDEx_PMAConfig
-     /tmp/ccRhfP1C.s:113    .text.HAL_PCDEx_ActivateBCD:00000000 $t
-     /tmp/ccRhfP1C.s:119    .text.HAL_PCDEx_ActivateBCD:00000000 HAL_PCDEx_ActivateBCD
-     /tmp/ccRhfP1C.s:179    .text.HAL_PCDEx_DeActivateBCD:00000000 $t
-     /tmp/ccRhfP1C.s:185    .text.HAL_PCDEx_DeActivateBCD:00000000 HAL_PCDEx_DeActivateBCD
-     /tmp/ccRhfP1C.s:222    .text.HAL_PCDEx_ActivateLPM:00000000 $t
-     /tmp/ccRhfP1C.s:228    .text.HAL_PCDEx_ActivateLPM:00000000 HAL_PCDEx_ActivateLPM
-     /tmp/ccRhfP1C.s:279    .text.HAL_PCDEx_DeActivateLPM:00000000 $t
-     /tmp/ccRhfP1C.s:285    .text.HAL_PCDEx_DeActivateLPM:00000000 HAL_PCDEx_DeActivateLPM
-     /tmp/ccRhfP1C.s:329    .text.HAL_PCDEx_LPM_Callback:00000000 $t
-     /tmp/ccRhfP1C.s:335    .text.HAL_PCDEx_LPM_Callback:00000000 HAL_PCDEx_LPM_Callback
-     /tmp/ccRhfP1C.s:352    .text.HAL_PCDEx_BCD_Callback:00000000 $t
-     /tmp/ccRhfP1C.s:358    .text.HAL_PCDEx_BCD_Callback:00000000 HAL_PCDEx_BCD_Callback
-     /tmp/ccRhfP1C.s:375    .text.HAL_PCDEx_BCD_VBUSDetect:00000000 $t
-     /tmp/ccRhfP1C.s:381    .text.HAL_PCDEx_BCD_VBUSDetect:00000000 HAL_PCDEx_BCD_VBUSDetect
+     /tmp/cc3edczV.s:19     .text.HAL_PCDEx_PMAConfig:00000000 $t
+     /tmp/cc3edczV.s:25     .text.HAL_PCDEx_PMAConfig:00000000 HAL_PCDEx_PMAConfig
+     /tmp/cc3edczV.s:113    .text.HAL_PCDEx_ActivateBCD:00000000 $t
+     /tmp/cc3edczV.s:119    .text.HAL_PCDEx_ActivateBCD:00000000 HAL_PCDEx_ActivateBCD
+     /tmp/cc3edczV.s:179    .text.HAL_PCDEx_DeActivateBCD:00000000 $t
+     /tmp/cc3edczV.s:185    .text.HAL_PCDEx_DeActivateBCD:00000000 HAL_PCDEx_DeActivateBCD
+     /tmp/cc3edczV.s:222    .text.HAL_PCDEx_ActivateLPM:00000000 $t
+     /tmp/cc3edczV.s:228    .text.HAL_PCDEx_ActivateLPM:00000000 HAL_PCDEx_ActivateLPM
+     /tmp/cc3edczV.s:279    .text.HAL_PCDEx_DeActivateLPM:00000000 $t
+     /tmp/cc3edczV.s:285    .text.HAL_PCDEx_DeActivateLPM:00000000 HAL_PCDEx_DeActivateLPM
+     /tmp/cc3edczV.s:329    .text.HAL_PCDEx_LPM_Callback:00000000 $t
+     /tmp/cc3edczV.s:335    .text.HAL_PCDEx_LPM_Callback:00000000 HAL_PCDEx_LPM_Callback
+     /tmp/cc3edczV.s:352    .text.HAL_PCDEx_BCD_Callback:00000000 $t
+     /tmp/cc3edczV.s:358    .text.HAL_PCDEx_BCD_Callback:00000000 HAL_PCDEx_BCD_Callback
+     /tmp/cc3edczV.s:375    .text.HAL_PCDEx_BCD_VBUSDetect:00000000 $t
+     /tmp/cc3edczV.s:381    .text.HAL_PCDEx_BCD_VBUSDetect:00000000 HAL_PCDEx_BCD_VBUSDetect
 
 UNDEFINED SYMBOLS
 HAL_GetTick

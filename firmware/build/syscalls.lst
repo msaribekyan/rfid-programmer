@@ -1,4 +1,4 @@
-ARM GAS  /tmp/cc51GLfS.s 			page 1
+ARM GAS  /tmp/ccyjWhj8.s 			page 1
 
 
    1              		.cpu cortex-m0
@@ -58,7 +58,7 @@ ARM GAS  /tmp/cc51GLfS.s 			page 1
   30:Core/Src/syscalls.c **** #include <sys/time.h>
   31:Core/Src/syscalls.c **** #include <sys/times.h>
   32:Core/Src/syscalls.c **** 
-ARM GAS  /tmp/cc51GLfS.s 			page 2
+ARM GAS  /tmp/ccyjWhj8.s 			page 2
 
 
   33:Core/Src/syscalls.c **** 
@@ -118,7 +118,7 @@ ARM GAS  /tmp/cc51GLfS.s 			page 1
   65              		.thumb_func
   67              	_kill:
   68              	.LVL0:
-ARM GAS  /tmp/cc51GLfS.s 			page 3
+ARM GAS  /tmp/ccyjWhj8.s 			page 3
 
 
   69              	.LFB27:
@@ -178,7 +178,7 @@ ARM GAS  /tmp/cc51GLfS.s 			page 1
  114 0000 10B5     		push	{r4, lr}
  115              	.LCFI1:
  116              		.cfi_def_cfa_offset 8
-ARM GAS  /tmp/cc51GLfS.s 			page 4
+ARM GAS  /tmp/ccyjWhj8.s 			page 4
 
 
  117              		.cfi_offset 4, -8
@@ -238,7 +238,7 @@ ARM GAS  /tmp/cc51GLfS.s 			page 1
  163 0008 04E0     		b	.L7
  164              	.LVL6:
  165              	.L8:
-ARM GAS  /tmp/cc51GLfS.s 			page 5
+ARM GAS  /tmp/ccyjWhj8.s 			page 5
 
 
   73:Core/Src/syscalls.c ****   {
@@ -298,7 +298,7 @@ ARM GAS  /tmp/cc51GLfS.s 			page 1
  211              		.cfi_def_cfa_offset 16
  212              		.cfi_offset 4, -16
  213              		.cfi_offset 5, -12
-ARM GAS  /tmp/cc51GLfS.s 			page 6
+ARM GAS  /tmp/ccyjWhj8.s 			page 6
 
 
  214              		.cfi_offset 6, -8
@@ -358,7 +358,7 @@ ARM GAS  /tmp/cc51GLfS.s 			page 1
  258              		.align	1
  259              		.global	_close
  260              		.syntax unified
-ARM GAS  /tmp/cc51GLfS.s 			page 7
+ARM GAS  /tmp/ccyjWhj8.s 			page 7
 
 
  261              		.code	16
@@ -418,7 +418,7 @@ ARM GAS  /tmp/cc51GLfS.s 			page 1
  305              		.loc 1 103 3 is_stmt 1 view .LVU62
  104:Core/Src/syscalls.c **** }
  306              		.loc 1 104 1 is_stmt 0 view .LVU63
-ARM GAS  /tmp/cc51GLfS.s 			page 8
+ARM GAS  /tmp/ccyjWhj8.s 			page 8
 
 
  307 0006 0020     		movs	r0, #0
@@ -478,7 +478,7 @@ ARM GAS  /tmp/cc51GLfS.s 			page 1
  114:Core/Src/syscalls.c ****   (void)file;
  356              		.loc 1 114 3 view .LVU71
  115:Core/Src/syscalls.c ****   (void)ptr;
-ARM GAS  /tmp/cc51GLfS.s 			page 9
+ARM GAS  /tmp/ccyjWhj8.s 			page 9
 
 
  357              		.loc 1 115 3 view .LVU72
@@ -538,7 +538,7 @@ ARM GAS  /tmp/cc51GLfS.s 			page 1
  403              		.align	1
  404              		.global	_wait
  405              		.syntax unified
-ARM GAS  /tmp/cc51GLfS.s 			page 10
+ARM GAS  /tmp/ccyjWhj8.s 			page 10
 
 
  406              		.code	16
@@ -598,7 +598,7 @@ ARM GAS  /tmp/cc51GLfS.s 			page 1
  453              		.loc 1 136 1 is_stmt 0 view .LVU93
  454 0000 10B5     		push	{r4, lr}
  455              	.LCFI6:
-ARM GAS  /tmp/cc51GLfS.s 			page 11
+ARM GAS  /tmp/ccyjWhj8.s 			page 11
 
 
  456              		.cfi_def_cfa_offset 8
@@ -658,7 +658,7 @@ ARM GAS  /tmp/cc51GLfS.s 			page 1
  503              		.section	.text._stat,"ax",%progbits
  504              		.align	1
  505              		.global	_stat
-ARM GAS  /tmp/cc51GLfS.s 			page 12
+ARM GAS  /tmp/ccyjWhj8.s 			page 12
 
 
  506              		.syntax unified
@@ -718,7 +718,7 @@ ARM GAS  /tmp/cc51GLfS.s 			page 1
  553              		.cfi_offset 14, -4
  157:Core/Src/syscalls.c ****   (void)old;
  554              		.loc 1 157 3 is_stmt 1 view .LVU114
-ARM GAS  /tmp/cc51GLfS.s 			page 13
+ARM GAS  /tmp/ccyjWhj8.s 			page 13
 
 
  158:Core/Src/syscalls.c ****   (void)new;
@@ -778,7 +778,7 @@ ARM GAS  /tmp/cc51GLfS.s 			page 1
  601              		@ sp needed
  602 000e 10BD     		pop	{r4, pc}
  603              		.cfi_endproc
-ARM GAS  /tmp/cc51GLfS.s 			page 14
+ARM GAS  /tmp/ccyjWhj8.s 			page 14
 
 
  604              	.LFE41:
@@ -838,7 +838,7 @@ ARM GAS  /tmp/cc51GLfS.s 			page 1
  654              		.align	2
  657              	__env:
  658 0000 00000000 		.space	4
-ARM GAS  /tmp/cc51GLfS.s 			page 15
+ARM GAS  /tmp/ccyjWhj8.s 			page 15
 
 
  659              		.weak	__io_putchar
@@ -853,51 +853,51 @@ ARM GAS  /tmp/cc51GLfS.s 			page 1
  668              		.file 7 "/usr/arm-none-eabi/include/sys/stat.h"
  669              		.file 8 "/usr/arm-none-eabi/include/sys/times.h"
  670              		.file 9 "/usr/arm-none-eabi/include/sys/errno.h"
-ARM GAS  /tmp/cc51GLfS.s 			page 16
+ARM GAS  /tmp/ccyjWhj8.s 			page 16
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 syscalls.c
-     /tmp/cc51GLfS.s:19     .text.initialise_monitor_handles:00000000 $t
-     /tmp/cc51GLfS.s:25     .text.initialise_monitor_handles:00000000 initialise_monitor_handles
-     /tmp/cc51GLfS.s:39     .text._getpid:00000000 $t
-     /tmp/cc51GLfS.s:45     .text._getpid:00000000 _getpid
-     /tmp/cc51GLfS.s:61     .text._kill:00000000 $t
-     /tmp/cc51GLfS.s:67     .text._kill:00000000 _kill
-     /tmp/cc51GLfS.s:99     .text._exit:00000000 $t
-     /tmp/cc51GLfS.s:105    .text._exit:00000000 _exit
-     /tmp/cc51GLfS.s:133    .text._read:00000000 $t
-     /tmp/cc51GLfS.s:139    .text._read:00000000 _read
-     /tmp/cc51GLfS.s:195    .text._write:00000000 $t
-     /tmp/cc51GLfS.s:201    .text._write:00000000 _write
-     /tmp/cc51GLfS.s:258    .text._close:00000000 $t
-     /tmp/cc51GLfS.s:264    .text._close:00000000 _close
-     /tmp/cc51GLfS.s:285    .text._fstat:00000000 $t
-     /tmp/cc51GLfS.s:291    .text._fstat:00000000 _fstat
-     /tmp/cc51GLfS.s:316    .text._isatty:00000000 $t
-     /tmp/cc51GLfS.s:322    .text._isatty:00000000 _isatty
-     /tmp/cc51GLfS.s:342    .text._lseek:00000000 $t
-     /tmp/cc51GLfS.s:348    .text._lseek:00000000 _lseek
-     /tmp/cc51GLfS.s:370    .text._open:00000000 $t
-     /tmp/cc51GLfS.s:376    .text._open:00000000 _open
-     /tmp/cc51GLfS.s:403    .text._wait:00000000 $t
-     /tmp/cc51GLfS.s:409    .text._wait:00000000 _wait
-     /tmp/cc51GLfS.s:440    .text._unlink:00000000 $t
-     /tmp/cc51GLfS.s:446    .text._unlink:00000000 _unlink
-     /tmp/cc51GLfS.s:477    .text._times:00000000 $t
-     /tmp/cc51GLfS.s:483    .text._times:00000000 _times
-     /tmp/cc51GLfS.s:504    .text._stat:00000000 $t
-     /tmp/cc51GLfS.s:510    .text._stat:00000000 _stat
-     /tmp/cc51GLfS.s:535    .text._link:00000000 $t
-     /tmp/cc51GLfS.s:541    .text._link:00000000 _link
-     /tmp/cc51GLfS.s:573    .text._fork:00000000 $t
-     /tmp/cc51GLfS.s:579    .text._fork:00000000 _fork
-     /tmp/cc51GLfS.s:607    .text._execve:00000000 $t
-     /tmp/cc51GLfS.s:613    .text._execve:00000000 _execve
-     /tmp/cc51GLfS.s:650    .data.environ:00000000 environ
-     /tmp/cc51GLfS.s:647    .data.environ:00000000 $d
-     /tmp/cc51GLfS.s:657    .bss.__env:00000000 __env
-     /tmp/cc51GLfS.s:654    .bss.__env:00000000 $d
+     /tmp/ccyjWhj8.s:19     .text.initialise_monitor_handles:00000000 $t
+     /tmp/ccyjWhj8.s:25     .text.initialise_monitor_handles:00000000 initialise_monitor_handles
+     /tmp/ccyjWhj8.s:39     .text._getpid:00000000 $t
+     /tmp/ccyjWhj8.s:45     .text._getpid:00000000 _getpid
+     /tmp/ccyjWhj8.s:61     .text._kill:00000000 $t
+     /tmp/ccyjWhj8.s:67     .text._kill:00000000 _kill
+     /tmp/ccyjWhj8.s:99     .text._exit:00000000 $t
+     /tmp/ccyjWhj8.s:105    .text._exit:00000000 _exit
+     /tmp/ccyjWhj8.s:133    .text._read:00000000 $t
+     /tmp/ccyjWhj8.s:139    .text._read:00000000 _read
+     /tmp/ccyjWhj8.s:195    .text._write:00000000 $t
+     /tmp/ccyjWhj8.s:201    .text._write:00000000 _write
+     /tmp/ccyjWhj8.s:258    .text._close:00000000 $t
+     /tmp/ccyjWhj8.s:264    .text._close:00000000 _close
+     /tmp/ccyjWhj8.s:285    .text._fstat:00000000 $t
+     /tmp/ccyjWhj8.s:291    .text._fstat:00000000 _fstat
+     /tmp/ccyjWhj8.s:316    .text._isatty:00000000 $t
+     /tmp/ccyjWhj8.s:322    .text._isatty:00000000 _isatty
+     /tmp/ccyjWhj8.s:342    .text._lseek:00000000 $t
+     /tmp/ccyjWhj8.s:348    .text._lseek:00000000 _lseek
+     /tmp/ccyjWhj8.s:370    .text._open:00000000 $t
+     /tmp/ccyjWhj8.s:376    .text._open:00000000 _open
+     /tmp/ccyjWhj8.s:403    .text._wait:00000000 $t
+     /tmp/ccyjWhj8.s:409    .text._wait:00000000 _wait
+     /tmp/ccyjWhj8.s:440    .text._unlink:00000000 $t
+     /tmp/ccyjWhj8.s:446    .text._unlink:00000000 _unlink
+     /tmp/ccyjWhj8.s:477    .text._times:00000000 $t
+     /tmp/ccyjWhj8.s:483    .text._times:00000000 _times
+     /tmp/ccyjWhj8.s:504    .text._stat:00000000 $t
+     /tmp/ccyjWhj8.s:510    .text._stat:00000000 _stat
+     /tmp/ccyjWhj8.s:535    .text._link:00000000 $t
+     /tmp/ccyjWhj8.s:541    .text._link:00000000 _link
+     /tmp/ccyjWhj8.s:573    .text._fork:00000000 $t
+     /tmp/ccyjWhj8.s:579    .text._fork:00000000 _fork
+     /tmp/ccyjWhj8.s:607    .text._execve:00000000 $t
+     /tmp/ccyjWhj8.s:613    .text._execve:00000000 _execve
+     /tmp/ccyjWhj8.s:650    .data.environ:00000000 environ
+     /tmp/ccyjWhj8.s:647    .data.environ:00000000 $d
+     /tmp/ccyjWhj8.s:657    .bss.__env:00000000 __env
+     /tmp/ccyjWhj8.s:654    .bss.__env:00000000 $d
 
 UNDEFINED SYMBOLS
 __errno

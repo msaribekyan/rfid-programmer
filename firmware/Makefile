@@ -212,4 +212,7 @@ clean:
 #######################################
 -include $(wildcard $(BUILD_DIR)/*.d)
 
+flash: $(BUILD_DIR)/$(TARGET).bin
+	st-flash write $<  0x08000000
+
 # *** EOF ***

@@ -1,4 +1,4 @@
-ARM GAS  /tmp/cc8z5bzW.s 			page 1
+ARM GAS  /tmp/ccIG7qeS.s 			page 1
 
 
    1              		.cpu cortex-m0
@@ -58,7 +58,7 @@ ARM GAS  /tmp/cc8z5bzW.s 			page 1
   30:Core/Src/stm32f0xx_hal_msp.c **** /* USER CODE END TD */
   31:Core/Src/stm32f0xx_hal_msp.c **** 
   32:Core/Src/stm32f0xx_hal_msp.c **** /* Private define ------------------------------------------------------------*/
-ARM GAS  /tmp/cc8z5bzW.s 			page 2
+ARM GAS  /tmp/ccIG7qeS.s 			page 2
 
 
   33:Core/Src/stm32f0xx_hal_msp.c **** /* USER CODE BEGIN Define */
@@ -118,7 +118,7 @@ ARM GAS  /tmp/cc8z5bzW.s 			page 1
   43 000a 9961     		str	r1, [r3, #24]
   44              		.loc 1 70 3 view .LVU4
   45 000c 9969     		ldr	r1, [r3, #24]
-ARM GAS  /tmp/cc8z5bzW.s 			page 3
+ARM GAS  /tmp/ccIG7qeS.s 			page 3
 
 
   46 000e 0A40     		ands	r2, r1
@@ -178,7 +178,7 @@ ARM GAS  /tmp/cc8z5bzW.s 			page 1
   91              		.align	1
   92              		.global	HAL_SPI_MspInit
   93              		.syntax unified
-ARM GAS  /tmp/cc8z5bzW.s 			page 4
+ARM GAS  /tmp/ccIG7qeS.s 			page 4
 
 
   94              		.code	16
@@ -238,7 +238,7 @@ ARM GAS  /tmp/cc8z5bzW.s 			page 1
   99:Core/Src/stm32f0xx_hal_msp.c ****     __HAL_RCC_GPIOA_CLK_ENABLE();
  100:Core/Src/stm32f0xx_hal_msp.c ****     /**SPI1 GPIO Configuration
  101:Core/Src/stm32f0xx_hal_msp.c ****     PA5     ------> SPI1_SCK
-ARM GAS  /tmp/cc8z5bzW.s 			page 5
+ARM GAS  /tmp/ccIG7qeS.s 			page 5
 
 
  102:Core/Src/stm32f0xx_hal_msp.c ****     PA6     ------> SPI1_MISO
@@ -298,7 +298,7 @@ ARM GAS  /tmp/cc8z5bzW.s 			page 1
   99:Core/Src/stm32f0xx_hal_msp.c ****     /**SPI1 GPIO Configuration
  160              		.loc 1 99 5 view .LVU36
  161 0030 5A69     		ldr	r2, [r3, #20]
-ARM GAS  /tmp/cc8z5bzW.s 			page 6
+ARM GAS  /tmp/ccIG7qeS.s 			page 6
 
 
  162 0032 8021     		movs	r1, #128
@@ -358,7 +358,7 @@ ARM GAS  /tmp/cc8z5bzW.s 			page 1
  205              		.align	1
  206              		.global	HAL_SPI_MspDeInit
  207              		.syntax unified
-ARM GAS  /tmp/cc8z5bzW.s 			page 7
+ARM GAS  /tmp/ccIG7qeS.s 			page 7
 
 
  208              		.code	16
@@ -418,7 +418,7 @@ ARM GAS  /tmp/cc8z5bzW.s 			page 1
  233              		.loc 1 148 1 view .LVU55
  234              		@ sp needed
  235 000a 10BD     		pop	{r4, pc}
-ARM GAS  /tmp/cc8z5bzW.s 			page 8
+ARM GAS  /tmp/ccIG7qeS.s 			page 8
 
 
  236              	.LVL8:
@@ -460,20 +460,20 @@ ARM GAS  /tmp/cc8z5bzW.s 			page 1
  270              		.file 7 "Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_dma.h"
  271              		.file 8 "Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_spi.h"
  272              		.file 9 "<built-in>"
-ARM GAS  /tmp/cc8z5bzW.s 			page 9
+ARM GAS  /tmp/ccIG7qeS.s 			page 9
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 stm32f0xx_hal_msp.c
-     /tmp/cc8z5bzW.s:19     .text.HAL_MspInit:00000000 $t
-     /tmp/cc8z5bzW.s:25     .text.HAL_MspInit:00000000 HAL_MspInit
-     /tmp/cc8z5bzW.s:85     .text.HAL_MspInit:00000034 $d
-     /tmp/cc8z5bzW.s:91     .text.HAL_SPI_MspInit:00000000 $t
-     /tmp/cc8z5bzW.s:97     .text.HAL_SPI_MspInit:00000000 HAL_SPI_MspInit
-     /tmp/cc8z5bzW.s:199    .text.HAL_SPI_MspInit:0000005c $d
-     /tmp/cc8z5bzW.s:205    .text.HAL_SPI_MspDeInit:00000000 $t
-     /tmp/cc8z5bzW.s:211    .text.HAL_SPI_MspDeInit:00000000 HAL_SPI_MspDeInit
-     /tmp/cc8z5bzW.s:257    .text.HAL_SPI_MspDeInit:00000024 $d
+     /tmp/ccIG7qeS.s:19     .text.HAL_MspInit:00000000 $t
+     /tmp/ccIG7qeS.s:25     .text.HAL_MspInit:00000000 HAL_MspInit
+     /tmp/ccIG7qeS.s:85     .text.HAL_MspInit:00000034 $d
+     /tmp/ccIG7qeS.s:91     .text.HAL_SPI_MspInit:00000000 $t
+     /tmp/ccIG7qeS.s:97     .text.HAL_SPI_MspInit:00000000 HAL_SPI_MspInit
+     /tmp/ccIG7qeS.s:199    .text.HAL_SPI_MspInit:0000005c $d
+     /tmp/ccIG7qeS.s:205    .text.HAL_SPI_MspDeInit:00000000 $t
+     /tmp/ccIG7qeS.s:211    .text.HAL_SPI_MspDeInit:00000000 HAL_SPI_MspDeInit
+     /tmp/ccIG7qeS.s:257    .text.HAL_SPI_MspDeInit:00000024 $d
 
 UNDEFINED SYMBOLS
 memset

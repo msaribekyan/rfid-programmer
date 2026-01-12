@@ -1,4 +1,4 @@
-ARM GAS  /tmp/cccuIvuP.s 			page 1
+ARM GAS  /tmp/ccB7rNHH.s 			page 1
 
 
    1              		.cpu cortex-m0
@@ -58,7 +58,7 @@ ARM GAS  /tmp/cccuIvuP.s 			page 1
   29:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c ****     [..]
   30:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c ****       (#) Fill parameters of Init structure in USB_CfgTypeDef structure.
   31:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c **** 
-ARM GAS  /tmp/cccuIvuP.s 			page 2
+ARM GAS  /tmp/ccB7rNHH.s 			page 2
 
 
   32:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c ****       (#) Call USB_CoreInit() API to initialize the USB Core peripheral.
@@ -118,7 +118,7 @@ ARM GAS  /tmp/cccuIvuP.s 			page 1
   73:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c ****    */
   74:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c **** 
   75:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c ****   return HAL_OK;
-ARM GAS  /tmp/cccuIvuP.s 			page 3
+ARM GAS  /tmp/ccB7rNHH.s 			page 3
 
 
   41              		.loc 1 75 3 view .LVU4
@@ -178,7 +178,7 @@ ARM GAS  /tmp/cccuIvuP.s 			page 1
   98:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c ****   USBx->CNTR = (uint16_t)winterruptmask;
   75              		.loc 1 98 3 view .LVU12
   76              		.loc 1 98 14 is_stmt 0 view .LVU13
-ARM GAS  /tmp/cccuIvuP.s 			page 4
+ARM GAS  /tmp/ccB7rNHH.s 			page 4
 
 
   77 0006 043B     		subs	r3, r3, #4
@@ -238,7 +238,7 @@ ARM GAS  /tmp/cccuIvuP.s 			page 1
  111              		.loc 1 120 3 view .LVU20
  112              		.loc 1 120 7 is_stmt 0 view .LVU21
  113 0000 4022     		movs	r2, #64
-ARM GAS  /tmp/cccuIvuP.s 			page 5
+ARM GAS  /tmp/ccB7rNHH.s 			page 5
 
 
  114 0002 835A     		ldrh	r3, [r0, r2]
@@ -298,7 +298,7 @@ ARM GAS  /tmp/cccuIvuP.s 			page 1
  141:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c ****             - This function is added to ensure compatibility across platforms.
  142:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c ****    */
  143:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c ****   return HAL_OK;
-ARM GAS  /tmp/cccuIvuP.s 			page 6
+ARM GAS  /tmp/ccB7rNHH.s 			page 6
 
 
  150              		.loc 1 143 3 view .LVU29
@@ -358,7 +358,7 @@ ARM GAS  /tmp/cccuIvuP.s 			page 1
  163:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c ****   /* CNTR_FRES = 0 */
  164:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c ****   USBx->CNTR = 0U;
  187              		.loc 1 164 3 is_stmt 1 view .LVU37
-ARM GAS  /tmp/cccuIvuP.s 			page 7
+ARM GAS  /tmp/ccB7rNHH.s 			page 7
 
 
  188              		.loc 1 164 14 is_stmt 0 view .LVU38
@@ -418,7 +418,7 @@ ARM GAS  /tmp/cccuIvuP.s 			page 1
  224              		@ link register save eliminated.
  185:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c ****   /* Prevent unused argument(s) compilation warning */
  186:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c ****   UNUSED(USBx);
-ARM GAS  /tmp/cccuIvuP.s 			page 8
+ARM GAS  /tmp/ccB7rNHH.s 			page 8
 
 
  225              		.loc 1 186 3 view .LVU47
@@ -478,7 +478,7 @@ ARM GAS  /tmp/cccuIvuP.s 			page 1
  254              		.loc 1 213 1 is_stmt 0 view .LVU55
  255 0000 0020     		movs	r0, #0
  256              	.LVL14:
-ARM GAS  /tmp/cccuIvuP.s 			page 9
+ARM GAS  /tmp/ccB7rNHH.s 			page 9
 
 
  257              		.loc 1 213 1 view .LVU56
@@ -538,7 +538,7 @@ ARM GAS  /tmp/cccuIvuP.s 			page 1
  298 000c B948     		ldr	r0, .L51
  299              	.LVL17:
  300              		.loc 1 228 13 view .LVU65
-ARM GAS  /tmp/cccuIvuP.s 			page 10
+ARM GAS  /tmp/ccB7rNHH.s 			page 10
 
 
  301 000e 0240     		ands	r2, r0
@@ -598,7 +598,7 @@ ARM GAS  /tmp/cccuIvuP.s 			page 1
  331 002e 0328     		cmp	r0, #3
  332 0030 04D1     		bne	.L49
  242:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c ****       break;
-ARM GAS  /tmp/cccuIvuP.s 			page 11
+ARM GAS  /tmp/ccB7rNHH.s 			page 11
 
 
  333              		.loc 1 242 7 is_stmt 1 view .LVU76
@@ -658,7 +658,7 @@ ARM GAS  /tmp/cccuIvuP.s 			page 1
  374 005a 3543     		orrs	r5, r6
  375              	.LVL23:
  376              		.loc 1 256 3 view .LVU90
-ARM GAS  /tmp/cccuIvuP.s 			page 12
+ARM GAS  /tmp/ccB7rNHH.s 			page 12
 
 
  377 005c 2C43     		orrs	r4, r5
@@ -718,7 +718,7 @@ ARM GAS  /tmp/cccuIvuP.s 			page 1
  264:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c ****       PCD_CLEAR_TX_DTOG(USBx, ep->num);
  424              		.loc 1 264 7 view .LVU106
  425              	.LBB4:
-ARM GAS  /tmp/cccuIvuP.s 			page 13
+ARM GAS  /tmp/ccB7rNHH.s 			page 13
 
 
  426              		.loc 1 264 7 view .LVU107
@@ -778,7 +778,7 @@ ARM GAS  /tmp/cccuIvuP.s 			page 1
  475              	.LVL34:
  476              		.loc 1 269 9 is_stmt 0 view .LVU126
  477 00b2 9449     		ldr	r1, .L51+16
-ARM GAS  /tmp/cccuIvuP.s 			page 14
+ARM GAS  /tmp/ccB7rNHH.s 			page 14
 
 
  478              	.LVL35:
@@ -838,7 +838,7 @@ ARM GAS  /tmp/cccuIvuP.s 			page 1
  526 00d6 884A     		ldr	r2, .L51+4
  527 00d8 0A43     		orrs	r2, r1
  528 00da 92B2     		uxth	r2, r2
-ARM GAS  /tmp/cccuIvuP.s 			page 15
+ARM GAS  /tmp/ccB7rNHH.s 			page 15
 
 
  529 00dc 1A80     		strh	r2, [r3]
@@ -898,7 +898,7 @@ ARM GAS  /tmp/cccuIvuP.s 			page 1
  574              	.LVL52:
  575              		.loc 1 283 7 is_stmt 0 view .LVU159
  576 0100 D200     		lsls	r2, r2, #3
-ARM GAS  /tmp/cccuIvuP.s 			page 16
+ARM GAS  /tmp/ccB7rNHH.s 			page 16
 
 
  577 0102 1219     		adds	r2, r2, r4
@@ -958,7 +958,7 @@ ARM GAS  /tmp/cccuIvuP.s 			page 1
  630              	.LVL58:
  631              		.loc 1 284 7 view .LVU177
  632              		.loc 1 284 7 is_stmt 0 discriminator 1 view .LVU178
-ARM GAS  /tmp/cccuIvuP.s 			page 17
+ARM GAS  /tmp/ccB7rNHH.s 			page 17
 
 
  633 0134 774C     		ldr	r4, .L51+32
@@ -1018,7 +1018,7 @@ ARM GAS  /tmp/cccuIvuP.s 			page 1
  682              	.LBB15:
  683              	.LBB11:
  283:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c ****       PCD_CLEAR_RX_DTOG(USBx, ep->num);
-ARM GAS  /tmp/cccuIvuP.s 			page 18
+ARM GAS  /tmp/ccB7rNHH.s 			page 18
 
 
  684              		.loc 1 283 7 discriminator 2 view .LVU196
@@ -1078,7 +1078,7 @@ ARM GAS  /tmp/cccuIvuP.s 			page 1
  724 017c 1488     		ldrh	r4, [r2]
  725 017e AD02     		lsls	r5, r5, #10
  726              	.LVL71:
-ARM GAS  /tmp/cccuIvuP.s 			page 19
+ARM GAS  /tmp/ccB7rNHH.s 			page 19
 
 
  283:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c ****       PCD_CLEAR_RX_DTOG(USBx, ep->num);
@@ -1138,7 +1138,7 @@ ARM GAS  /tmp/cccuIvuP.s 			page 1
  298:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c **** #if (USE_USB_DOUBLE_BUFFER == 1U)
  299:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c ****   /* Double Buffer */
  300:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c ****   else
-ARM GAS  /tmp/cccuIvuP.s 			page 20
+ARM GAS  /tmp/ccB7rNHH.s 			page 20
 
 
  301:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c ****   {
@@ -1198,7 +1198,7 @@ ARM GAS  /tmp/cccuIvuP.s 			page 1
  811              		.loc 1 314 5 view .LVU239
  812 01c8 0A78     		ldrb	r2, [r1]
  813 01ca D200     		lsls	r2, r2, #3
-ARM GAS  /tmp/cccuIvuP.s 			page 21
+ARM GAS  /tmp/ccB7rNHH.s 			page 21
 
 
  814 01cc 1219     		adds	r2, r2, r4
@@ -1258,7 +1258,7 @@ ARM GAS  /tmp/cccuIvuP.s 			page 1
  866 01f8 002A     		cmp	r2, #0
  867 01fa 3BD1     		bne	.L32
  317:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c ****     {
-ARM GAS  /tmp/cccuIvuP.s 			page 22
+ARM GAS  /tmp/ccB7rNHH.s 			page 22
 
 
  318:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c ****       /* Clear the data toggle bits for the endpoint IN/OUT */
@@ -1318,7 +1318,7 @@ ARM GAS  /tmp/cccuIvuP.s 			page 1
  919 0222 1588     		ldrh	r5, [r2]
  920 0224 354C     		ldr	r4, .L51+8
  921 0226 2540     		ands	r5, r4
-ARM GAS  /tmp/cccuIvuP.s 			page 23
+ARM GAS  /tmp/ccB7rNHH.s 			page 23
 
 
  922              	.LVL96:
@@ -1378,7 +1378,7 @@ ARM GAS  /tmp/cccuIvuP.s 			page 1
  973 0250 1A88     		ldrh	r2, [r3]
  974 0252 2C49     		ldr	r1, .L51+16
  975              	.LVL102:
-ARM GAS  /tmp/cccuIvuP.s 			page 24
+ARM GAS  /tmp/ccB7rNHH.s 			page 24
 
 
  976              		.loc 1 323 7 view .LVU297
@@ -1438,7 +1438,7 @@ ARM GAS  /tmp/cccuIvuP.s 			page 1
  1002 025e 0A78     		ldrb	r2, [r1]
  1003 0260 9200     		lsls	r2, r2, #2
  1004 0262 9A18     		adds	r2, r3, r2
-ARM GAS  /tmp/cccuIvuP.s 			page 25
+ARM GAS  /tmp/ccB7rNHH.s 			page 25
 
 
  1005 0264 1588     		ldrh	r5, [r2]
@@ -1498,7 +1498,7 @@ ARM GAS  /tmp/cccuIvuP.s 			page 1
  1047 028c 1480     		strh	r4, [r2]
  1048              	.LVL113:
  1049              	.L35:
-ARM GAS  /tmp/cccuIvuP.s 			page 26
+ARM GAS  /tmp/ccB7rNHH.s 			page 26
 
 
  328:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c ****       PCD_CLEAR_TX_DTOG(USBx, ep->num);
@@ -1558,7 +1558,7 @@ ARM GAS  /tmp/cccuIvuP.s 			page 1
  331:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c ****       {
  1089              		.loc 1 331 7 view .LVU336
  331:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c ****       {
-ARM GAS  /tmp/cccuIvuP.s 			page 27
+ARM GAS  /tmp/ccB7rNHH.s 			page 27
 
 
  1090              		.loc 1 331 13 is_stmt 0 view .LVU337
@@ -1618,7 +1618,7 @@ ARM GAS  /tmp/cccuIvuP.s 			page 1
  342:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c ****     }
  1130              		.loc 1 342 7 view .LVU352
  1131 02c8 0A78     		ldrb	r2, [r1]
-ARM GAS  /tmp/cccuIvuP.s 			page 28
+ARM GAS  /tmp/ccB7rNHH.s 			page 28
 
 
  1132 02ca 9200     		lsls	r2, r2, #2
@@ -1678,7 +1678,7 @@ ARM GAS  /tmp/cccuIvuP.s 			page 1
  1174              		.align	2
  1175              	.L51:
  1176 02f4 8F89FFFF 		.word	-30321
-ARM GAS  /tmp/cccuIvuP.s 			page 29
+ARM GAS  /tmp/ccB7rNHH.s 			page 29
 
 
  1177 02f8 8080FFFF 		.word	-32640
@@ -1738,7 +1738,7 @@ ARM GAS  /tmp/cccuIvuP.s 			page 1
  1221              		.loc 1 360 8 view .LVU372
  1222 000a 002B     		cmp	r3, #0
  1223 000c 18D0     		beq	.L55
-ARM GAS  /tmp/cccuIvuP.s 			page 30
+ARM GAS  /tmp/ccB7rNHH.s 			page 30
 
 
  361:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c ****     {
@@ -1798,7 +1798,7 @@ ARM GAS  /tmp/cccuIvuP.s 			page 1
  1273              		.loc 1 365 7 discriminator 6 view .LVU391
  1274 0034 4B4A     		ldr	r2, .L70+12
  1275 0036 0A43     		orrs	r2, r1
-ARM GAS  /tmp/cccuIvuP.s 			page 31
+ARM GAS  /tmp/ccB7rNHH.s 			page 31
 
 
  1276 0038 92B2     		uxth	r2, r2
@@ -1858,7 +1858,7 @@ ARM GAS  /tmp/cccuIvuP.s 			page 1
  1288              	.LVL136:
  1289              	.L55:
  370:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c **** 
-ARM GAS  /tmp/cccuIvuP.s 			page 32
+ARM GAS  /tmp/ccB7rNHH.s 			page 32
 
 
  1290              		.loc 1 370 7 is_stmt 1 view .LVU396
@@ -1918,7 +1918,7 @@ ARM GAS  /tmp/cccuIvuP.s 			page 1
  1330 005e C318     		adds	r3, r0, r3
  1331 0060 1988     		ldrh	r1, [r3]
  1332              	.LVL141:
-ARM GAS  /tmp/cccuIvuP.s 			page 33
+ARM GAS  /tmp/ccB7rNHH.s 			page 33
 
 
  373:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c ****     }
@@ -1978,7 +1978,7 @@ ARM GAS  /tmp/cccuIvuP.s 			page 1
  1372 0082 1C88     		ldrh	r4, [r3]
  1373 0084 344A     		ldr	r2, .L70
  1374 0086 1440     		ands	r4, r2
-ARM GAS  /tmp/cccuIvuP.s 			page 34
+ARM GAS  /tmp/ccB7rNHH.s 			page 34
 
 
  1375              	.LVL146:
@@ -2038,7 +2038,7 @@ ARM GAS  /tmp/cccuIvuP.s 			page 1
  1415 00a8 1A80     		strh	r2, [r3]
  1416              	.LVL151:
  1417              	.L61:
-ARM GAS  /tmp/cccuIvuP.s 			page 35
+ARM GAS  /tmp/ccB7rNHH.s 			page 35
 
 
  384:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c **** 
@@ -2098,7 +2098,7 @@ ARM GAS  /tmp/cccuIvuP.s 			page 1
  1457 00ca 264A     		ldr	r2, .L70+12
  1458 00cc 1343     		orrs	r3, r2
  1459              	.LVL155:
-ARM GAS  /tmp/cccuIvuP.s 			page 36
+ARM GAS  /tmp/ccB7rNHH.s 			page 36
 
 
  389:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c ****       PCD_SET_EP_TX_STATUS(USBx, ep->num, USB_EP_TX_DIS);
@@ -2158,7 +2158,7 @@ ARM GAS  /tmp/cccuIvuP.s 			page 1
  395:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c ****       PCD_CLEAR_TX_DTOG(USBx, ep->num);
  1500              		.loc 1 395 7 view .LVU469
  1501 00ee 5204     		lsls	r2, r2, #17
-ARM GAS  /tmp/cccuIvuP.s 			page 37
+ARM GAS  /tmp/ccB7rNHH.s 			page 37
 
 
  1502 00f0 06D5     		bpl	.L62
@@ -2218,7 +2218,7 @@ ARM GAS  /tmp/cccuIvuP.s 			page 1
  1541              		.loc 1 396 7 discriminator 1 view .LVU484
  1542 010c 1C88     		ldrh	r4, [r3]
  1543 010e 124A     		ldr	r2, .L70
-ARM GAS  /tmp/cccuIvuP.s 			page 38
+ARM GAS  /tmp/ccB7rNHH.s 			page 38
 
 
  1544 0110 1440     		ands	r4, r2
@@ -2278,7 +2278,7 @@ ARM GAS  /tmp/cccuIvuP.s 			page 1
  1584 0130 A400     		lsls	r4, r4, #2
  1585 0132 0419     		adds	r4, r0, r4
  1586 0134 2388     		ldrh	r3, [r4]
-ARM GAS  /tmp/cccuIvuP.s 			page 39
+ARM GAS  /tmp/ccB7rNHH.s 			page 39
 
 
  1587 0136 0A4A     		ldr	r2, .L70+8
@@ -2338,7 +2338,7 @@ ARM GAS  /tmp/cccuIvuP.s 			page 1
  1628 0160 BF8FFFFF 		.word	-28737
  1629 0164 8080FFFF 		.word	-32640
  1630 0168 80C0FFFF 		.word	-16256
-ARM GAS  /tmp/cccuIvuP.s 			page 40
+ARM GAS  /tmp/ccB7rNHH.s 			page 40
 
 
  1631 016c 8FBFFFFF 		.word	-16497
@@ -2398,7 +2398,7 @@ ARM GAS  /tmp/cccuIvuP.s 			page 1
  449:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c ****         {
  450:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c ****           /* enable double buffer */
  451:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c ****           PCD_SET_BULK_EP_DBUF(USBx, ep->num);
-ARM GAS  /tmp/cccuIvuP.s 			page 41
+ARM GAS  /tmp/ccB7rNHH.s 			page 41
 
 
  452:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c **** 
@@ -2458,7 +2458,7 @@ ARM GAS  /tmp/cccuIvuP.s 			page 1
  506:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c ****             pmabuffer = ep->pmaaddr1;
  507:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c **** 
  508:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c ****             /* Write the user buffer to USB PMA */
-ARM GAS  /tmp/cccuIvuP.s 			page 42
+ARM GAS  /tmp/ccB7rNHH.s 			page 42
 
 
  509:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c ****             USB_WritePMA(USBx, ep->xfer_buff, pmabuffer, (uint16_t)len);
@@ -2518,7 +2518,7 @@ ARM GAS  /tmp/cccuIvuP.s 			page 1
  563:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c ****       if (ep->xfer_len > ep->maxpacket)
  564:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c ****       {
  565:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c ****         len = ep->maxpacket;
-ARM GAS  /tmp/cccuIvuP.s 			page 43
+ARM GAS  /tmp/ccB7rNHH.s 			page 43
 
 
  566:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c ****         ep->xfer_len -= len;
@@ -2578,7 +2578,7 @@ ARM GAS  /tmp/cccuIvuP.s 			page 1
  620:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c **** #endif /* (USE_USB_DOUBLE_BUFFER == 1U) */
  621:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c **** 
  622:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c ****     PCD_SET_EP_RX_STATUS(USBx, ep->num, USB_EP_RX_VALID);
-ARM GAS  /tmp/cccuIvuP.s 			page 44
+ARM GAS  /tmp/ccB7rNHH.s 			page 44
 
 
  623:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c ****   }
@@ -2638,7 +2638,7 @@ ARM GAS  /tmp/cccuIvuP.s 			page 1
  1683              		.loc 1 639 5 is_stmt 0 discriminator 6 view .LVU525
  1684 001c 9BB2     		uxth	r3, r3
  1685 001e 0380     		strh	r3, [r0]
-ARM GAS  /tmp/cccuIvuP.s 			page 45
+ARM GAS  /tmp/ccB7rNHH.s 			page 45
 
 
  1686              	.LBE54:
@@ -2698,7 +2698,7 @@ ARM GAS  /tmp/cccuIvuP.s 			page 1
  1724              	.L76:
  1725              		.align	2
  1726              	.L75:
-ARM GAS  /tmp/cccuIvuP.s 			page 46
+ARM GAS  /tmp/ccB7rNHH.s 			page 46
 
 
  1727 0040 BF8FFFFF 		.word	-28737
@@ -2758,7 +2758,7 @@ ARM GAS  /tmp/cccuIvuP.s 			page 1
  1769              		.loc 1 661 7 view .LVU548
  1770 000e 0B78     		ldrb	r3, [r1]
  1771 0010 9B00     		lsls	r3, r3, #2
-ARM GAS  /tmp/cccuIvuP.s 			page 47
+ARM GAS  /tmp/ccB7rNHH.s 			page 47
 
 
  1772 0012 C318     		adds	r3, r0, r3
@@ -2818,7 +2818,7 @@ ARM GAS  /tmp/cccuIvuP.s 			page 1
  1821              		.loc 1 666 9 discriminator 4 view .LVU567
  1822 003a 2021     		movs	r1, #32
  1823 003c 4B40     		eors	r3, r1
-ARM GAS  /tmp/cccuIvuP.s 			page 48
+ARM GAS  /tmp/ccB7rNHH.s 			page 48
 
 
  1824              	.LVL193:
@@ -2878,7 +2878,7 @@ ARM GAS  /tmp/cccuIvuP.s 			page 1
  1873              		.loc 1 671 7 discriminator 3 view .LVU583
  672:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c **** 
  673:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c ****       /* Configure VALID status for the Endpoint */
-ARM GAS  /tmp/cccuIvuP.s 			page 49
+ARM GAS  /tmp/ccB7rNHH.s 			page 49
 
 
  674:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c ****       PCD_SET_EP_RX_STATUS(USBx, ep->num, USB_EP_RX_VALID);
@@ -2938,7 +2938,7 @@ ARM GAS  /tmp/cccuIvuP.s 			page 1
  1923              		.align	1
  1924              		.global	USB_EPStopXfer
  1925              		.syntax unified
-ARM GAS  /tmp/cccuIvuP.s 			page 50
+ARM GAS  /tmp/ccB7rNHH.s 			page 50
 
 
  1926              		.code	16
@@ -2998,7 +2998,7 @@ ARM GAS  /tmp/cccuIvuP.s 			page 1
  1950              		.loc 1 710 13 is_stmt 0 view .LVU605
  1951 000c CB78     		ldrb	r3, [r1, #3]
  1952              		.loc 1 710 10 view .LVU606
-ARM GAS  /tmp/cccuIvuP.s 			page 51
+ARM GAS  /tmp/ccB7rNHH.s 			page 51
 
 
  1953 000e 012B     		cmp	r3, #1
@@ -3058,7 +3058,7 @@ ARM GAS  /tmp/cccuIvuP.s 			page 1
  1992              		.loc 1 692 5 is_stmt 1 view .LVU619
  692:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c ****     {
  1993              		.loc 1 692 11 is_stmt 0 view .LVU620
-ARM GAS  /tmp/cccuIvuP.s 			page 52
+ARM GAS  /tmp/ccB7rNHH.s 			page 52
 
 
  1994 0030 0B7B     		ldrb	r3, [r1, #12]
@@ -3118,7 +3118,7 @@ ARM GAS  /tmp/cccuIvuP.s 			page 1
  697:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c ****       }
  2034              		.loc 1 697 9 is_stmt 1 view .LVU635
  2035 0056 E9E7     		b	.L88
-ARM GAS  /tmp/cccuIvuP.s 			page 53
+ARM GAS  /tmp/ccB7rNHH.s 			page 53
 
 
  2036              	.LVL216:
@@ -3178,7 +3178,7 @@ ARM GAS  /tmp/cccuIvuP.s 			page 1
  718:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c ****       }
  2077              		.loc 1 718 9 discriminator 3 view .LVU649
  718:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c ****       }
-ARM GAS  /tmp/cccuIvuP.s 			page 54
+ARM GAS  /tmp/ccB7rNHH.s 			page 54
 
 
  2078              		.loc 1 718 9 discriminator 6 view .LVU650
@@ -3238,7 +3238,7 @@ ARM GAS  /tmp/cccuIvuP.s 			page 1
  740:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c ****   /* switch-off device */
  741:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c ****   USBx->CNTR = (uint16_t)(USB_CNTR_FRES | USB_CNTR_PDWN);
  2119              		.loc 1 741 3 is_stmt 1 view .LVU656
-ARM GAS  /tmp/cccuIvuP.s 			page 55
+ARM GAS  /tmp/ccB7rNHH.s 			page 55
 
 
  2120              		.loc 1 741 14 is_stmt 0 view .LVU657
@@ -3298,7 +3298,7 @@ ARM GAS  /tmp/cccuIvuP.s 			page 1
  760:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c **** 
  761:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c ****   return HAL_OK;
  2158              		.loc 1 761 3 is_stmt 1 view .LVU666
-ARM GAS  /tmp/cccuIvuP.s 			page 56
+ARM GAS  /tmp/ccB7rNHH.s 			page 56
 
 
  762:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c **** }
@@ -3358,7 +3358,7 @@ ARM GAS  /tmp/cccuIvuP.s 			page 1
  2201              	.L98:
  2202 0010 0080FFFF 		.word	-32768
  2203              		.cfi_endproc
-ARM GAS  /tmp/cccuIvuP.s 			page 57
+ARM GAS  /tmp/ccB7rNHH.s 			page 57
 
 
  2204              	.LFE55:
@@ -3418,7 +3418,7 @@ ARM GAS  /tmp/cccuIvuP.s 			page 1
  789:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c **** 
  790:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c **** /**
  791:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c ****   * @brief  USB_ReadInterrupts return the global USB interrupt status
-ARM GAS  /tmp/cccuIvuP.s 			page 58
+ARM GAS  /tmp/ccB7rNHH.s 			page 58
 
 
  792:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c ****   * @param  USBx Selected device
@@ -3478,7 +3478,7 @@ ARM GAS  /tmp/cccuIvuP.s 			page 1
  2286              		.loc 1 810 7 is_stmt 0 view .LVU692
  2287 0000 4022     		movs	r2, #64
  2288 0002 835A     		ldrh	r3, [r0, r2]
-ARM GAS  /tmp/cccuIvuP.s 			page 59
+ARM GAS  /tmp/ccB7rNHH.s 			page 59
 
 
  2289              		.loc 1 810 14 view .LVU693
@@ -3538,7 +3538,7 @@ ARM GAS  /tmp/cccuIvuP.s 			page 1
  2330              	.LVL236:
  2331              		.loc 1 825 1 view .LVU703
  2332              		@ sp needed
-ARM GAS  /tmp/cccuIvuP.s 			page 60
+ARM GAS  /tmp/ccB7rNHH.s 			page 60
 
 
  2333 000c 7047     		bx	lr
@@ -3598,7 +3598,7 @@ ARM GAS  /tmp/cccuIvuP.s 			page 1
  2370              		.loc 1 844 48 is_stmt 0 view .LVU715
  2371 0006 1218     		adds	r2, r2, r0
  2372              	.LVL240:
-ARM GAS  /tmp/cccuIvuP.s 			page 61
+ARM GAS  /tmp/ccB7rNHH.s 			page 61
 
 
  2373              		.loc 1 844 48 view .LVU716
@@ -3658,7 +3658,7 @@ ARM GAS  /tmp/cccuIvuP.s 			page 1
  2412              	.L105:
  846:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c ****   {
  2413              		.loc 1 846 25 discriminator 1 view .LVU733
-ARM GAS  /tmp/cccuIvuP.s 			page 62
+ARM GAS  /tmp/ccB7rNHH.s 			page 62
 
 
  2414 0022 002B     		cmp	r3, #0
@@ -3718,7 +3718,7 @@ ARM GAS  /tmp/cccuIvuP.s 			page 1
  560:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c ****     {
  2458              		.loc 1 560 8 view .LVU745
  2459 000e 002A     		cmp	r2, #0
-ARM GAS  /tmp/cccuIvuP.s 			page 63
+ARM GAS  /tmp/ccB7rNHH.s 			page 63
 
 
  2460 0010 00D0     		beq	.LCB2478
@@ -3778,7 +3778,7 @@ ARM GAS  /tmp/cccuIvuP.s 			page 1
  574:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c ****     }
  2501              		.loc 1 574 7 is_stmt 1 view .LVU759
  2502              	.LBB67:
-ARM GAS  /tmp/cccuIvuP.s 			page 64
+ARM GAS  /tmp/ccB7rNHH.s 			page 64
 
 
  574:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c ****     }
@@ -3838,7 +3838,7 @@ ARM GAS  /tmp/cccuIvuP.s 			page 1
  2543              		.loc 1 622 5 discriminator 4 view .LVU773
  2544 0058 C022     		movs	r2, #192
  2545 005a 9201     		lsls	r2, r2, #6
-ARM GAS  /tmp/cccuIvuP.s 			page 65
+ARM GAS  /tmp/ccB7rNHH.s 			page 65
 
 
  2546 005c 5A40     		eors	r2, r3
@@ -3898,7 +3898,7 @@ ARM GAS  /tmp/cccuIvuP.s 			page 1
  2586 007a E178     		ldrb	r1, [r4, #3]
  446:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c ****       {
  2587              		.loc 1 446 10 view .LVU788
-ARM GAS  /tmp/cccuIvuP.s 			page 66
+ARM GAS  /tmp/ccB7rNHH.s 			page 66
 
 
  2588 007c 0229     		cmp	r1, #2
@@ -3958,7 +3958,7 @@ ARM GAS  /tmp/cccuIvuP.s 			page 1
  2627              	.LVL268:
  537:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c ****           pmabuffer = ep->pmaaddr1;
  2628              		.loc 1 537 11 is_stmt 1 view .LVU804
-ARM GAS  /tmp/cccuIvuP.s 			page 67
+ARM GAS  /tmp/ccB7rNHH.s 			page 67
 
 
  537:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c ****           pmabuffer = ep->pmaaddr1;
@@ -4018,7 +4018,7 @@ ARM GAS  /tmp/cccuIvuP.s 			page 1
  2671 00c8 6169     		ldr	r1, [r4, #20]
  2672 00ca 3300     		movs	r3, r6
  2673 00cc 2800     		movs	r0, r5
-ARM GAS  /tmp/cccuIvuP.s 			page 68
+ARM GAS  /tmp/ccB7rNHH.s 			page 68
 
 
  2674              	.LVL273:
@@ -4078,7 +4078,7 @@ ARM GAS  /tmp/cccuIvuP.s 			page 1
  556:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c ****   }
  2715              		.loc 1 556 5 discriminator 1 view .LVU830
  556:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c ****   }
-ARM GAS  /tmp/cccuIvuP.s 			page 69
+ARM GAS  /tmp/ccB7rNHH.s 			page 69
 
 
  2716              		.loc 1 556 5 discriminator 3 view .LVU831
@@ -4138,7 +4138,7 @@ ARM GAS  /tmp/cccuIvuP.s 			page 1
  2757              		.loc 1 451 11 view .LVU844
  2758 0118 854A     		ldr	r2, .L222+28
  2759 011a 0A43     		orrs	r2, r1
-ARM GAS  /tmp/cccuIvuP.s 			page 70
+ARM GAS  /tmp/ccB7rNHH.s 			page 70
 
 
  2760 011c 92B2     		uxth	r2, r2
@@ -4198,7 +4198,7 @@ ARM GAS  /tmp/cccuIvuP.s 			page 1
  2798 013c AA5A     		ldrh	r2, [r5, r2]
  2799 013e AA18     		adds	r2, r5, r2
  2800              	.LVL287:
-ARM GAS  /tmp/cccuIvuP.s 			page 71
+ARM GAS  /tmp/ccB7rNHH.s 			page 71
 
 
  460:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c ****             pmabuffer = ep->pmaaddr1;
@@ -4258,7 +4258,7 @@ ARM GAS  /tmp/cccuIvuP.s 			page 1
  2841              	.LVL292:
  460:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c ****             pmabuffer = ep->pmaaddr1;
  2842              		.loc 1 460 13 view .LVU875
-ARM GAS  /tmp/cccuIvuP.s 			page 72
+ARM GAS  /tmp/ccB7rNHH.s 			page 72
 
 
  460:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c ****             pmabuffer = ep->pmaaddr1;
@@ -4318,7 +4318,7 @@ ARM GAS  /tmp/cccuIvuP.s 			page 1
  2885 018e 92B2     		uxth	r2, r2
  2886 0190 1A80     		strh	r2, [r3]
  2887 0192 01E0     		b	.L117
-ARM GAS  /tmp/cccuIvuP.s 			page 73
+ARM GAS  /tmp/ccB7rNHH.s 			page 73
 
 
  2888              	.LVL301:
@@ -4378,7 +4378,7 @@ ARM GAS  /tmp/cccuIvuP.s 			page 1
  469:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c ****             }
  2927              		.loc 1 469 15 is_stmt 1 view .LVU903
  469:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c ****             }
-ARM GAS  /tmp/cccuIvuP.s 			page 74
+ARM GAS  /tmp/ccB7rNHH.s 			page 74
 
 
  2928              		.loc 1 469 31 is_stmt 0 view .LVU904
@@ -4438,7 +4438,7 @@ ARM GAS  /tmp/cccuIvuP.s 			page 1
  478:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c ****             pmabuffer = ep->pmaaddr0;
  2968              		.loc 1 478 13 is_stmt 1 view .LVU919
  478:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c ****             pmabuffer = ep->pmaaddr0;
-ARM GAS  /tmp/cccuIvuP.s 			page 75
+ARM GAS  /tmp/ccB7rNHH.s 			page 75
 
 
  2969              		.loc 1 478 13 is_stmt 0 discriminator 1 view .LVU920
@@ -4498,7 +4498,7 @@ ARM GAS  /tmp/cccuIvuP.s 			page 1
  3011              		.loc 1 474 31 is_stmt 0 view .LVU932
  3012 01fc 0022     		movs	r2, #0
  3013 01fe 2262     		str	r2, [r4, #32]
-ARM GAS  /tmp/cccuIvuP.s 			page 76
+ARM GAS  /tmp/ccB7rNHH.s 			page 76
 
 
  473:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c ****               ep->xfer_len_db = 0U;
@@ -4558,7 +4558,7 @@ ARM GAS  /tmp/cccuIvuP.s 			page 1
  3054 021e F106     		lsls	r1, r6, #27
  3055 0220 00D1     		bne	.L128
  478:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c ****             pmabuffer = ep->pmaaddr0;
-ARM GAS  /tmp/cccuIvuP.s 			page 77
+ARM GAS  /tmp/ccB7rNHH.s 			page 77
 
 
  3056              		.loc 1 478 13 is_stmt 1 discriminator 12 view .LVU947
@@ -4618,7 +4618,7 @@ ARM GAS  /tmp/cccuIvuP.s 			page 1
  3098              		.loc 1 478 13 discriminator 16 view .LVU959
  3099              	.LVL326:
  478:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c ****             pmabuffer = ep->pmaaddr0;
-ARM GAS  /tmp/cccuIvuP.s 			page 78
+ARM GAS  /tmp/ccB7rNHH.s 			page 78
 
 
  3100              		.loc 1 478 13 view .LVU960
@@ -4678,7 +4678,7 @@ ARM GAS  /tmp/cccuIvuP.s 			page 1
  3139 0266 5032     		adds	r2, r2, #80
  3140 0268 A95A     		ldrh	r1, [r5, r2]
  3141              	.LVL332:
-ARM GAS  /tmp/cccuIvuP.s 			page 79
+ARM GAS  /tmp/ccB7rNHH.s 			page 79
 
 
  487:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c ****             pmabuffer = ep->pmaaddr0;
@@ -4738,7 +4738,7 @@ ARM GAS  /tmp/cccuIvuP.s 			page 1
  3182 0292 7308     		lsrs	r3, r6, #1
  3183              	.LVL337:
  487:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c ****             pmabuffer = ep->pmaaddr0;
-ARM GAS  /tmp/cccuIvuP.s 			page 80
+ARM GAS  /tmp/ccB7rNHH.s 			page 80
 
 
  3184              		.loc 1 487 13 view .LVU990
@@ -4798,7 +4798,7 @@ ARM GAS  /tmp/cccuIvuP.s 			page 1
  3226 02b8 0B43     		orrs	r3, r1
  3227 02ba 9BB2     		uxth	r3, r3
  3228 02bc 1380     		strh	r3, [r2]
-ARM GAS  /tmp/cccuIvuP.s 			page 81
+ARM GAS  /tmp/ccB7rNHH.s 			page 81
 
 
  3229 02be 01E0     		b	.L131
@@ -4858,7 +4858,7 @@ ARM GAS  /tmp/cccuIvuP.s 			page 1
  496:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c ****             }
  3268              		.loc 1 496 15 is_stmt 1 view .LVU1018
  496:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c ****             }
-ARM GAS  /tmp/cccuIvuP.s 			page 82
+ARM GAS  /tmp/ccB7rNHH.s 			page 82
 
 
  3269              		.loc 1 496 31 is_stmt 0 view .LVU1019
@@ -4918,7 +4918,7 @@ ARM GAS  /tmp/cccuIvuP.s 			page 1
  505:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c ****             pmabuffer = ep->pmaaddr1;
  3308              		.loc 1 505 13 is_stmt 0 discriminator 1 view .LVU1035
  3309 02fa 1A88     		ldrh	r2, [r3]
-ARM GAS  /tmp/cccuIvuP.s 			page 83
+ARM GAS  /tmp/ccB7rNHH.s 			page 83
 
 
  3310 02fc 9205     		lsls	r2, r2, #22
@@ -4978,7 +4978,7 @@ ARM GAS  /tmp/cccuIvuP.s 			page 1
  3353 033a DB00     		lsls	r3, r3, #3
  3354 033c 9B18     		adds	r3, r3, r2
  3355 033e BD4A     		ldr	r2, .L224
-ARM GAS  /tmp/cccuIvuP.s 			page 84
+ARM GAS  /tmp/ccB7rNHH.s 			page 84
 
 
  3356              	.LVL358:
@@ -5038,7 +5038,7 @@ ARM GAS  /tmp/cccuIvuP.s 			page 1
  3396              	.LVL363:
  3397              	.L141:
  505:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c ****             pmabuffer = ep->pmaaddr1;
-ARM GAS  /tmp/cccuIvuP.s 			page 85
+ARM GAS  /tmp/ccB7rNHH.s 			page 85
 
 
  3398              		.loc 1 505 13 discriminator 10 view .LVU1061
@@ -5098,7 +5098,7 @@ ARM GAS  /tmp/cccuIvuP.s 			page 1
  3441 0386 06D0     		beq	.L219
  3442              	.LVL370:
  3443              	.L139:
-ARM GAS  /tmp/cccuIvuP.s 			page 86
+ARM GAS  /tmp/ccB7rNHH.s 			page 86
 
 
  505:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c ****             pmabuffer = ep->pmaaddr1;
@@ -5158,7 +5158,7 @@ ARM GAS  /tmp/cccuIvuP.s 			page 1
  3485              		.loc 1 505 13 discriminator 16 view .LVU1085
  3486              	.LBE96:
  515:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c **** 
-ARM GAS  /tmp/cccuIvuP.s 			page 87
+ARM GAS  /tmp/ccB7rNHH.s 			page 87
 
 
  3487              		.loc 1 515 11 is_stmt 1 view .LVU1086
@@ -5218,7 +5218,7 @@ ARM GAS  /tmp/cccuIvuP.s 			page 1
  3528              		.loc 1 521 11 is_stmt 1 view .LVU1099
  3529 03d4 9BB2     		uxth	r3, r3
  3530              	.LVL384:
-ARM GAS  /tmp/cccuIvuP.s 			page 88
+ARM GAS  /tmp/ccB7rNHH.s 			page 88
 
 
  521:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c ****           pmabuffer = ep->pmaaddr0;
@@ -5278,7 +5278,7 @@ ARM GAS  /tmp/cccuIvuP.s 			page 1
  3571              	.LVL391:
  537:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c ****           pmabuffer = ep->pmaaddr1;
  3572              		.loc 1 537 11 is_stmt 0 discriminator 10 view .LVU1114
-ARM GAS  /tmp/cccuIvuP.s 			page 89
+ARM GAS  /tmp/ccB7rNHH.s 			page 89
 
 
  3573 03f4 9BB2     		uxth	r3, r3
@@ -5338,7 +5338,7 @@ ARM GAS  /tmp/cccuIvuP.s 			page 1
  3615              		.loc 1 537 11 view .LVU1126
  537:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c ****           pmabuffer = ep->pmaaddr1;
  3616              		.loc 1 537 11 is_stmt 0 discriminator 16 view .LVU1127
-ARM GAS  /tmp/cccuIvuP.s 			page 90
+ARM GAS  /tmp/ccB7rNHH.s 			page 90
 
 
  3617 041c D200     		lsls	r2, r2, #3
@@ -5398,7 +5398,7 @@ ARM GAS  /tmp/cccuIvuP.s 			page 1
  3657              	.LVL405:
  546:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c ****           pmabuffer = ep->pmaaddr0;
  3658              		.loc 1 546 11 view .LVU1142
-ARM GAS  /tmp/cccuIvuP.s 			page 91
+ARM GAS  /tmp/ccB7rNHH.s 			page 91
 
 
  546:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c ****           pmabuffer = ep->pmaaddr0;
@@ -5458,7 +5458,7 @@ ARM GAS  /tmp/cccuIvuP.s 			page 1
  3699              		.loc 1 546 11 discriminator 6 view .LVU1156
  546:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c ****           pmabuffer = ep->pmaaddr0;
  3700              		.loc 1 546 11 discriminator 6 view .LVU1157
-ARM GAS  /tmp/cccuIvuP.s 			page 92
+ARM GAS  /tmp/ccB7rNHH.s 			page 92
 
 
  3701 0468 7308     		lsrs	r3, r6, #1
@@ -5518,7 +5518,7 @@ ARM GAS  /tmp/cccuIvuP.s 			page 1
  3742 048c 6A4B     		ldr	r3, .L224+4
  3743 048e 0B43     		orrs	r3, r1
  3744 0490 9BB2     		uxth	r3, r3
-ARM GAS  /tmp/cccuIvuP.s 			page 93
+ARM GAS  /tmp/ccB7rNHH.s 			page 93
 
 
  3745 0492 1380     		strh	r3, [r2]
@@ -5578,7 +5578,7 @@ ARM GAS  /tmp/cccuIvuP.s 			page 1
  3783              		.loc 1 547 11 view .LVU1186
  547:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c **** 
  3784              		.loc 1 547 21 is_stmt 0 view .LVU1187
-ARM GAS  /tmp/cccuIvuP.s 			page 94
+ARM GAS  /tmp/ccB7rNHH.s 			page 94
 
 
  3785 04aa 2289     		ldrh	r2, [r4, #8]
@@ -5638,7 +5638,7 @@ ARM GAS  /tmp/cccuIvuP.s 			page 1
  3826              	.L163:
  574:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c ****     }
  3827              		.loc 1 574 7 discriminator 8 view .LVU1201
-ARM GAS  /tmp/cccuIvuP.s 			page 95
+ARM GAS  /tmp/ccB7rNHH.s 			page 95
 
 
  3828 04cc 1988     		ldrh	r1, [r3]
@@ -5698,7 +5698,7 @@ ARM GAS  /tmp/cccuIvuP.s 			page 1
  3870              		.loc 1 581 13 is_stmt 0 view .LVU1213
  3871 04f2 CA78     		ldrb	r2, [r1, #3]
  581:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c ****       {
-ARM GAS  /tmp/cccuIvuP.s 			page 96
+ARM GAS  /tmp/ccB7rNHH.s 			page 96
 
 
  3872              		.loc 1 581 10 view .LVU1214
@@ -5758,7 +5758,7 @@ ARM GAS  /tmp/cccuIvuP.s 			page 1
  613:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c ****       }
  3910              		.loc 1 613 9 is_stmt 0 discriminator 1 view .LVU1231
  3911 0510 5033     		adds	r3, r3, #80
-ARM GAS  /tmp/cccuIvuP.s 			page 97
+ARM GAS  /tmp/ccB7rNHH.s 			page 97
 
 
  3912 0512 E95A     		ldrh	r1, [r5, r3]
@@ -5818,7 +5818,7 @@ ARM GAS  /tmp/cccuIvuP.s 			page 1
  613:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c ****       }
  3954              		.loc 1 613 9 is_stmt 1 discriminator 18 view .LVU1244
  613:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c ****       }
-ARM GAS  /tmp/cccuIvuP.s 			page 98
+ARM GAS  /tmp/ccB7rNHH.s 			page 98
 
 
  3955              		.loc 1 613 9 discriminator 18 view .LVU1245
@@ -5878,7 +5878,7 @@ ARM GAS  /tmp/cccuIvuP.s 			page 1
  613:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c ****       }
  3993              		.loc 1 613 9 is_stmt 0 discriminator 19 view .LVU1262
  3994 0554 1988     		ldrh	r1, [r3]
-ARM GAS  /tmp/cccuIvuP.s 			page 99
+ARM GAS  /tmp/ccB7rNHH.s 			page 99
 
 
  3995 0556 8905     		lsls	r1, r1, #22
@@ -5938,7 +5938,7 @@ ARM GAS  /tmp/cccuIvuP.s 			page 1
  4035              		.loc 1 583 9 is_stmt 1 view .LVU1276
  583:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c **** 
  4036              		.loc 1 583 9 is_stmt 0 discriminator 1 view .LVU1277
-ARM GAS  /tmp/cccuIvuP.s 			page 100
+ARM GAS  /tmp/ccB7rNHH.s 			page 100
 
 
  4037 0578 0B78     		ldrb	r3, [r1]
@@ -5998,7 +5998,7 @@ ARM GAS  /tmp/cccuIvuP.s 			page 1
  4077              		.loc 1 583 9 discriminator 18 view .LVU1291
  583:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c **** 
  4078              		.loc 1 583 9 view .LVU1292
-ARM GAS  /tmp/cccuIvuP.s 			page 101
+ARM GAS  /tmp/ccB7rNHH.s 			page 101
 
 
  583:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c **** 
@@ -6058,7 +6058,7 @@ ARM GAS  /tmp/cccuIvuP.s 			page 1
  4117 05bc 2269     		ldr	r2, [r4, #16]
  4118 05be 002A     		cmp	r2, #0
  4119 05c0 1ED1     		bne	.L172
-ARM GAS  /tmp/cccuIvuP.s 			page 102
+ARM GAS  /tmp/ccB7rNHH.s 			page 102
 
 
  583:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c **** 
@@ -6118,7 +6118,7 @@ ARM GAS  /tmp/cccuIvuP.s 			page 1
  4162              		.loc 1 583 9 discriminator 7 view .LVU1320
  583:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c **** 
  4163              		.loc 1 583 9 discriminator 7 view .LVU1321
-ARM GAS  /tmp/cccuIvuP.s 			page 103
+ARM GAS  /tmp/ccB7rNHH.s 			page 103
 
 
  4164 05e6 5109     		lsrs	r1, r2, #5
@@ -6178,7 +6178,7 @@ ARM GAS  /tmp/cccuIvuP.s 			page 1
  4206 060a 0131     		adds	r1, r1, #1
  4207              	.LVL470:
  4208              	.L175:
-ARM GAS  /tmp/cccuIvuP.s 			page 104
+ARM GAS  /tmp/ccB7rNHH.s 			page 104
 
 
  583:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c **** 
@@ -6238,7 +6238,7 @@ ARM GAS  /tmp/cccuIvuP.s 			page 1
  4253              	.LVL476:
  4254              	.L171:
  583:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c **** 
-ARM GAS  /tmp/cccuIvuP.s 			page 105
+ARM GAS  /tmp/ccB7rNHH.s 			page 105
 
 
  4255              		.loc 1 583 9 discriminator 32 view .LVU1344
@@ -6298,7 +6298,7 @@ ARM GAS  /tmp/cccuIvuP.s 			page 1
  595:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c ****           }
  4296              		.loc 1 595 13 is_stmt 1 view .LVU1358
  595:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c ****           }
-ARM GAS  /tmp/cccuIvuP.s 			page 106
+ARM GAS  /tmp/ccB7rNHH.s 			page 106
 
 
  4297              		.loc 1 595 13 view .LVU1359
@@ -6358,7 +6358,7 @@ ARM GAS  /tmp/cccuIvuP.s 			page 1
  4339              	.LVL485:
  4340              	.L178:
  583:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c **** 
-ARM GAS  /tmp/cccuIvuP.s 			page 107
+ARM GAS  /tmp/ccB7rNHH.s 			page 107
 
 
  4341              		.loc 1 583 9 discriminator 34 view .LVU1372
@@ -6418,7 +6418,7 @@ ARM GAS  /tmp/cccuIvuP.s 			page 1
  4382              	.L182:
  613:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c ****       }
  4383              		.loc 1 613 9 discriminator 7 view .LVU1386
-ARM GAS  /tmp/cccuIvuP.s 			page 108
+ARM GAS  /tmp/ccB7rNHH.s 			page 108
 
 
  613:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c ****       }
@@ -6478,7 +6478,7 @@ ARM GAS  /tmp/cccuIvuP.s 			page 1
  4426 06d4 00D5     		bpl	.L188
  4427              	.LVL498:
  613:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c ****       }
-ARM GAS  /tmp/cccuIvuP.s 			page 109
+ARM GAS  /tmp/ccB7rNHH.s 			page 109
 
 
  4428              		.loc 1 613 9 is_stmt 1 discriminator 26 view .LVU1399
@@ -6538,7 +6538,7 @@ ARM GAS  /tmp/cccuIvuP.s 			page 1
  4471              		.loc 1 613 9 discriminator 32 view .LVU1410
  4472              	.LBE110:
  4473              	.LBE111:
-ARM GAS  /tmp/cccuIvuP.s 			page 110
+ARM GAS  /tmp/ccB7rNHH.s 			page 110
 
 
  613:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c ****       }
@@ -6598,7 +6598,7 @@ ARM GAS  /tmp/cccuIvuP.s 			page 1
  4517 072c 06040000 		.word	1030
  4518 0730 0080FFFF 		.word	-32768
  4519              		.cfi_endproc
-ARM GAS  /tmp/cccuIvuP.s 			page 111
+ARM GAS  /tmp/ccB7rNHH.s 			page 111
 
 
  4520              	.LFE49:
@@ -6658,7 +6658,7 @@ ARM GAS  /tmp/cccuIvuP.s 			page 1
  4557              	.LVL516:
  4558              		.loc 1 879 48 view .LVU1434
  4559 0008 C000     		lsls	r0, r0, #3
-ARM GAS  /tmp/cccuIvuP.s 			page 112
+ARM GAS  /tmp/ccB7rNHH.s 			page 112
 
 
  4560 000a 8446     		mov	ip, r0
@@ -6718,7 +6718,7 @@ ARM GAS  /tmp/cccuIvuP.s 			page 1
  894:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c **** 
  895:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c ****   if ((wNBytes % 2U) != 0U)
  4598              		.loc 1 895 3 view .LVU1451
-ARM GAS  /tmp/cccuIvuP.s 			page 113
+ARM GAS  /tmp/ccB7rNHH.s 			page 113
 
 
  4599              		.loc 1 895 6 is_stmt 0 view .LVU1452
@@ -6753,70 +6753,70 @@ ARM GAS  /tmp/cccuIvuP.s 			page 1
  4624              		.file 4 "Drivers/CMSIS/Device/ST/STM32F0xx/Include/stm32f042x6.h"
  4625              		.file 5 "Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_def.h"
  4626              		.file 6 "Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_usb.h"
-ARM GAS  /tmp/cccuIvuP.s 			page 114
+ARM GAS  /tmp/ccB7rNHH.s 			page 114
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 stm32f0xx_ll_usb.c
-     /tmp/cccuIvuP.s:19     .text.USB_CoreInit:00000000 $t
-     /tmp/cccuIvuP.s:25     .text.USB_CoreInit:00000000 USB_CoreInit
-     /tmp/cccuIvuP.s:53     .text.USB_EnableGlobalInt:00000000 $t
-     /tmp/cccuIvuP.s:59     .text.USB_EnableGlobalInt:00000000 USB_EnableGlobalInt
-     /tmp/cccuIvuP.s:90     .text.USB_EnableGlobalInt:00000010 $d
-     /tmp/cccuIvuP.s:95     .text.USB_DisableGlobalInt:00000000 $t
-     /tmp/cccuIvuP.s:101    .text.USB_DisableGlobalInt:00000000 USB_DisableGlobalInt
-     /tmp/cccuIvuP.s:129    .text.USB_DisableGlobalInt:00000010 $d
-     /tmp/cccuIvuP.s:134    .text.USB_SetCurrentMode:00000000 $t
-     /tmp/cccuIvuP.s:140    .text.USB_SetCurrentMode:00000000 USB_SetCurrentMode
-     /tmp/cccuIvuP.s:161    .text.USB_DevInit:00000000 $t
-     /tmp/cccuIvuP.s:167    .text.USB_DevInit:00000000 USB_DevInit
-     /tmp/cccuIvuP.s:211    .text.USB_FlushTxFifo:00000000 $t
-     /tmp/cccuIvuP.s:217    .text.USB_FlushTxFifo:00000000 USB_FlushTxFifo
-     /tmp/cccuIvuP.s:238    .text.USB_FlushRxFifo:00000000 $t
-     /tmp/cccuIvuP.s:244    .text.USB_FlushRxFifo:00000000 USB_FlushRxFifo
-     /tmp/cccuIvuP.s:264    .text.USB_ActivateEndpoint:00000000 $t
-     /tmp/cccuIvuP.s:270    .text.USB_ActivateEndpoint:00000000 USB_ActivateEndpoint
-     /tmp/cccuIvuP.s:1176   .text.USB_ActivateEndpoint:000002f4 $d
-     /tmp/cccuIvuP.s:1193   .text.USB_DeactivateEndpoint:00000000 $t
-     /tmp/cccuIvuP.s:1199   .text.USB_DeactivateEndpoint:00000000 USB_DeactivateEndpoint
-     /tmp/cccuIvuP.s:1626   .text.USB_DeactivateEndpoint:00000158 $d
-     /tmp/cccuIvuP.s:1637   .text.USB_EPSetStall:00000000 $t
-     /tmp/cccuIvuP.s:1643   .text.USB_EPSetStall:00000000 USB_EPSetStall
-     /tmp/cccuIvuP.s:1727   .text.USB_EPSetStall:00000040 $d
-     /tmp/cccuIvuP.s:1735   .text.USB_EPClearStall:00000000 $t
-     /tmp/cccuIvuP.s:1741   .text.USB_EPClearStall:00000000 USB_EPClearStall
-     /tmp/cccuIvuP.s:1913   .text.USB_EPClearStall:00000084 $d
-     /tmp/cccuIvuP.s:1923   .text.USB_EPStopXfer:00000000 $t
-     /tmp/cccuIvuP.s:1929   .text.USB_EPStopXfer:00000000 USB_EPStopXfer
-     /tmp/cccuIvuP.s:2087   .text.USB_EPStopXfer:00000084 $d
-     /tmp/cccuIvuP.s:2095   .text.USB_StopDevice:00000000 $t
-     /tmp/cccuIvuP.s:2101   .text.USB_StopDevice:00000000 USB_StopDevice
-     /tmp/cccuIvuP.s:2134   .text.USB_SetDevAddress:00000000 $t
-     /tmp/cccuIvuP.s:2140   .text.USB_SetDevAddress:00000000 USB_SetDevAddress
-     /tmp/cccuIvuP.s:2169   .text.USB_DevConnect:00000000 $t
-     /tmp/cccuIvuP.s:2175   .text.USB_DevConnect:00000000 USB_DevConnect
-     /tmp/cccuIvuP.s:2202   .text.USB_DevConnect:00000010 $d
-     /tmp/cccuIvuP.s:2207   .text.USB_DevDisconnect:00000000 $t
-     /tmp/cccuIvuP.s:2213   .text.USB_DevDisconnect:00000000 USB_DevDisconnect
-     /tmp/cccuIvuP.s:2240   .text.USB_ReadInterrupts:00000000 $t
-     /tmp/cccuIvuP.s:2246   .text.USB_ReadInterrupts:00000000 USB_ReadInterrupts
-     /tmp/cccuIvuP.s:2271   .text.USB_ActivateRemoteWakeup:00000000 $t
-     /tmp/cccuIvuP.s:2277   .text.USB_ActivateRemoteWakeup:00000000 USB_ActivateRemoteWakeup
-     /tmp/cccuIvuP.s:2305   .text.USB_DeActivateRemoteWakeup:00000000 $t
-     /tmp/cccuIvuP.s:2311   .text.USB_DeActivateRemoteWakeup:00000000 USB_DeActivateRemoteWakeup
-     /tmp/cccuIvuP.s:2338   .text.USB_WritePMA:00000000 $t
-     /tmp/cccuIvuP.s:2344   .text.USB_WritePMA:00000000 USB_WritePMA
-     /tmp/cccuIvuP.s:2423   .text.USB_EPStartXfer:00000000 $t
-     /tmp/cccuIvuP.s:2429   .text.USB_EPStartXfer:00000000 USB_EPStartXfer
-     /tmp/cccuIvuP.s:3327   .text.USB_EPStartXfer:00000314 $d
-     /tmp/cccuIvuP.s:3347   .text.USB_EPStartXfer:00000334 $t
-     /tmp/cccuIvuP.s:4248   .text.USB_EPStartXfer:00000634 $d
-     /tmp/cccuIvuP.s:4259   .text.USB_EPStartXfer:00000648 $t
-     /tmp/cccuIvuP.s:4514   .text.USB_EPStartXfer:00000720 $d
-ARM GAS  /tmp/cccuIvuP.s 			page 115
+     /tmp/ccB7rNHH.s:19     .text.USB_CoreInit:00000000 $t
+     /tmp/ccB7rNHH.s:25     .text.USB_CoreInit:00000000 USB_CoreInit
+     /tmp/ccB7rNHH.s:53     .text.USB_EnableGlobalInt:00000000 $t
+     /tmp/ccB7rNHH.s:59     .text.USB_EnableGlobalInt:00000000 USB_EnableGlobalInt
+     /tmp/ccB7rNHH.s:90     .text.USB_EnableGlobalInt:00000010 $d
+     /tmp/ccB7rNHH.s:95     .text.USB_DisableGlobalInt:00000000 $t
+     /tmp/ccB7rNHH.s:101    .text.USB_DisableGlobalInt:00000000 USB_DisableGlobalInt
+     /tmp/ccB7rNHH.s:129    .text.USB_DisableGlobalInt:00000010 $d
+     /tmp/ccB7rNHH.s:134    .text.USB_SetCurrentMode:00000000 $t
+     /tmp/ccB7rNHH.s:140    .text.USB_SetCurrentMode:00000000 USB_SetCurrentMode
+     /tmp/ccB7rNHH.s:161    .text.USB_DevInit:00000000 $t
+     /tmp/ccB7rNHH.s:167    .text.USB_DevInit:00000000 USB_DevInit
+     /tmp/ccB7rNHH.s:211    .text.USB_FlushTxFifo:00000000 $t
+     /tmp/ccB7rNHH.s:217    .text.USB_FlushTxFifo:00000000 USB_FlushTxFifo
+     /tmp/ccB7rNHH.s:238    .text.USB_FlushRxFifo:00000000 $t
+     /tmp/ccB7rNHH.s:244    .text.USB_FlushRxFifo:00000000 USB_FlushRxFifo
+     /tmp/ccB7rNHH.s:264    .text.USB_ActivateEndpoint:00000000 $t
+     /tmp/ccB7rNHH.s:270    .text.USB_ActivateEndpoint:00000000 USB_ActivateEndpoint
+     /tmp/ccB7rNHH.s:1176   .text.USB_ActivateEndpoint:000002f4 $d
+     /tmp/ccB7rNHH.s:1193   .text.USB_DeactivateEndpoint:00000000 $t
+     /tmp/ccB7rNHH.s:1199   .text.USB_DeactivateEndpoint:00000000 USB_DeactivateEndpoint
+     /tmp/ccB7rNHH.s:1626   .text.USB_DeactivateEndpoint:00000158 $d
+     /tmp/ccB7rNHH.s:1637   .text.USB_EPSetStall:00000000 $t
+     /tmp/ccB7rNHH.s:1643   .text.USB_EPSetStall:00000000 USB_EPSetStall
+     /tmp/ccB7rNHH.s:1727   .text.USB_EPSetStall:00000040 $d
+     /tmp/ccB7rNHH.s:1735   .text.USB_EPClearStall:00000000 $t
+     /tmp/ccB7rNHH.s:1741   .text.USB_EPClearStall:00000000 USB_EPClearStall
+     /tmp/ccB7rNHH.s:1913   .text.USB_EPClearStall:00000084 $d
+     /tmp/ccB7rNHH.s:1923   .text.USB_EPStopXfer:00000000 $t
+     /tmp/ccB7rNHH.s:1929   .text.USB_EPStopXfer:00000000 USB_EPStopXfer
+     /tmp/ccB7rNHH.s:2087   .text.USB_EPStopXfer:00000084 $d
+     /tmp/ccB7rNHH.s:2095   .text.USB_StopDevice:00000000 $t
+     /tmp/ccB7rNHH.s:2101   .text.USB_StopDevice:00000000 USB_StopDevice
+     /tmp/ccB7rNHH.s:2134   .text.USB_SetDevAddress:00000000 $t
+     /tmp/ccB7rNHH.s:2140   .text.USB_SetDevAddress:00000000 USB_SetDevAddress
+     /tmp/ccB7rNHH.s:2169   .text.USB_DevConnect:00000000 $t
+     /tmp/ccB7rNHH.s:2175   .text.USB_DevConnect:00000000 USB_DevConnect
+     /tmp/ccB7rNHH.s:2202   .text.USB_DevConnect:00000010 $d
+     /tmp/ccB7rNHH.s:2207   .text.USB_DevDisconnect:00000000 $t
+     /tmp/ccB7rNHH.s:2213   .text.USB_DevDisconnect:00000000 USB_DevDisconnect
+     /tmp/ccB7rNHH.s:2240   .text.USB_ReadInterrupts:00000000 $t
+     /tmp/ccB7rNHH.s:2246   .text.USB_ReadInterrupts:00000000 USB_ReadInterrupts
+     /tmp/ccB7rNHH.s:2271   .text.USB_ActivateRemoteWakeup:00000000 $t
+     /tmp/ccB7rNHH.s:2277   .text.USB_ActivateRemoteWakeup:00000000 USB_ActivateRemoteWakeup
+     /tmp/ccB7rNHH.s:2305   .text.USB_DeActivateRemoteWakeup:00000000 $t
+     /tmp/ccB7rNHH.s:2311   .text.USB_DeActivateRemoteWakeup:00000000 USB_DeActivateRemoteWakeup
+     /tmp/ccB7rNHH.s:2338   .text.USB_WritePMA:00000000 $t
+     /tmp/ccB7rNHH.s:2344   .text.USB_WritePMA:00000000 USB_WritePMA
+     /tmp/ccB7rNHH.s:2423   .text.USB_EPStartXfer:00000000 $t
+     /tmp/ccB7rNHH.s:2429   .text.USB_EPStartXfer:00000000 USB_EPStartXfer
+     /tmp/ccB7rNHH.s:3327   .text.USB_EPStartXfer:00000314 $d
+     /tmp/ccB7rNHH.s:3347   .text.USB_EPStartXfer:00000334 $t
+     /tmp/ccB7rNHH.s:4248   .text.USB_EPStartXfer:00000634 $d
+     /tmp/ccB7rNHH.s:4259   .text.USB_EPStartXfer:00000648 $t
+     /tmp/ccB7rNHH.s:4514   .text.USB_EPStartXfer:00000720 $d
+ARM GAS  /tmp/ccB7rNHH.s 			page 115
 
 
-     /tmp/cccuIvuP.s:4523   .text.USB_ReadPMA:00000000 $t
-     /tmp/cccuIvuP.s:4529   .text.USB_ReadPMA:00000000 USB_ReadPMA
+     /tmp/ccB7rNHH.s:4523   .text.USB_ReadPMA:00000000 $t
+     /tmp/ccB7rNHH.s:4529   .text.USB_ReadPMA:00000000 USB_ReadPMA
 
 NO UNDEFINED SYMBOLS
