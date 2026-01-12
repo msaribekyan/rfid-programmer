@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccZr23YC.s 			page 1
+ARM GAS  /tmp/cc52WdOP.s 			page 1
 
 
    1              		.cpu cortex-m0
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccZr23YC.s 			page 1
   30:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c ****       (+) Configure the clock source(s) for peripherals whose clocks are not
   31:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c ****           derived from the System clock (RTC, ADC, I2C, USART, TIM, USB FS, etc..)
   32:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c **** 
-ARM GAS  /tmp/ccZr23YC.s 			page 2
+ARM GAS  /tmp/cc52WdOP.s 			page 2
 
 
   33:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c ****                       ##### RCC Limitations #####
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccZr23YC.s 			page 1
   87:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c **** #define MCO1_CLK_ENABLE()     __HAL_RCC_GPIOA_CLK_ENABLE()
   88:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c **** #define MCO1_GPIO_PORT        GPIOA
   89:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c **** #define MCO1_PIN              GPIO_PIN_8
-ARM GAS  /tmp/ccZr23YC.s 			page 3
+ARM GAS  /tmp/cc52WdOP.s 			page 3
 
 
   90:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c **** 
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccZr23YC.s 			page 1
  144:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c ****       (#) CSS (Clock security system), once enable using the macro __HAL_RCC_CSS_ENABLE()
  145:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c ****           and if a HSE clock failure occurs(HSE used directly or through PLL as System 
  146:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c ****           clock source), the System clocks automatically switched to HSI and an interrupt
-ARM GAS  /tmp/ccZr23YC.s 			page 4
+ARM GAS  /tmp/cc52WdOP.s 			page 4
 
 
  147:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c ****           is generated if enabled. The interrupt is linked to the Cortex-M0 NMI 
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccZr23YC.s 			page 1
  201:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c ****   *            - All interrupts disabled
  202:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c ****   *            - All interrupt and reset flags cleared
  203:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c ****   * @note   This function does not modify the configuration of the
-ARM GAS  /tmp/ccZr23YC.s 			page 5
+ARM GAS  /tmp/cc52WdOP.s 			page 5
 
 
  204:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c ****   *            - Peripheral clocks
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccZr23YC.s 			page 1
   63 001a FFF7FEFF 		bl	HAL_GetTick
   64              	.LVL3:
   65              		.loc 1 221 24 discriminator 1 view .LVU11
-ARM GAS  /tmp/ccZr23YC.s 			page 6
+ARM GAS  /tmp/cc52WdOP.s 			page 6
 
 
   66 001e 001B     		subs	r0, r0, r4
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccZr23YC.s 			page 1
  268:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c **** 
  269:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c ****   /* Reset CFGR2 register */
  270:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c ****   CLEAR_REG(RCC->CFGR2);
-ARM GAS  /tmp/ccZr23YC.s 			page 7
+ARM GAS  /tmp/cc52WdOP.s 			page 7
 
 
  271:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c **** 
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccZr23YC.s 			page 1
  106              		.loc 1 235 14 view .LVU24
  107 004a 0324     		movs	r4, #3
  108              	.LVL7:
-ARM GAS  /tmp/ccZr23YC.s 			page 8
+ARM GAS  /tmp/cc52WdOP.s 			page 8
 
 
  235:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c ****     }
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccZr23YC.s 			page 1
  258:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c ****   {
  151              		.loc 1 258 42 view .LVU37
  258:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c ****   {
-ARM GAS  /tmp/ccZr23YC.s 			page 9
+ARM GAS  /tmp/cc52WdOP.s 			page 9
 
 
  152              		.loc 1 258 9 is_stmt 0 view .LVU38
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccZr23YC.s 			page 1
  193 00ac 00100240 		.word	1073876992
  194 00b0 0CF8FFF0 		.word	-251660276
  195 00b4 88130000 		.word	5000
-ARM GAS  /tmp/ccZr23YC.s 			page 10
+ARM GAS  /tmp/cc52WdOP.s 			page 10
 
 
  196 00b8 00000000 		.word	SystemCoreClock
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccZr23YC.s 			page 1
  232              		.loc 1 302 3 view .LVU56
  303:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c **** 
  304:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c ****   /* Check Null pointer */
-ARM GAS  /tmp/ccZr23YC.s 			page 11
+ARM GAS  /tmp/cc52WdOP.s 			page 11
 
 
  305:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c ****   if(RCC_OscInitStruct == NULL)
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccZr23YC.s 			page 1
  328:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c ****     else
  329:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c ****     {
  330:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c ****       /* Set the new HSE configuration ---------------------------------------*/
-ARM GAS  /tmp/ccZr23YC.s 			page 12
+ARM GAS  /tmp/cc52WdOP.s 			page 12
 
 
  331:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c ****       __HAL_RCC_HSE_CONFIG(RCC_OscInitStruct->HSEState);
@@ -718,7 +718,7 @@ ARM GAS  /tmp/ccZr23YC.s 			page 1
  310 0066 53E2     		b	.L124	@long jump
  311              	.LCB261:
  312              	.LVL15:
-ARM GAS  /tmp/ccZr23YC.s 			page 13
+ARM GAS  /tmp/cc52WdOP.s 			page 13
 
 
  313              	.L21:
@@ -778,7 +778,7 @@ ARM GAS  /tmp/ccZr23YC.s 			page 1
  325 0070 5B68     		ldr	r3, [r3, #4]
  326 0072 0C22     		movs	r2, #12
  327              		.loc 1 373 7 view .LVU89
-ARM GAS  /tmp/ccZr23YC.s 			page 14
+ARM GAS  /tmp/cc52WdOP.s 			page 14
 
 
  328 0074 1A42     		tst	r2, r3
@@ -838,7 +838,7 @@ ARM GAS  /tmp/ccZr23YC.s 			page 1
  358              	.LVL17:
  398:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c ****         
  399:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c ****         /* Wait till HSI is ready */
-ARM GAS  /tmp/ccZr23YC.s 			page 15
+ARM GAS  /tmp/cc52WdOP.s 			page 15
 
 
  400:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c ****         while(__HAL_RCC_GET_FLAG(RCC_FLAG_HSIRDY) == RESET)
@@ -898,7 +898,7 @@ ARM GAS  /tmp/ccZr23YC.s 			page 1
  338:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c ****         
  401              		.loc 1 338 21 view .LVU114
  402 00c8 0500     		movs	r5, r0
-ARM GAS  /tmp/ccZr23YC.s 			page 16
+ARM GAS  /tmp/cc52WdOP.s 			page 16
 
 
  403              	.LVL21:
@@ -958,7 +958,7 @@ ARM GAS  /tmp/ccZr23YC.s 			page 1
  331:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c ****       
  444              		.loc 1 331 7 is_stmt 1 discriminator 7 view .LVU128
  445 00f8 794B     		ldr	r3, .L139
-ARM GAS  /tmp/ccZr23YC.s 			page 17
+ARM GAS  /tmp/cc52WdOP.s 			page 17
 
 
  446 00fa 1968     		ldr	r1, [r3]
@@ -1018,7 +1018,7 @@ ARM GAS  /tmp/ccZr23YC.s 			page 1
  486 0128 0320     		movs	r0, #3
  487 012a EFE1     		b	.L20
  488              	.LVL27:
-ARM GAS  /tmp/ccZr23YC.s 			page 18
+ARM GAS  /tmp/cc52WdOP.s 			page 18
 
 
  489              	.L125:
@@ -1078,7 +1078,7 @@ ARM GAS  /tmp/ccZr23YC.s 			page 1
  413:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c ****         /* Disable the Internal High Speed oscillator (HSI). */
  414:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c ****         __HAL_RCC_HSI_DISABLE();
  415:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c ****         
-ARM GAS  /tmp/ccZr23YC.s 			page 19
+ARM GAS  /tmp/cc52WdOP.s 			page 19
 
 
  416:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c ****         /* Get Start Tick */
@@ -1138,7 +1138,7 @@ ARM GAS  /tmp/ccZr23YC.s 			page 1
  445:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c ****       /* Wait till LSI is ready */  
  446:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c ****       while(__HAL_RCC_GET_FLAG(RCC_FLAG_LSIRDY) == RESET)
  552              		.loc 1 446 7 is_stmt 1 view .LVU161
-ARM GAS  /tmp/ccZr23YC.s 			page 20
+ARM GAS  /tmp/cc52WdOP.s 			page 20
 
 
  553              	.L44:
@@ -1198,7 +1198,7 @@ ARM GAS  /tmp/ccZr23YC.s 			page 1
  598              		.loc 1 420 9 is_stmt 1 view .LVU174
  599              	.L40:
  420:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c ****         {
-ARM GAS  /tmp/ccZr23YC.s 			page 21
+ARM GAS  /tmp/cc52WdOP.s 			page 21
 
 
  600              		.loc 1 420 51 view .LVU175
@@ -1258,7 +1258,7 @@ ARM GAS  /tmp/ccZr23YC.s 			page 1
  634              	.L46:
  635              		.loc 1 463 49 view .LVU187
  636              		.loc 1 463 13 is_stmt 0 view .LVU188
-ARM GAS  /tmp/ccZr23YC.s 			page 22
+ARM GAS  /tmp/cc52WdOP.s 			page 22
 
 
  637 01d8 414B     		ldr	r3, .L139
@@ -1318,7 +1318,7 @@ ARM GAS  /tmp/ccZr23YC.s 			page 1
  672              		.loc 1 482 7 view .LVU202
  673 01fa DB00     		lsls	r3, r3, #3
  674 01fc 1DD4     		bmi	.L95
-ARM GAS  /tmp/ccZr23YC.s 			page 23
+ARM GAS  /tmp/cc52WdOP.s 			page 23
 
 
  483:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c ****     {
@@ -1378,7 +1378,7 @@ ARM GAS  /tmp/ccZr23YC.s 			page 1
  505:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c ****     /* Set the new LSE configuration -----------------------------------------*/
  506:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c ****     __HAL_RCC_LSE_CONFIG(RCC_OscInitStruct->LSEState);
  707              		.loc 1 506 5 is_stmt 1 view .LVU214
-ARM GAS  /tmp/ccZr23YC.s 			page 24
+ARM GAS  /tmp/cc52WdOP.s 			page 24
 
 
  708              		.loc 1 506 5 view .LVU215
@@ -1438,7 +1438,7 @@ ARM GAS  /tmp/ccZr23YC.s 			page 1
  755              		.loc 1 498 9 view .LVU226
  498:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c ****         {
  756              		.loc 1 498 13 is_stmt 0 view .LVU227
-ARM GAS  /tmp/ccZr23YC.s 			page 25
+ARM GAS  /tmp/cc52WdOP.s 			page 25
 
 
  757 0258 FFF7FEFF 		bl	HAL_GetTick
@@ -1498,7 +1498,7 @@ ARM GAS  /tmp/ccZr23YC.s 			page 1
  798              		.loc 1 516 9 is_stmt 1 view .LVU242
  799              		.loc 1 516 13 is_stmt 0 view .LVU243
  800 0284 FFF7FEFF 		bl	HAL_GetTick
-ARM GAS  /tmp/ccZr23YC.s 			page 26
+ARM GAS  /tmp/cc52WdOP.s 			page 26
 
 
  801              	.LVL51:
@@ -1558,7 +1558,7 @@ ARM GAS  /tmp/ccZr23YC.s 			page 1
  521:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c ****     }
  522:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c ****     else
  523:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c ****     {
-ARM GAS  /tmp/ccZr23YC.s 			page 27
+ARM GAS  /tmp/cc52WdOP.s 			page 27
 
 
  524:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c ****       /* Get Start Tick */
@@ -1618,7 +1618,7 @@ ARM GAS  /tmp/ccZr23YC.s 			page 1
  883 02f4 012D     		cmp	r5, #1
  884 02f6 39D0     		beq	.L131
  885              	.LVL56:
-ARM GAS  /tmp/ccZr23YC.s 			page 28
+ARM GAS  /tmp/cc52WdOP.s 			page 28
 
 
  886              	.L48:
@@ -1678,7 +1678,7 @@ ARM GAS  /tmp/ccZr23YC.s 			page 1
  903              		.loc 1 575 10 is_stmt 1 view .LVU276
  904              		.loc 1 575 12 is_stmt 0 view .LVU277
  905 0304 0533     		adds	r3, r3, #5
-ARM GAS  /tmp/ccZr23YC.s 			page 29
+ARM GAS  /tmp/cc52WdOP.s 			page 29
 
 
  906 0306 57D1     		bne	.L67
@@ -1738,7 +1738,7 @@ ARM GAS  /tmp/ccZr23YC.s 			page 1
  608:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c ****   {
  609:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c ****     /* Check the parameters */
  610:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c ****     assert_param(IS_RCC_HSI48(RCC_OscInitStruct->HSI48State));
-ARM GAS  /tmp/ccZr23YC.s 			page 30
+ARM GAS  /tmp/cc52WdOP.s 			page 30
 
 
  928              		.loc 1 610 5 is_stmt 1 view .LVU283
@@ -1798,7 +1798,7 @@ ARM GAS  /tmp/ccZr23YC.s 			page 1
  961              		.loc 1 630 21 is_stmt 0 view .LVU294
  962 0350 FFF7FEFF 		bl	HAL_GetTick
  963              	.LVL57:
-ARM GAS  /tmp/ccZr23YC.s 			page 31
+ARM GAS  /tmp/cc52WdOP.s 			page 31
 
 
  964 0354 0500     		movs	r5, r0
@@ -1858,7 +1858,7 @@ ARM GAS  /tmp/ccZr23YC.s 			page 1
  1007              		.loc 1 558 7 view .LVU307
  1008 0382 5A6B     		ldr	r2, [r3, #52]
  1009 0384 0339     		subs	r1, r1, #3
-ARM GAS  /tmp/ccZr23YC.s 			page 32
+ARM GAS  /tmp/cc52WdOP.s 			page 32
 
 
  1010 0386 0A43     		orrs	r2, r1
@@ -1918,7 +1918,7 @@ ARM GAS  /tmp/ccZr23YC.s 			page 1
  586:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c **** 
  1052              		.loc 1 586 7 view .LVU320
  1053 03b8 5D4B     		ldr	r3, .L141
-ARM GAS  /tmp/ccZr23YC.s 			page 33
+ARM GAS  /tmp/cc52WdOP.s 			page 33
 
 
  1054 03ba 5A6B     		ldr	r2, [r3, #52]
@@ -1978,7 +1978,7 @@ ARM GAS  /tmp/ccZr23YC.s 			page 1
  1095 03ea C022     		movs	r2, #192
  1096 03ec 5202     		lsls	r2, r2, #9
  1097 03ee 1340     		ands	r3, r2
-ARM GAS  /tmp/ccZr23YC.s 			page 34
+ARM GAS  /tmp/cc52WdOP.s 			page 34
 
 
  614:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c ****     {
@@ -2038,7 +2038,7 @@ ARM GAS  /tmp/ccZr23YC.s 			page 1
  1118              		.loc 1 665 3 view .LVU341
  1119              		.loc 1 665 30 is_stmt 0 view .LVU342
  1120 0404 636A     		ldr	r3, [r4, #36]
-ARM GAS  /tmp/ccZr23YC.s 			page 35
+ARM GAS  /tmp/cc52WdOP.s 			page 35
 
 
  1121              		.loc 1 665 6 view .LVU343
@@ -2098,7 +2098,7 @@ ARM GAS  /tmp/ccZr23YC.s 			page 1
  702:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c ****         /* Wait till PLL is ready */
  703:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c ****         while(__HAL_RCC_GET_FLAG(RCC_FLAG_PLLRDY)  == RESET)
  704:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c ****         {
-ARM GAS  /tmp/ccZr23YC.s 			page 36
+ARM GAS  /tmp/cc52WdOP.s 			page 36
 
 
  705:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c ****           if((HAL_GetTick() - tickstart ) > PLL_TIMEOUT_VALUE)
@@ -2158,7 +2158,7 @@ ARM GAS  /tmp/ccZr23YC.s 			page 1
  1173              	.L73:
  644:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c **** 
  1174              		.loc 1 644 9 is_stmt 1 view .LVU361
-ARM GAS  /tmp/ccZr23YC.s 			page 37
+ARM GAS  /tmp/cc52WdOP.s 			page 37
 
 
  1175 0442 3B4A     		ldr	r2, .L141
@@ -2218,7 +2218,7 @@ ARM GAS  /tmp/ccZr23YC.s 			page 1
  1214 046a 1368     		ldr	r3, [r2]
  1215 046c 3249     		ldr	r1, .L141+8
  1216 046e 0B40     		ands	r3, r1
-ARM GAS  /tmp/ccZr23YC.s 			page 38
+ARM GAS  /tmp/cc52WdOP.s 			page 38
 
 
  1217 0470 1360     		str	r3, [r2]
@@ -2278,7 +2278,7 @@ ARM GAS  /tmp/ccZr23YC.s 			page 1
  1257 049e 2849     		ldr	r1, .L141+16
  1258 04a0 0A40     		ands	r2, r1
  1259 04a2 E16A     		ldr	r1, [r4, #44]
-ARM GAS  /tmp/ccZr23YC.s 			page 39
+ARM GAS  /tmp/cc52WdOP.s 			page 39
 
 
  1260 04a4 A06A     		ldr	r0, [r4, #40]
@@ -2338,7 +2338,7 @@ ARM GAS  /tmp/ccZr23YC.s 			page 1
  727:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c ****       }
  728:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c ****     }
  729:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c ****     else
-ARM GAS  /tmp/ccZr23YC.s 			page 40
+ARM GAS  /tmp/cc52WdOP.s 			page 40
 
 
  730:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c ****     {
@@ -2398,7 +2398,7 @@ ARM GAS  /tmp/ccZr23YC.s 			page 1
  1323 04e4 C023     		movs	r3, #192
  1324 04e6 5B02     		lsls	r3, r3, #9
  1325 04e8 1340     		ands	r3, r2
-ARM GAS  /tmp/ccZr23YC.s 			page 41
+ARM GAS  /tmp/cc52WdOP.s 			page 41
 
 
  741:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c ****            (READ_BIT(pll_config2, RCC_CFGR2_PREDIV) != RCC_OscInitStruct->PLL.PREDIV)    ||
@@ -2458,7 +2458,7 @@ ARM GAS  /tmp/ccZr23YC.s 			page 1
  325:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c ****       }
  1369              		.loc 1 325 16 view .LVU427
  1370 0512 FBE7     		b	.L20
-ARM GAS  /tmp/ccZr23YC.s 			page 42
+ARM GAS  /tmp/cc52WdOP.s 			page 42
 
 
  1371              	.L90:
@@ -2518,7 +2518,7 @@ ARM GAS  /tmp/ccZr23YC.s 			page 1
  1415 0540 FF7FC2FF 		.word	-4030465
  1416              		.cfi_endproc
  1417              	.LFE41:
-ARM GAS  /tmp/ccZr23YC.s 			page 43
+ARM GAS  /tmp/cc52WdOP.s 			page 43
 
 
  1419              		.section	.text.HAL_RCC_MCOConfig,"ax",%progbits
@@ -2578,7 +2578,7 @@ ARM GAS  /tmp/ccZr23YC.s 			page 1
  798:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c ****     /* Program the new number of wait states to the LATENCY bits in the FLASH_ACR register */
  799:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c ****     __HAL_FLASH_SET_LATENCY(FLatency);
  800:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c ****     
-ARM GAS  /tmp/ccZr23YC.s 			page 44
+ARM GAS  /tmp/cc52WdOP.s 			page 44
 
 
  801:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c ****     /* Check that the new number of wait states is taken into account to access the Flash
@@ -2638,7 +2638,7 @@ ARM GAS  /tmp/ccZr23YC.s 			page 1
  855:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c ****       }
  856:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c ****     }
  857:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c **** #endif /* RCC_CFGR_SWS_HSI48 */
-ARM GAS  /tmp/ccZr23YC.s 			page 45
+ARM GAS  /tmp/cc52WdOP.s 			page 45
 
 
  858:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c ****     /* HSI is selected as System Clock Source */
@@ -2698,7 +2698,7 @@ ARM GAS  /tmp/ccZr23YC.s 			page 1
  912:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c ****   * @}
  913:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c ****   */
  914:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c **** 
-ARM GAS  /tmp/ccZr23YC.s 			page 46
+ARM GAS  /tmp/cc52WdOP.s 			page 46
 
 
  915:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c **** /** @defgroup RCC_Exported_Functions_Group2 Peripheral Control functions
@@ -2758,7 +2758,7 @@ ARM GAS  /tmp/ccZr23YC.s 			page 1
  969:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c ****   @elif STM32F030xC
  970:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c ****   *            @arg @ref RCC_MCO1SOURCE_PLLCLK      PLLCLK selected as MCO clock
  971:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c ****   @elif STM32F031x6
-ARM GAS  /tmp/ccZr23YC.s 			page 47
+ARM GAS  /tmp/cc52WdOP.s 			page 47
 
 
  972:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c ****   *            @arg @ref RCC_MCO1SOURCE_PLLCLK      PLLCLK selected as MCO clock
@@ -2818,7 +2818,7 @@ ARM GAS  /tmp/ccZr23YC.s 			page 1
  1437              		.cfi_offset 4, -16
  1438              		.cfi_offset 5, -12
  1439              		.cfi_offset 6, -8
-ARM GAS  /tmp/ccZr23YC.s 			page 48
+ARM GAS  /tmp/cc52WdOP.s 			page 48
 
 
  1440              		.cfi_offset 14, -4
@@ -2878,7 +2878,7 @@ ARM GAS  /tmp/ccZr23YC.s 			page 1
 1036:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c ****   MCO1_CLK_ENABLE();
  1476              		.loc 1 1036 3 is_stmt 1 view .LVU457
  1477              	.LBB5:
-ARM GAS  /tmp/ccZr23YC.s 			page 49
+ARM GAS  /tmp/cc52WdOP.s 			page 49
 
 
  1478              		.loc 1 1036 3 view .LVU458
@@ -2938,7 +2938,7 @@ ARM GAS  /tmp/ccZr23YC.s 			page 1
  1527              		.syntax unified
  1528              		.code	16
  1529              		.thumb_func
-ARM GAS  /tmp/ccZr23YC.s 			page 50
+ARM GAS  /tmp/cc52WdOP.s 			page 50
 
 
  1531              	HAL_RCC_EnableCSS:
@@ -2998,7 +2998,7 @@ ARM GAS  /tmp/ccZr23YC.s 			page 1
  1566              		@ args = 0, pretend = 0, frame = 0
  1567              		@ frame_needed = 0, uses_anonymous_args = 0
  1568              		@ link register save eliminated.
-ARM GAS  /tmp/ccZr23YC.s 			page 51
+ARM GAS  /tmp/cc52WdOP.s 			page 51
 
 
 1064:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c ****   CLEAR_BIT(RCC->CR, RCC_CR_CSSON) ;
@@ -3058,7 +3058,7 @@ ARM GAS  /tmp/ccZr23YC.s 			page 1
 1094:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c ****   *         right SYSCLK value. Otherwise, any configuration based on this function will be incorre
 1095:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c ****   *         
 1096:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c ****   * @retval SYSCLK frequency
-ARM GAS  /tmp/ccZr23YC.s 			page 52
+ARM GAS  /tmp/cc52WdOP.s 			page 52
 
 
 1097:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c ****   */
@@ -3118,7 +3118,7 @@ ARM GAS  /tmp/ccZr23YC.s 			page 1
 1123:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c ****       {
 1124:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c ****         /* HSE used as PLL clock source : PLLCLK = HSE/PREDIV * PLLMUL */
 1125:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c ****         pllclk = (uint32_t)((uint64_t) HSE_VALUE / (uint64_t) (prediv)) * ((uint64_t) pllmul);
-ARM GAS  /tmp/ccZr23YC.s 			page 53
+ARM GAS  /tmp/cc52WdOP.s 			page 53
 
 
 1126:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c ****       }
@@ -3178,7 +3178,7 @@ ARM GAS  /tmp/ccZr23YC.s 			page 1
  1637              		.loc 1 1120 34 view .LVU489
  1638 001c 1348     		ldr	r0, .L160+8
  1639 001e 445C     		ldrb	r4, [r0, r1]
-ARM GAS  /tmp/ccZr23YC.s 			page 54
+ARM GAS  /tmp/cc52WdOP.s 			page 54
 
 
  1640              	.LVL110:
@@ -3238,7 +3238,7 @@ ARM GAS  /tmp/ccZr23YC.s 			page 1
  1680              		.loc 1 1125 9 is_stmt 1 view .LVU503
 1125:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c ****       }
  1681              		.loc 1 1125 18 is_stmt 0 view .LVU504
-ARM GAS  /tmp/ccZr23YC.s 			page 55
+ARM GAS  /tmp/cc52WdOP.s 			page 55
 
 
  1682 004a 0A48     		ldr	r0, .L160+16
@@ -3298,7 +3298,7 @@ ARM GAS  /tmp/ccZr23YC.s 			page 1
  1729              	.LVL123:
  1730              	.LFB42:
  778:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c ****   uint32_t tickstart;
-ARM GAS  /tmp/ccZr23YC.s 			page 56
+ARM GAS  /tmp/cc52WdOP.s 			page 56
 
 
  1731              		.loc 1 778 1 is_stmt 1 view -0
@@ -3358,7 +3358,7 @@ ARM GAS  /tmp/ccZr23YC.s 			page 1
  803:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c ****     {
  1773              		.loc 1 803 8 is_stmt 0 view .LVU527
  1774 0024 0B68     		ldr	r3, [r1]
-ARM GAS  /tmp/ccZr23YC.s 			page 57
+ARM GAS  /tmp/cc52WdOP.s 			page 57
 
 
  1775 0026 1A40     		ands	r2, r3
@@ -3418,7 +3418,7 @@ ARM GAS  /tmp/ccZr23YC.s 			page 1
  1816              		.loc 1 827 5 is_stmt 1 view .LVU540
  830:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c ****     {
  1817              		.loc 1 830 5 view .LVU541
-ARM GAS  /tmp/ccZr23YC.s 			page 58
+ARM GAS  /tmp/cc52WdOP.s 			page 58
 
 
  830:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c ****     {
@@ -3478,7 +3478,7 @@ ARM GAS  /tmp/ccZr23YC.s 			page 1
  1857              	.LVL127:
  867:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c **** 
  1858              		.loc 1 867 5 is_stmt 0 view .LVU557
-ARM GAS  /tmp/ccZr23YC.s 			page 59
+ARM GAS  /tmp/cc52WdOP.s 			page 59
 
 
  1859 0080 8243     		bics	r2, r0
@@ -3538,7 +3538,7 @@ ARM GAS  /tmp/ccZr23YC.s 			page 1
  842:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c ****       {
  1899              		.loc 1 842 10 is_stmt 0 view .LVU572
  1900 00ac 204A     		ldr	r2, .L195+4
-ARM GAS  /tmp/ccZr23YC.s 			page 60
+ARM GAS  /tmp/cc52WdOP.s 			page 60
 
 
  1901 00ae 1268     		ldr	r2, [r2]
@@ -3598,7 +3598,7 @@ ARM GAS  /tmp/ccZr23YC.s 			page 1
  889:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c ****     {
  1942              		.loc 1 889 8 is_stmt 0 view .LVU586
  1943 00dc 0B68     		ldr	r3, [r1]
-ARM GAS  /tmp/ccZr23YC.s 			page 61
+ARM GAS  /tmp/cc52WdOP.s 			page 61
 
 
  1944 00de 1A40     		ands	r2, r3
@@ -3658,7 +3658,7 @@ ARM GAS  /tmp/ccZr23YC.s 			page 1
  1984              		.loc 1 906 3 is_stmt 1 view .LVU600
  1985 0110 0320     		movs	r0, #3
  1986 0112 FFF7FEFF 		bl	HAL_InitTick
-ARM GAS  /tmp/ccZr23YC.s 			page 62
+ARM GAS  /tmp/cc52WdOP.s 			page 62
 
 
  1987              	.LVL136:
@@ -3718,7 +3718,7 @@ ARM GAS  /tmp/ccZr23YC.s 			page 1
  2030 013c 00000000 		.word	AHBPrescTable
  2031 0140 00000000 		.word	SystemCoreClock
  2032              		.cfi_endproc
-ARM GAS  /tmp/ccZr23YC.s 			page 63
+ARM GAS  /tmp/cc52WdOP.s 			page 63
 
 
  2033              	.LFE42:
@@ -3778,7 +3778,7 @@ ARM GAS  /tmp/ccZr23YC.s 			page 1
 1181:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c ****   *         right PCLK1 value. Otherwise, any configuration based on this function will be incorrec
 1182:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c ****   * @retval PCLK1 frequency
 1183:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c ****   */
-ARM GAS  /tmp/ccZr23YC.s 			page 64
+ARM GAS  /tmp/cc52WdOP.s 			page 64
 
 
 1184:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c **** uint32_t HAL_RCC_GetPCLK1Freq(void)
@@ -3838,7 +3838,7 @@ ARM GAS  /tmp/ccZr23YC.s 			page 1
 1194:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c ****   * will be configured.
 1195:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c ****   * @retval None
 1196:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c ****   */
-ARM GAS  /tmp/ccZr23YC.s 			page 65
+ARM GAS  /tmp/cc52WdOP.s 			page 65
 
 
 1197:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c **** void HAL_RCC_GetOscConfig(RCC_OscInitTypeDef  *RCC_OscInitStruct)
@@ -3898,7 +3898,7 @@ ARM GAS  /tmp/ccZr23YC.s 			page 1
 1225:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c ****   if((RCC->CR &RCC_CR_HSION) == RCC_CR_HSION)
  2145              		.loc 1 1225 3 is_stmt 1 view .LVU636
  2146              		.loc 1 1225 10 is_stmt 0 view .LVU637
-ARM GAS  /tmp/ccZr23YC.s 			page 66
+ARM GAS  /tmp/cc52WdOP.s 			page 66
 
 
  2147 0014 2F4B     		ldr	r3, .L218
@@ -3958,7 +3958,7 @@ ARM GAS  /tmp/ccZr23YC.s 			page 1
 1249:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c ****   
 1250:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c ****   /* Get the LSI configuration -----------------------------------------------*/
 1251:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c ****   if((RCC->CSR &RCC_CSR_LSION) == RCC_CSR_LSION)
-ARM GAS  /tmp/ccZr23YC.s 			page 67
+ARM GAS  /tmp/cc52WdOP.s 			page 67
 
 
  2178              		.loc 1 1251 3 is_stmt 1 view .LVU650
@@ -4018,7 +4018,7 @@ ARM GAS  /tmp/ccZr23YC.s 			page 1
 1272:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c **** #if defined(RCC_HSI48_SUPPORT)
 1273:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c ****   /* Get the HSI48 configuration if any-----------------------------------------*/
 1274:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c ****   RCC_OscInitStruct->HSI48State = __HAL_RCC_GET_HSI48_STATE();
-ARM GAS  /tmp/ccZr23YC.s 			page 68
+ARM GAS  /tmp/cc52WdOP.s 			page 68
 
 
  2212              		.loc 1 1274 3 is_stmt 1 view .LVU664
@@ -4078,7 +4078,7 @@ ARM GAS  /tmp/ccZr23YC.s 			page 1
  2252              		.loc 1 1288 3 is_stmt 1 view .LVU680
  2253              		.loc 1 1288 49 is_stmt 0 view .LVU681
  2254 0088 DA6A     		ldr	r2, [r3, #44]
-ARM GAS  /tmp/ccZr23YC.s 			page 69
+ARM GAS  /tmp/cc52WdOP.s 			page 69
 
 
  2255              		.loc 1 1288 35 view .LVU682
@@ -4138,7 +4138,7 @@ ARM GAS  /tmp/ccZr23YC.s 			page 1
 1243:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c ****   }
  2296              		.loc 1 1243 5 is_stmt 1 view .LVU697
 1243:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c ****   }
-ARM GAS  /tmp/ccZr23YC.s 			page 70
+ARM GAS  /tmp/cc52WdOP.s 			page 70
 
 
  2297              		.loc 1 1243 33 is_stmt 0 view .LVU698
@@ -4198,7 +4198,7 @@ ARM GAS  /tmp/ccZr23YC.s 			page 1
 1293:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c ****   * RCC configuration registers.
 1294:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c ****   * @param  RCC_ClkInitStruct pointer to an RCC_ClkInitTypeDef structure that 
 1295:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c ****   * contains the current clock configuration.
-ARM GAS  /tmp/ccZr23YC.s 			page 71
+ARM GAS  /tmp/cc52WdOP.s 			page 71
 
 
 1296:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c ****   * @param  pFLatency Pointer on the Flash Latency.
@@ -4258,7 +4258,7 @@ ARM GAS  /tmp/ccZr23YC.s 			page 1
  2376              		.loc 1 1315 53 is_stmt 0 view .LVU722
  2377 0018 5B68     		ldr	r3, [r3, #4]
  2378              		.loc 1 1315 39 view .LVU723
-ARM GAS  /tmp/ccZr23YC.s 			page 72
+ARM GAS  /tmp/cc52WdOP.s 			page 72
 
 
  2379 001a E022     		movs	r2, #224
@@ -4318,7 +4318,7 @@ ARM GAS  /tmp/ccZr23YC.s 			page 1
 1339:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c ****   * @brief  RCC Clock Security System interrupt callback
 1340:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c ****   * @retval none
 1341:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c ****   */
-ARM GAS  /tmp/ccZr23YC.s 			page 73
+ARM GAS  /tmp/cc52WdOP.s 			page 73
 
 
 1342:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c **** __weak void HAL_RCC_CSSCallback(void)
@@ -4378,7 +4378,7 @@ ARM GAS  /tmp/ccZr23YC.s 			page 1
 1334:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c ****   }
  2456              		.loc 1 1334 5 view .LVU737
  2457 0010 024B     		ldr	r3, .L228+4
-ARM GAS  /tmp/ccZr23YC.s 			page 74
+ARM GAS  /tmp/cc52WdOP.s 			page 74
 
 
  2458 0012 8022     		movs	r2, #128
@@ -4420,55 +4420,55 @@ ARM GAS  /tmp/ccZr23YC.s 			page 1
  2492              		.file 8 "Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_rcc.h"
  2493              		.file 9 "Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_gpio.h"
  2494              		.file 10 "Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal.h"
-ARM GAS  /tmp/ccZr23YC.s 			page 75
+ARM GAS  /tmp/cc52WdOP.s 			page 75
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 stm32f0xx_hal_rcc.c
-     /tmp/ccZr23YC.s:19     .text.HAL_RCC_DeInit:00000000 $t
-     /tmp/ccZr23YC.s:25     .text.HAL_RCC_DeInit:00000000 HAL_RCC_DeInit
-     /tmp/ccZr23YC.s:193    .text.HAL_RCC_DeInit:000000ac $d
-     /tmp/ccZr23YC.s:205    .text.HAL_RCC_OscConfig:00000000 $t
-     /tmp/ccZr23YC.s:211    .text.HAL_RCC_OscConfig:00000000 HAL_RCC_OscConfig
-     /tmp/ccZr23YC.s:875    .text.HAL_RCC_OscConfig:000002e0 $d
-     /tmp/ccZr23YC.s:883    .text.HAL_RCC_OscConfig:000002f4 $t
-     /tmp/ccZr23YC.s:1411   .text.HAL_RCC_OscConfig:00000530 $d
-     /tmp/ccZr23YC.s:1420   .text.HAL_RCC_MCOConfig:00000000 $t
-     /tmp/ccZr23YC.s:1426   .text.HAL_RCC_MCOConfig:00000000 HAL_RCC_MCOConfig
-     /tmp/ccZr23YC.s:1519   .text.HAL_RCC_MCOConfig:0000004c $d
-     /tmp/ccZr23YC.s:1525   .text.HAL_RCC_EnableCSS:00000000 $t
-     /tmp/ccZr23YC.s:1531   .text.HAL_RCC_EnableCSS:00000000 HAL_RCC_EnableCSS
-     /tmp/ccZr23YC.s:1551   .text.HAL_RCC_EnableCSS:00000010 $d
-     /tmp/ccZr23YC.s:1556   .text.HAL_RCC_DisableCSS:00000000 $t
-     /tmp/ccZr23YC.s:1562   .text.HAL_RCC_DisableCSS:00000000 HAL_RCC_DisableCSS
-     /tmp/ccZr23YC.s:1581   .text.HAL_RCC_DisableCSS:0000000c $d
-     /tmp/ccZr23YC.s:1587   .text.HAL_RCC_GetSysClockFreq:00000000 $t
-     /tmp/ccZr23YC.s:1593   .text.HAL_RCC_GetSysClockFreq:00000000 HAL_RCC_GetSysClockFreq
-     /tmp/ccZr23YC.s:1713   .text.HAL_RCC_GetSysClockFreq:00000064 $d
-     /tmp/ccZr23YC.s:2481   .rodata.aPLLMULFactorTable.1:00000000 aPLLMULFactorTable.1
-     /tmp/ccZr23YC.s:2474   .rodata.aPredivFactorTable.0:00000000 aPredivFactorTable.0
-     /tmp/ccZr23YC.s:1722   .text.HAL_RCC_ClockConfig:00000000 $t
-     /tmp/ccZr23YC.s:1728   .text.HAL_RCC_ClockConfig:00000000 HAL_RCC_ClockConfig
-     /tmp/ccZr23YC.s:2026   .text.HAL_RCC_ClockConfig:0000012c $d
-     /tmp/ccZr23YC.s:2036   .text.HAL_RCC_GetHCLKFreq:00000000 $t
-     /tmp/ccZr23YC.s:2042   .text.HAL_RCC_GetHCLKFreq:00000000 HAL_RCC_GetHCLKFreq
-     /tmp/ccZr23YC.s:2060   .text.HAL_RCC_GetHCLKFreq:00000008 $d
-     /tmp/ccZr23YC.s:2065   .text.HAL_RCC_GetPCLK1Freq:00000000 $t
-     /tmp/ccZr23YC.s:2071   .text.HAL_RCC_GetPCLK1Freq:00000000 HAL_RCC_GetPCLK1Freq
-     /tmp/ccZr23YC.s:2104   .text.HAL_RCC_GetPCLK1Freq:00000018 $d
-     /tmp/ccZr23YC.s:2110   .text.HAL_RCC_GetOscConfig:00000000 $t
-     /tmp/ccZr23YC.s:2116   .text.HAL_RCC_GetOscConfig:00000000 HAL_RCC_GetOscConfig
-     /tmp/ccZr23YC.s:2328   .text.HAL_RCC_GetOscConfig:000000d4 $d
-     /tmp/ccZr23YC.s:2333   .text.HAL_RCC_GetClockConfig:00000000 $t
-     /tmp/ccZr23YC.s:2339   .text.HAL_RCC_GetClockConfig:00000000 HAL_RCC_GetClockConfig
-     /tmp/ccZr23YC.s:2398   .text.HAL_RCC_GetClockConfig:00000030 $d
-     /tmp/ccZr23YC.s:2404   .text.HAL_RCC_CSSCallback:00000000 $t
-     /tmp/ccZr23YC.s:2410   .text.HAL_RCC_CSSCallback:00000000 HAL_RCC_CSSCallback
-     /tmp/ccZr23YC.s:2424   .text.HAL_RCC_NMI_IRQHandler:00000000 $t
-     /tmp/ccZr23YC.s:2430   .text.HAL_RCC_NMI_IRQHandler:00000000 HAL_RCC_NMI_IRQHandler
-     /tmp/ccZr23YC.s:2465   .text.HAL_RCC_NMI_IRQHandler:00000018 $d
-     /tmp/ccZr23YC.s:2471   .rodata.aPredivFactorTable.0:00000000 $d
-     /tmp/ccZr23YC.s:2478   .rodata.aPLLMULFactorTable.1:00000000 $d
+     /tmp/cc52WdOP.s:19     .text.HAL_RCC_DeInit:00000000 $t
+     /tmp/cc52WdOP.s:25     .text.HAL_RCC_DeInit:00000000 HAL_RCC_DeInit
+     /tmp/cc52WdOP.s:193    .text.HAL_RCC_DeInit:000000ac $d
+     /tmp/cc52WdOP.s:205    .text.HAL_RCC_OscConfig:00000000 $t
+     /tmp/cc52WdOP.s:211    .text.HAL_RCC_OscConfig:00000000 HAL_RCC_OscConfig
+     /tmp/cc52WdOP.s:875    .text.HAL_RCC_OscConfig:000002e0 $d
+     /tmp/cc52WdOP.s:883    .text.HAL_RCC_OscConfig:000002f4 $t
+     /tmp/cc52WdOP.s:1411   .text.HAL_RCC_OscConfig:00000530 $d
+     /tmp/cc52WdOP.s:1420   .text.HAL_RCC_MCOConfig:00000000 $t
+     /tmp/cc52WdOP.s:1426   .text.HAL_RCC_MCOConfig:00000000 HAL_RCC_MCOConfig
+     /tmp/cc52WdOP.s:1519   .text.HAL_RCC_MCOConfig:0000004c $d
+     /tmp/cc52WdOP.s:1525   .text.HAL_RCC_EnableCSS:00000000 $t
+     /tmp/cc52WdOP.s:1531   .text.HAL_RCC_EnableCSS:00000000 HAL_RCC_EnableCSS
+     /tmp/cc52WdOP.s:1551   .text.HAL_RCC_EnableCSS:00000010 $d
+     /tmp/cc52WdOP.s:1556   .text.HAL_RCC_DisableCSS:00000000 $t
+     /tmp/cc52WdOP.s:1562   .text.HAL_RCC_DisableCSS:00000000 HAL_RCC_DisableCSS
+     /tmp/cc52WdOP.s:1581   .text.HAL_RCC_DisableCSS:0000000c $d
+     /tmp/cc52WdOP.s:1587   .text.HAL_RCC_GetSysClockFreq:00000000 $t
+     /tmp/cc52WdOP.s:1593   .text.HAL_RCC_GetSysClockFreq:00000000 HAL_RCC_GetSysClockFreq
+     /tmp/cc52WdOP.s:1713   .text.HAL_RCC_GetSysClockFreq:00000064 $d
+     /tmp/cc52WdOP.s:2481   .rodata.aPLLMULFactorTable.1:00000000 aPLLMULFactorTable.1
+     /tmp/cc52WdOP.s:2474   .rodata.aPredivFactorTable.0:00000000 aPredivFactorTable.0
+     /tmp/cc52WdOP.s:1722   .text.HAL_RCC_ClockConfig:00000000 $t
+     /tmp/cc52WdOP.s:1728   .text.HAL_RCC_ClockConfig:00000000 HAL_RCC_ClockConfig
+     /tmp/cc52WdOP.s:2026   .text.HAL_RCC_ClockConfig:0000012c $d
+     /tmp/cc52WdOP.s:2036   .text.HAL_RCC_GetHCLKFreq:00000000 $t
+     /tmp/cc52WdOP.s:2042   .text.HAL_RCC_GetHCLKFreq:00000000 HAL_RCC_GetHCLKFreq
+     /tmp/cc52WdOP.s:2060   .text.HAL_RCC_GetHCLKFreq:00000008 $d
+     /tmp/cc52WdOP.s:2065   .text.HAL_RCC_GetPCLK1Freq:00000000 $t
+     /tmp/cc52WdOP.s:2071   .text.HAL_RCC_GetPCLK1Freq:00000000 HAL_RCC_GetPCLK1Freq
+     /tmp/cc52WdOP.s:2104   .text.HAL_RCC_GetPCLK1Freq:00000018 $d
+     /tmp/cc52WdOP.s:2110   .text.HAL_RCC_GetOscConfig:00000000 $t
+     /tmp/cc52WdOP.s:2116   .text.HAL_RCC_GetOscConfig:00000000 HAL_RCC_GetOscConfig
+     /tmp/cc52WdOP.s:2328   .text.HAL_RCC_GetOscConfig:000000d4 $d
+     /tmp/cc52WdOP.s:2333   .text.HAL_RCC_GetClockConfig:00000000 $t
+     /tmp/cc52WdOP.s:2339   .text.HAL_RCC_GetClockConfig:00000000 HAL_RCC_GetClockConfig
+     /tmp/cc52WdOP.s:2398   .text.HAL_RCC_GetClockConfig:00000030 $d
+     /tmp/cc52WdOP.s:2404   .text.HAL_RCC_CSSCallback:00000000 $t
+     /tmp/cc52WdOP.s:2410   .text.HAL_RCC_CSSCallback:00000000 HAL_RCC_CSSCallback
+     /tmp/cc52WdOP.s:2424   .text.HAL_RCC_NMI_IRQHandler:00000000 $t
+     /tmp/cc52WdOP.s:2430   .text.HAL_RCC_NMI_IRQHandler:00000000 HAL_RCC_NMI_IRQHandler
+     /tmp/cc52WdOP.s:2465   .text.HAL_RCC_NMI_IRQHandler:00000018 $d
+     /tmp/cc52WdOP.s:2471   .rodata.aPredivFactorTable.0:00000000 $d
+     /tmp/cc52WdOP.s:2478   .rodata.aPLLMULFactorTable.1:00000000 $d
 
 UNDEFINED SYMBOLS
 HAL_GetTick
