@@ -111,6 +111,8 @@ int main(void)
 	USER_LOG("Starting...\n");
 	MFRC522_Init(&rc522);
 	HAL_Delay(2000);
+	uint8_t status;
+	uint8_t cardstr[MAX_LEN+1];
 	
   /* USER CODE END 2 */
 
@@ -118,16 +120,17 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-		if(waitcardDetect(&rc522) == STATUS_OK)
+		
+		if(MFRC522_Request(&rc522, PICC_REQIDL, cardstr) == MI_OK)
 		{
-			if (MFRC522_ReadUid(&rc522, uid) == STATUS_OK)
+			if (MFRC522_Anticoll(&rc522, cardstr) == MI_OK)
 			{
 				HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_SET);
-				USER_LOG("Card Id: %02X %02X %02X %02X\n", uid[0], uid[1], uid[2], uid[3]);
+				printf("Card Id: %02X %02X %02X %02X\n", cardstr[0], cardstr[1], cardstr[2], cardstr[3]);
+				HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_RESET);
 			}
-			HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_RESET);
-			waitcardRemoval(&rc522);
 		}
+		HAL_Delay(1000);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */

@@ -90,6 +90,7 @@ void MFRC522_ClearBitMask(MFRC522_t *dev, uint8_t reg, uint8_t mask) {
     DEBUG_LOG("ClearBitMask: 0x%02X &= ~0x%02X", reg, mask);
 }
 
+/*
 uint8_t MFRC522_RequestA(MFRC522_t *dev, uint8_t *atqa) {
     DEBUG_LOG("RequestA");
     MFRC522_AntennaOff(dev);  // Reset RF
@@ -236,5 +237,158 @@ uint8_t waitcardDetect (MFRC522_t *dev){
 	    HAL_Delay(100);	// Poll every 100ms to check if card is  present
 	}
 }
+*/
+
+uint8_t MFRC522_ToCard(MFRC522_t *dev, uint8_t command, uint8_t *sendData, uint8_t sendLen, uint8_t *backData, uint32_t *backLen)
+{
+  uint8_t status = MI_ERR;
+  uint8_t irqEn = 0x00;
+  uint8_t waitIRq = 0x00;
+  uint8_t lastBits;
+  uint8_t n;
+  uint32_t i;
+
+	switch (command)
+	{
+	case PCD_AUTHENT:     // Certification cards close
+	{
+		irqEn = 0x12;
+		waitIRq = 0x10;
+		break;
+	}
+	case PCD_TRANSCEIVE:  // Transmit FIFO data
+	{
+		irqEn = 0x77;
+		waitIRq = 0x30;
+		break;
+	}
+	default:
+		break;
+	}
+
+	MFRC522_WriteReg(dev, CommIEnReg, irqEn|0x80);  // Interrupt request
+	MFRC522_ClearBitMask(dev, CommIrqReg, 0x80);         // Clear all interrupt request bit
+	MFRC522_SetBitMask(dev, FIFOLevelReg, 0x80);         // FlushBuffer=1, FIFO Initialization
+	
+	MFRC522_WriteReg(dev, CommandReg, PCD_IDLE);
+	
+	for (i=0; i<sendLen; i++)
+	{
+		MFRC522_WriteReg(dev, FIFODataReg, sendData[i]);
+	}
+
+    HAL_Delay(2);  // Increased for counterfeit chip stability
+
+	MFRC522_WriteReg(dev, CommandReg, command);
+	if (command == PCD_TRANSCEIVE)
+	{
+		MFRC522_SetBitMask(dev, BitFramingReg, 0x80);      // StartSend=1,transmission of data starts
+	}
 
 
+    // Poll for completion (25ms timeout)
+	i = HAL_GetTick() + 25;
+	do
+	{
+		n = MFRC522_ReadReg(dev, CommIrqReg);	
+	}
+	while ((HAL_GetTick() < i) && !(n&0x01) && !(n&waitIRq));
+
+	if (HAL_GetTick() < i)
+	{
+		if(!(MFRC522_ReadReg(dev, ErrorReg) & 0x1B))  // BufferOvfl Collerr CRCErr ProtecolErr
+		{
+			status = MI_OK;
+			if (n & irqEn & 0x01)
+			{
+				status = MI_NOTAGERR;             // ??
+			}
+			if (command == PCD_TRANSCEIVE)
+			{
+				n = MFRC522_ReadReg(dev, FIFOLevelReg);
+				lastBits = MFRC522_ReadReg(dev, ControlReg) & 0x07;
+				if (lastBits)
+				{
+					*backLen = (n-1)*8 + lastBits;
+				}
+				else
+				{
+					*backLen = n*8;
+				}
+				if (n == 0)
+				{
+					n = 1;
+				}
+				if (n > MAX_LEN)
+				{
+					n = MAX_LEN;
+				}
+				// Reading the received data in FIFO
+				for (i=0; i<n; i++)
+				{
+					backData[i] = MFRC522_ReadReg(dev, FIFODataReg);
+				}
+			}
+		}
+		else
+		{
+			//printf("~~~ buffer overflow, collerr, crcerr, or protecolerr\r\n");
+			status = MI_ERR;
+		}
+	}
+	else
+	{
+		//printf("~~~ request timed out\r\n");
+	}
+
+	return status;
+}
+
+uint8_t MFRC522_Request(MFRC522_t *dev, uint8_t req_mode, uint8_t *tag_type)
+{
+	uint8_t status;
+	uint32_t backBits; // The received data bits
+
+	MFRC522_WriteReg(dev, BitFramingReg, 0x07);   // TxLastBists = BitFramingReg[2..0]
+
+	tag_type[0] = req_mode;
+
+	status = MFRC522_ToCard(dev, PCD_TRANSCEIVE, tag_type, 1, tag_type, &backBits);
+	if ((status != MI_OK) || (backBits != 0x10)) {
+		status = MI_ERR;
+	}
+
+	return status;
+}
+
+uint8_t MFRC522_Anticoll(MFRC522_t *dev, uint8_t *ser_num)
+{
+	uint8_t status;
+	uint8_t i;
+	uint8_t ser_num_check=0;
+	uint32_t un_len;
+
+	//ClearBitMask(Status2Reg, 0x08);		//TempSensclear
+	//ClearBitMask(CollReg,0x80);			//ValuesAfterColl
+	MFRC522_WriteReg(dev, BitFramingReg, 0x00);		//TxLastBists = BitFramingReg[2..0]
+
+	ser_num[0] = PICC_ANTICOLL;
+	ser_num[1] = 0x20;
+	status = MFRC522_ToCard(dev, PCD_TRANSCEIVE, ser_num, 2, ser_num, &un_len);
+
+	if (status == MI_OK)
+	{
+	//Check card serial number
+		for (i=0; i<4; i++)
+		{
+			ser_num_check ^= ser_num[i];
+		}
+		if (ser_num_check != ser_num[i])
+		{
+			status = MI_ERR;
+		}
+	}
+	//SetBitMask(CollReg, 0x80);		//ValuesAfterColl=1
+
+	return status;
+}
