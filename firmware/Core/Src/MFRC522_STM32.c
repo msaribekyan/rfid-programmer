@@ -44,6 +44,7 @@ void MFRC522_Init(MFRC522_t *dev) {
     uint8_t txCtrl = MFRC522_ReadReg(dev, PCD_TxControlReg);
     DEBUG_LOG("TxControlReg: 0x%02X (expect >= 0x03)", txCtrl);
     USER_LOG("MFRC522 Min Init complete");
+	(void) txCtrl;
 }
 
 void MFRC522_AntennaOff(MFRC522_t *dev) {
@@ -391,4 +392,165 @@ uint8_t MFRC522_Anticoll(MFRC522_t *dev, uint8_t *ser_num)
 	//SetBitMask(CollReg, 0x80);		//ValuesAfterColl=1
 
 	return status;
+}
+
+void MFRC522_CalculateCRC(MFRC522_t *dev, uint8_t *pIndata, uint8_t len, uint8_t *pOutData)
+{
+  uint8_t i, n;
+
+  MFRC522_ClearBitMask(dev, DivIrqReg, 0x04);			//CRCIrq = 0
+  MFRC522_SetBitMask(dev, FIFOLevelReg, 0x80);			//Clear the FIFO pointer
+  //Write_MFRC522(CommandReg, PCD_IDLE);
+
+  //Writing data to the FIFO
+  for (i=0; i<len; i++)
+  {
+    MFRC522_WriteReg(dev, FIFODataReg, *(pIndata+i));
+  }
+  MFRC522_WriteReg(dev, CommandReg, PCD_CALCCRC);
+
+  //Wait CRC calculation is complete
+  i = 0xFF;
+  do
+  {
+    n = MFRC522_ReadReg(dev, DivIrqReg);
+    i--;
+  }
+  while ((i!=0) && !(n&0x04));			//CRCIrq = 1
+
+  //Read CRC calculation result
+  pOutData[0] = MFRC522_ReadReg(dev, CRCResultRegL);
+  pOutData[1] = MFRC522_ReadReg(dev, CRCResultRegM);
+}
+
+uint8_t MFRC522_SelectTag(MFRC522_t *dev, uint8_t *serNum)
+{
+	uint8_t i;
+	uint8_t status;
+	uint8_t size;
+	uint32_t recvBits;
+	uint8_t buffer[9];
+
+	//ClearBitMask(Status2Reg, 0x08);			//MFCrypto1On=0
+
+	buffer[0] = PICC_SELECTTAG;
+	buffer[1] = 0x70;
+	for (i=0; i<5; i++)
+	{
+		buffer[i+2] = *(serNum+i);
+	}
+	MFRC522_CalculateCRC(dev, buffer, 7, &buffer[7]);		//??
+	status = MFRC522_ToCard(dev, PCD_TRANSCEIVE, buffer, 9, buffer, &recvBits);
+
+	if ((status == MI_OK) && (recvBits == 0x18))
+	{
+		size = buffer[0];
+	}
+	else
+	{
+		size = 0;
+	}
+
+	return size;
+}
+
+uint8_t MFRC522_Auth(MFRC522_t *dev, uint8_t authMode, uint8_t BlockAddr, uint8_t *Sectorkey, uint8_t *serNum)
+{
+	uint8_t status;
+	uint32_t recvBits;
+	uint8_t i;
+	uint8_t buff[12];
+
+	//Verify the command block address + sector + password + card serial number
+	buff[0] = authMode;
+	buff[1] = BlockAddr;
+	for (i=0; i<6; i++)
+	{
+		buff[i+2] = *(Sectorkey+i);
+	}
+	for (i=0; i<4; i++)
+	{
+		buff[i+8] = *(serNum+i);
+	}
+	status = MFRC522_ToCard(dev, PCD_AUTHENT, buff, 12, buff, &recvBits);
+
+	if ((status != MI_OK) || (!(MFRC522_ReadReg(dev, Status2Reg) & 0x08)))
+	{
+		status = MI_ERR;
+	}
+
+	return status;
+}
+
+uint8_t MFRC522_Read(MFRC522_t *dev, uint8_t block_addr, uint8_t *recv_data)
+{
+	uint8_t status;
+	uint32_t un_len;
+
+	recv_data[0] = PICC_READ;
+	recv_data[1] = block_addr;
+	MFRC522_CalculateCRC(dev, recv_data,2, &recv_data[2]);
+	status = MFRC522_ToCard(dev, PCD_TRANSCEIVE, recv_data, 4, recv_data, &un_len);
+
+
+	printf("Status: %d, un_len: %d\n", status, un_len);
+	if ((status != MI_OK) || (un_len != 0x90))
+	{
+		status = MI_ERR;
+	}
+
+	return status;
+}
+
+uint8_t MFRC522_Write(MFRC522_t *dev, uint8_t blockAddr, uint8_t *writeData)
+{
+	uint8_t status;
+	uint32_t recvBits;
+	uint8_t i;
+	uint8_t buff[18];
+
+	buff[0] = PICC_WRITE;
+	buff[1] = blockAddr;
+	MFRC522_CalculateCRC(dev, buff, 2, &buff[2]);
+	status = MFRC522_ToCard(dev, PCD_TRANSCEIVE, buff, 4, buff, &recvBits);
+
+	if ((status != MI_OK))// || (recvBits != 4) || ((buff[0] & 0x0F) != 0x0A))
+	{
+		status = MI_ERR;
+	}
+	if (status == MI_OK)
+	{
+		for (i=0; i<16; i++)		//Data to the FIFO write 16Byte
+		{
+			buff[i] = *(writeData+i);
+		}
+		MFRC522_CalculateCRC(dev, buff, 16, &buff[16]);
+		status = MFRC522_ToCard(dev, PCD_TRANSCEIVE, buff, 18, buff, &recvBits);
+		if ((status != MI_OK))// || (recvBits != 4) || ((buff[0] & 0x0F) != 0x0A))
+		{
+			status = MI_ERR;
+		}
+	}
+
+	return status;
+}
+
+void MFRC522_Halt(MFRC522_t *dev)
+{
+	uint8_t status;
+	uint32_t unLen;
+	uint8_t buff[4];
+
+	buff[0] = PICC_HALT;
+	buff[1] = 0;
+	MFRC522_CalculateCRC(dev, buff, 2, &buff[2]);
+
+	status = MFRC522_ToCard(dev, PCD_TRANSCEIVE, buff, 4, buff,&unLen);
+	(void) status;
+	//return status;
+}
+//--------------------------------------
+void MFRC522_StopCrypto1(MFRC522_t *dev)
+{
+	MFRC522_ClearBitMask(dev, Status2Reg, 0x08);
 }

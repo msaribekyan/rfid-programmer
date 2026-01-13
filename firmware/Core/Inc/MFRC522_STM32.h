@@ -43,9 +43,13 @@
 #define PCD_Transceive     0x0C
 #define PCD_SoftReset      0x0F
 
-#define PCD_IDLE           0x00
-#define PCD_TRANSCEIVE     0x0C
-#define PCD_AUTHENT        0x0E
+#define PCD_IDLE              0x00               //NO action; Cancel the current command
+#define PCD_AUTHENT           0x0E               //Authentication Key
+#define PCD_RECEIVE           0x08               //Receive Data
+#define PCD_TRANSMIT          0x04               //Transmit data
+#define PCD_TRANSCEIVE        0x0C               //Transmit and receive data,
+#define PCD_RESETPHASE        0x0F               //Reset
+#define PCD_CALCCRC           0x03               //CRC Calculate
 // PICC commands
 #define PICC_REQA          0x26
 #define PICC_SEL_CL1       0x93
@@ -53,7 +57,7 @@
 #define PICC_REQIDL          0x26               // find the antenna area does not enter hibernation
 #define PICC_REQALL          0x52               // find all the cards antenna area
 #define PICC_ANTICOLL        0x93               // anti-collision
-#define PICC_SElECTTAG       0x93               // election card
+#define PICC_SELECTTAG       0x93               // election card
 #define PICC_AUTHENT1A       0x60               // authentication key A
 #define PICC_AUTHENT1B       0x61               // authentication key B
 #define PICC_READ            0x30               // Read Block
@@ -171,5 +175,11 @@ uint8_t waitcardDetect (MFRC522_t *dev);
 uint8_t MFRC522_ToCard(MFRC522_t *dev, uint8_t command, uint8_t *sendData, uint8_t sendLen, uint8_t *backData, uint32_t *backLen);
 uint8_t MFRC522_Request(MFRC522_t *dev, uint8_t req_mode, uint8_t *tag_type);
 uint8_t MFRC522_Anticoll(MFRC522_t *dev, uint8_t *ser_num);
-
+void MFRC522_CalculateCRC(MFRC522_t *dev, uint8_t *pIndata, uint8_t len, uint8_t *pOutData);
+uint8_t MFRC522_SelectTag(MFRC522_t *dev, uint8_t *serNum);
+uint8_t MFRC522_Auth(MFRC522_t *dev, uint8_t authMode, uint8_t BlockAddr, uint8_t *Sectorkey, uint8_t *serNum);
+uint8_t MFRC522_Read(MFRC522_t *dev, uint8_t block_addr, uint8_t *recv_data);
+uint8_t MFRC522_Write(MFRC522_t *dev, uint8_t blockAddr, uint8_t *writeData);
+void MFRC522_Halt(MFRC522_t *dev);
+void MFRC522_StopCrypto1(MFRC522_t *dev);
 #endif
