@@ -70,9 +70,9 @@ int _write(int fd, unsigned char *buf, int len)
 
 MFRC522_t rc522 = {&hspi1, SPI1_NSS_GPIO_Port, SPI1_NSS_Pin, RC522_RST_GPIO_Port, RC522_RST_Pin};
 
-uint8_t SectorKey[7] = {0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0};
-uint8_t recv_data[16] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+uint8_t SectorKey[7] = {0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF};
 uint8_t send_data[16] = {0x69, 0x69, 0x69, 0x69, 0x69, 0x69, 0x69, 0x69, 0x69, 0x69, 0x69, 0x69, 0x69, 0x69, 0x69, 0x69};
+uint8_t recv_data[18] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 /* USER CODE END 0 */
 
 /**
@@ -132,27 +132,32 @@ int main(void)
 				printf("Card Id: %02X %02X %02X %02X\n", cardstr[0], cardstr[1], cardstr[2], cardstr[3]);
 				if (MFRC522_SelectTag(&rc522, cardstr) > 2)
 				{
-					printf("Card selected\n");
-					if (MFRC522_Auth(&rc522, PICC_AUTHENT1A, 2, SectorKey, cardstr) == MI_OK)
+					if (MFRC522_Auth(&rc522, PICC_AUTHENT1A, 1, SectorKey, cardstr) == MI_OK)
 					{
-						printf("Authenticated\n");
 						/*
-						status = MFRC522_Read(&rc522, 1, recv_data);
-						if (1)
-						{
-							printf("Data: %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X\n", recv_data[0], recv_data[1], recv_data[2], recv_data[3], recv_data[4], recv_data[5], recv_data[6], recv_data[7], recv_data[8], recv_data[9], recv_data[10], recv_data[11], recv_data[12], recv_data[13], recv_data[14], recv_data[15]);
+						printf("Authenticated\n");
+						
+						status = MFRC522_Read(&rc522, 0, recv_data);
+						printf("Status: %d, Data: %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X\n", status, recv_data[0], recv_data[1], recv_data[2], recv_data[3], recv_data[4], recv_data[5], recv_data[6], recv_data[7], recv_data[8], recv_data[9], recv_data[10], recv_data[11], recv_data[12], recv_data[13], recv_data[14], recv_data[15]);
 						*/
-						status = MFRC522_Write(&rc522, 2, send_data);
+						
+						
+						status = MFRC522_Write(&rc522, 1, send_data);
 						if (status == MI_OK)
 						{
 							printf("Write successful!\n");
 						}
+						else {
+							printf("Got status code %d\n", status);
+						}
+						
+						
 					}
-					HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_RESET);
 					MFRC522_StopCrypto1(&rc522);
+					MFRC522_Halt(&rc522);
 				}
+				HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_RESET);
 			}
-			MFRC522_Halt(&rc522);
 		}
 		HAL_Delay(1000);
     /* USER CODE END WHILE */

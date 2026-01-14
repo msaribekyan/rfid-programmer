@@ -278,7 +278,7 @@ uint8_t MFRC522_ToCard(MFRC522_t *dev, uint8_t command, uint8_t *sendData, uint8
 		MFRC522_WriteReg(dev, FIFODataReg, sendData[i]);
 	}
 
-    HAL_Delay(2);  // Increased for counterfeit chip stability
+    // HAL_Delay(2);  // Increased for counterfeit chip stability
 
 	MFRC522_WriteReg(dev, CommandReg, command);
 	if (command == PCD_TRANSCEIVE)
@@ -492,8 +492,6 @@ uint8_t MFRC522_Read(MFRC522_t *dev, uint8_t block_addr, uint8_t *recv_data)
 	MFRC522_CalculateCRC(dev, recv_data,2, &recv_data[2]);
 	status = MFRC522_ToCard(dev, PCD_TRANSCEIVE, recv_data, 4, recv_data, &un_len);
 
-
-	printf("Status: %d, un_len: %d\n", status, un_len);
 	if ((status != MI_OK) || (un_len != 0x90))
 	{
 		status = MI_ERR;
@@ -502,6 +500,17 @@ uint8_t MFRC522_Read(MFRC522_t *dev, uint8_t block_addr, uint8_t *recv_data)
 	return status;
 }
 
+void print_buf(uint8_t *buf, uint32_t len)
+{
+	printf("Buf: ");
+	uint32_t i = 0;
+	while (i < len)
+	{
+		printf(" %02X", buf[i]);
+		i++;
+	}
+	printf("\n");
+}
 uint8_t MFRC522_Write(MFRC522_t *dev, uint8_t blockAddr, uint8_t *writeData)
 {
 	uint8_t status;
@@ -526,6 +535,7 @@ uint8_t MFRC522_Write(MFRC522_t *dev, uint8_t blockAddr, uint8_t *writeData)
 		}
 		MFRC522_CalculateCRC(dev, buff, 16, &buff[16]);
 		status = MFRC522_ToCard(dev, PCD_TRANSCEIVE, buff, 18, buff, &recvBits);
+		// print_buf(buff, 18);
 		if ((status != MI_OK))// || (recvBits != 4) || ((buff[0] & 0x0F) != 0x0A))
 		{
 			status = MI_ERR;
