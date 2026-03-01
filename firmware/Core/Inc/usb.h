@@ -7,4 +7,8 @@
 
 void USB_CDC_RxHandler(uint8_t*, uint32_t);
 
+void send_ping();
+void send_uid(uint8_t *uid, uint8_t uid_len);
+void send_blk(uint8_t *data);
+
 #endif // USB_H

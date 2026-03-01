@@ -55,24 +55,27 @@ uint8_t rfid_mf_wblk(uint8_t *uid, uint8_t blk, uint8_t *key, uint8_t *data)
 uint8_t execute_command(PN532 *pn532)
 {
 	uint8_t ret;
-	static uint8_t uid[MIFARE_UID_MAX_LENGTH];
-	static int32_t uid_len = 0;
+	uint8_t uid[MIFARE_UID_MAX_LENGTH];
+	int32_t uid_len = 0;
+	uint8_t	data_buf[16];
 
 	HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, 1);
 	switch (data[0])
 	{
 	case RFID_CMD_READ_BLK:
 		ret = rfid_mf_get_uid(pn532, uid, &uid_len);
-		if (!ret)
+		if (ret)
 		{
-			//ret = rfid_mf_rblk(pn532, uid, uid_len, );
-			if (!ret)
-				break;
+			send_ping();
+			break;
 		}
-		else
+		ret = rfid_mf_rblk(pn532, uid, uid_len, data[1], data + 2, data_buf);
+		if (ret)
 		{
-			// No card
+			send_ping();
+			break;
 		}
+		send_blk(data_buf);
 		break;
 	case RFID_CMD_WRITE_BLK:
 		break;
@@ -81,14 +84,10 @@ uint8_t execute_command(PN532 *pn532)
 		ret = rfid_mf_get_uid(pn532, uid, &uid_len);
 		if (!ret)
 		{
-			uint8_t yes_card[7] = {0x56, 0x30, uid_len, uid[0], uid[1], uid[2], uid[3]};
-			CDC_Transmit_FS(yes_card, 7);	
+			send_uid(uid, uid_len);
+			break;
 		}
-		else
-		{
-			uint8_t no_card[3] = {0x56, 0x01, 00};
-			CDC_Transmit_FS(no_card, 3);	
-		}
+		send_uid(NULL, 0);
 		break;
 	}
 	data_len = 0;
