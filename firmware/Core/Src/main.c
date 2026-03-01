@@ -22,9 +22,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "usbd_cdc_if.h"
-
-#include "MFRC522_STM32.h"
+#include "rfid.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -59,20 +57,7 @@ static void MX_SPI1_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-int _write(int fd, unsigned char *buf, int len)
-{
-	if (fd == 1 || fd == 2)
-	{
-		CDC_Transmit_FS(buf, len);
-	}
-	return (len);
-}
 
-MFRC522_t rc522 = {&hspi1, SPI1_NSS_GPIO_Port, SPI1_NSS_Pin, RC522_RST_GPIO_Port, RC522_RST_Pin};
-
-uint8_t SectorKey[7] = {0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF};
-uint8_t send_data[16] = {0x69, 0x69, 0x69, 0x69, 0x69, 0x69, 0x69, 0x69, 0x69, 0x69, 0x69, 0x69, 0x69, 0x69, 0x69, 0x69};
-uint8_t recv_data[18] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 /* USER CODE END 0 */
 
 /**
@@ -107,59 +92,17 @@ int main(void)
   MX_SPI1_Init();
   MX_USB_DEVICE_Init();
   /* USER CODE BEGIN 2 */
-	HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_SET);
-	HAL_Delay(5000);
-	HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_RESET);
-	USER_LOG("Starting...\n");
-	MFRC522_Init(&rc522);
-	HAL_Delay(2000);
-	//uint8_t status;
-	uint8_t cardstr[MAX_LEN+1];
-	uint8_t status;
-	
+  HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, 1);
+  HAL_Delay(1000);
+  HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, 0);
+  HAL_Delay(1000);
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-		
-		if(MFRC522_Request(&rc522, PICC_REQIDL, cardstr) == MI_OK)
-		{
-			if (MFRC522_Anticoll(&rc522, cardstr) == MI_OK)
-			{
-				HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_SET);
-				printf("Card Id: %02X %02X %02X %02X\n", cardstr[0], cardstr[1], cardstr[2], cardstr[3]);
-				if (MFRC522_SelectTag(&rc522, cardstr) > 2)
-				{
-					if (MFRC522_Auth(&rc522, PICC_AUTHENT1A, 1, SectorKey, cardstr) == MI_OK)
-					{
-						/*
-						printf("Authenticated\n");
-						
-						status = MFRC522_Read(&rc522, 0, recv_data);
-						printf("Status: %d, Data: %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X\n", status, recv_data[0], recv_data[1], recv_data[2], recv_data[3], recv_data[4], recv_data[5], recv_data[6], recv_data[7], recv_data[8], recv_data[9], recv_data[10], recv_data[11], recv_data[12], recv_data[13], recv_data[14], recv_data[15]);
-						*/
-						
-						
-						status = MFRC522_Write(&rc522, 1, send_data);
-						if (status == MI_OK)
-						{
-							printf("Write successful!\n");
-						}
-						else {
-							printf("Got status code %d\n", status);
-						}
-						
-						
-					}
-					MFRC522_StopCrypto1(&rc522);
-					MFRC522_Halt(&rc522);
-				}
-				HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_RESET);
-			}
-		}
-		HAL_Delay(1000);
+	  execute_state();
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -237,7 +180,7 @@ static void MX_SPI1_Init(void)
   hspi1.Init.CLKPhase = SPI_PHASE_1EDGE;
   hspi1.Init.NSS = SPI_NSS_SOFT;
   hspi1.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_64;
-  hspi1.Init.FirstBit = SPI_FIRSTBIT_MSB;
+  hspi1.Init.FirstBit = SPI_FIRSTBIT_LSB;
   hspi1.Init.TIMode = SPI_TIMODE_DISABLE;
   hspi1.Init.CRCCalculation = SPI_CRCCALCULATION_DISABLE;
   hspi1.Init.CRCPolynomial = 7;
@@ -270,13 +213,13 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOB_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOA, LED_Pin|RC522_RST_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOA, LED_Pin|PN532_RST_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(SPI1_NSS_GPIO_Port, SPI1_NSS_Pin, GPIO_PIN_SET);
 
-  /*Configure GPIO pins : LED_Pin RC522_RST_Pin */
-  GPIO_InitStruct.Pin = LED_Pin|RC522_RST_Pin;
+  /*Configure GPIO pins : LED_Pin PN532_RST_Pin */
+  GPIO_InitStruct.Pin = LED_Pin|PN532_RST_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
@@ -323,6 +266,7 @@ void Error_Handler(void)
 void assert_failed(uint8_t *file, uint32_t line)
 {
   /* USER CODE BEGIN 6 */
+  
   /* USER CODE END 6 */
 }
 #endif /* USE_FULL_ASSERT */
