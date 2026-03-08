@@ -123,14 +123,22 @@ fn main() {
                     let mut packet: Vec<u8> = vec![0x55, 0x02];
                     packet.push(blk);
                     packet.extend(key);
-                    println!("Writing {:02X?}", packet);
                     let _ = serial_port.write(&packet);
                     std::thread::sleep(std::time::Duration::from_millis(200));
-                    let mut buffer = [0u8; 24];
+                    let mut buffer = [0u8; 18];
                     let _ = serial_port.read(&mut buffer);
                     println!("Got {:02X?}", buffer);
                 },
-                Command::Write(blk, key, data) => println!("Writing block {} with key {:?}, {:?}", blk, key, data),
+                Command::Write(blk, key, data) => { 
+                    let mut packet: Vec<u8> = vec![0x55, 0x03];
+                    packet.push(blk);
+                    packet.extend(key);
+                    packet.extend(data);
+                    let _ = serial_port.write(&packet);
+                    std::thread::sleep(std::time::Duration::from_millis(200));
+                    let mut buffer = [0u8; 3];
+                    let _ = serial_port.read(&mut buffer);
+                    println!("Got {:02X?}", buffer);},
             }
         },
         Err(e) => match e {
