@@ -68,7 +68,17 @@ void send_blk(uint8_t *data)
 	}
 	CDC_Transmit_FS(frame, 18);
 	return ;
+}
 
+void send_wr(uint8_t conf)
+{
+	uint8_t frame[3];
+
+	frame[0] = 0x56;
+	frame[1] = 0x03;
+	frame[2] = conf;
+	CDC_Transmit_FS(frame, 3);
+	return ;
 }
 
 void USB_CDC_RxHandler(uint8_t* Buf, uint32_t Len)
@@ -102,7 +112,7 @@ void USB_CDC_RxHandler(uint8_t* Buf, uint32_t Len)
 			send_ping();
 			break;
 		}
-		copy_data(Buf + 1, 9);
+		copy_data(Buf + 1, 24);
 		break;
 	case RFID_CMD_PING:
 	default:

@@ -45,12 +45,24 @@ uint8_t rfid_mf_rblk(PN532 *pn532, uint8_t *uid, int32_t uid_len, uint8_t blk, u
 	return 0;
 }
 
-/*
-uint8_t rfid_mf_wblk(uint8_t *uid, uint8_t blk, uint8_t *key, uint8_t *data)
+uint8_t rfid_mf_wblk(PN532 *pn532, uint8_t *uid, int32_t uid_len, uint8_t blk, uint8_t *key, uint8_t *data)
 {
+	uint32_t pn532_error;
+
+   	pn532_error = PN532_MifareClassicAuthenticateBlock(pn532, uid, uid_len,
+			6, MIFARE_CMD_AUTH_A, key);
+	if (pn532_error)
+	{
+		pn532_error = PN532_MifareClassicAuthenticateBlock(pn532, uid, uid_len,
+				6, MIFARE_CMD_AUTH_B, key);
+		if (pn532_error)
+			return 1;
+	}
+	pn532_error = PN532_MifareClassicWriteBlock(pn532, data, blk);
+	if (pn532_error)
+		return 2;
 	return 0;
 }
-*/
 
 uint8_t execute_command(PN532 *pn532)
 {
@@ -78,6 +90,20 @@ uint8_t execute_command(PN532 *pn532)
 		send_blk(data_buf);
 		break;
 	case RFID_CMD_WRITE_BLK:
+		ret = rfid_mf_get_uid(pn532, uid, &uid_len);
+		if (ret)
+		{
+			send_ping();
+			break;
+		}
+		ret = rfid_mf_wblk(pn532, uid, uid_len, data[1], data + 2, data + 8);
+		if (ret)
+		{
+			send_ping();
+			break;
+		}
+		send_wr(0);
+		break;
 		break;
 	case RFID_CMD_GET_UID:
 	default:
