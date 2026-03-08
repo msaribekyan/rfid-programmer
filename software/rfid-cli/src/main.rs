@@ -100,16 +100,16 @@ fn main() {
                     serialport::SerialPortType::UsbPort(_) => {
                         port_name = Some(p.port_name);
                         break;
-                    },
+                    }
                     _ => {}
                 };
             }
             let mut serial_port = match port_name {
-                Some(p) => {
-                        serialport::new(p, 115200).open().expect("Failed to open port")
-                },
-                None => return ,
-            }; 
+                Some(p) => serialport::new(p, 115200)
+                    .open()
+                    .expect("Failed to open port"),
+                None => return,
+            };
             match cmd {
                 Command::Detect => {
                     let packet: Vec<u8> = vec![0x55, 0x01];
@@ -118,7 +118,7 @@ fn main() {
                     let mut buffer = [0u8; 24];
                     let _ = serial_port.read(&mut buffer);
                     println!("Got {:02X?}", buffer);
-                },
+                }
                 Command::Read(blk, key) => {
                     let mut packet: Vec<u8> = vec![0x55, 0x02];
                     packet.push(blk);
@@ -128,8 +128,8 @@ fn main() {
                     let mut buffer = [0u8; 18];
                     let _ = serial_port.read(&mut buffer);
                     println!("Got {:02X?}", buffer);
-                },
-                Command::Write(blk, key, data) => { 
+                }
+                Command::Write(blk, key, data) => {
                     let mut packet: Vec<u8> = vec![0x55, 0x03];
                     packet.push(blk);
                     packet.extend(key);
@@ -138,9 +138,10 @@ fn main() {
                     std::thread::sleep(std::time::Duration::from_millis(200));
                     let mut buffer = [0u8; 3];
                     let _ = serial_port.read(&mut buffer);
-                    println!("Got {:02X?}", buffer);},
+                    println!("Got {:02X?}", buffer);
+                }
             }
-        },
+        }
         Err(e) => match e {
             ArgError::InvalidKey => println!("Invalid key format"),
             ArgError::InvalidData => println!("Invalid data format"),
